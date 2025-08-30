@@ -1,6 +1,7 @@
 import type {
 	ExpressiveCodeConfig,
 	LicenseConfig,
+	FriendsLinkConfig,
 	NavBarConfig,
 	ProfileConfig,
 	SiteConfig,
@@ -44,6 +45,7 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.Home,
 		LinkPreset.Archive,
 		LinkPreset.About,
+		LinkPreset.Friends,
 		{
 			name: "GitHub",
 			url: "https://github.com/Kamio-Misuzu", // Internal links should not include the base path, as it is automatically added
@@ -81,4 +83,25 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
 	// Note: Some styles (such as background color) are being overridden, see the astro.config.mjs file.
 	// Please select a dark theme, as this blog theme currently only supports dark background color
 	theme: "github-dark",
+};
+
+export const FriendslinkConfig: FriendsLinkConfig = {
+	enable: true,
+	title: "友链",
+	description: "欢迎和我交换友链",
+	friends: [
+		{
+			name: "Kamio-Misuzu",
+			url: "https://github.com/Kamio-Misuzu",
+			description: "Kamio-Misuzu的Github主页",
+			avatar: "assets/images/demo-avatar.jpg",
+		},
+		{
+			name: "Kamio-Misuzu",
+			url: "https://space.bilibili.com/34160150",
+			description: "Kamio-Misuzu的bilibili主页",
+			avatar: "assets/images/demo-avatar.jpg",
+		},
+
+	],
 };

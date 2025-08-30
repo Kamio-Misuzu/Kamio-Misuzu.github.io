@@ -1,0 +1,53 @@
+---
+
+import { getEntry, render } from "astro:content";
+import Markdown from "@components/misc/Markdown.astro";
+import I18nKey from "../i18n/i18nKey";
+import { i18n } from "../i18n/translation";
+import MainGridLayout from "../layouts/MainGridLayout.astro";
+import { FriendslinkConfig } from "../config";
+import ImageWrapper from "../components/misc/ImageWrapper.astro";
+
+---
+
+
+<MainGridLayout title={FriendslinkConfig.title} description={FriendslinkConfig.description}>
+    <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
+        <div class="card-base z-10 px-9 py-6 relative w-full">
+            <h1 class="text-2xl font-bold mb-4 text-90">{FriendslinkConfig.title}</h1>
+            <p class="text-75 mb-8">{FriendslinkConfig.description}</p>
+            
+            <!-- 友链列表 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                {FriendslinkConfig.friends.map((friend) => (
+                    <div class="card-base p-4 hover:shadow-lg transition-shadow">
+                        <div class="flex items-start space-x-3">
+                            {friend.avatar && (
+                                <div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
+                                    <ImageWrapper 
+                                        src={friend.avatar} 
+                                        alt={friend.name}
+                                        class="w-12 h-12"
+                                    />
+                                </div>
+                            )}
+                            <div class="flex-1 min-w-0">
+                                <a 
+                                    href={friend.url} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    class="text-lg font-semibold hover:text-[var(--primary)] transition-colors block text-90"
+                                >
+                                    {friend.name}
+                                </a>
+                                <p class="text-sm text-75 mt-1 line-clamp-2">
+                                    {friend.description}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </div>
+</MainGridLayout>
