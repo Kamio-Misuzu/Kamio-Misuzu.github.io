@@ -4,7 +4,9 @@ import { url } from "../utils/url-utils";
 
 interface Props {
   id?: string;
-  images?: Array<{ src: string; alt?: string }>;
+  // images?: Array<{ src: string; alt?: string }>;
+  images?: Array<{src: string}>;
+  
   interval?: number;
   class?: string;
 }
@@ -12,9 +14,13 @@ interface Props {
 const { id, images = [], interval, class: className } = Astro.props;
 
 // 如果没有提供图片，使用默认API
+// const defaultImages = [
+//   { src: "https://t.alcy.cc/moez", alt: "Random image" }
+// ];
 const defaultImages = [
-  { src: "https://t.alcy.cc/moez", alt: "Random image" }
+  { src: "https://t.alcy.cc/moez"}
 ];
+
 
 const carouselImages = images.length > 0 ? images : defaultImages;
 ---
@@ -27,9 +33,14 @@ const carouselImages = images.length > 0 ? images : defaultImages;
         class:list={['carousel-slide', index === 0 && 'active']} 
         data-index={index}
       >
-        <img 
+        {/* <img 
           src={image.src.startsWith('/') ? url(image.src) : image.src} 
           alt={image.alt || ''} 
+          class="carousel-image"
+          loading={index === 0 ? 'eager' : 'lazy'}
+        /> */}
+          <img 
+          src={image.src.startsWith('/') ? url(image.src) : image.src} 
           class="carousel-image"
           loading={index === 0 ? 'eager' : 'lazy'}
         />

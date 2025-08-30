@@ -81,15 +81,20 @@ const mainPanelTop = siteConfig.banner.enable
         id="banner" 
         class="object-cover h-full transition duration-700 opacity-0 scale-105"
         interval={7500}
-        images={[
-          { src: "https://t.alcy.cc/moez", alt: "Banner image of the blog" },
-        //   { src: "https://t.alcy.cc/ysz", alt: "Banner image of the blog" },
-        //   { src: "https://t.alcy.cc/moe", alt: "Banner image of the blog" }
-        ]}
+        images={siteConfig.banner.src}
+
+        
       />
     </div>
   )}
 
+
+<!-- images={[
+    {src:"src/assets/images/demo-bg.png", alt: "Banner image of the blog"},
+      { src: "https://t.alcy.cc/moez", alt: "Banner image of the blog" },
+      { src: "https://t.alcy.cc/ysz", alt: "Banner image of the blog" },
+      { src: "https://t.alcy.cc/moe", alt: "Banner image of the blog" }
+    ]} -->
 
 <!-- Main content -->
 <div class="absolute w-full z-30 pointer-events-none" style={`top: ${mainPanelTop}`}>
