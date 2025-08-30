@@ -1,0 +1,159 @@
+---
+import MainGridLayout from "../layouts/MainGridLayout.astro";
+import TimelineCard from "../components/TimelineCard.astro";
+import BuildingCard from "../components/BuildingCard.astro";
+import I18nKey from "../i18n/i18nKey";
+import { i18n } from "../i18n/translation";
+import { Icon } from "astro-icon/components";
+import { timelineEvents } from "../constants/timeline-data";
+---
+
+<MainGridLayout title={i18n(I18nKey.timeline)} description="我的成长时间线">
+	<div class="w-full space-y-8">
+		<!-- 页面标题 -->
+		<div class="text-center mb-12">
+			<h1 class="text-4xl font-bold text-90 mb-4">时间线</h1>
+
+			
+			<!-- 统计信息 -->
+			<div class="flex flex-wrap justify-center gap-6 mb-8">
+				<div class="flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--btn-regular-bg)] border border-[var(--line-color)]">
+					<Icon name="material-symbols:business-center-rounded" class="text-[var(--primary)]"></Icon>
+					<span class="text-sm font-medium text-75">{timelineEvents.filter(e => e.type === 'work').length} 个工作经历</span>
+				</div>
+				<div class="flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--btn-regular-bg)] border border-[var(--line-color)]">
+					<Icon name="material-symbols:rocket-launch-rounded" class="text-[var(--primary)]"></Icon>
+					<span class="text-sm font-medium text-75">{timelineEvents.filter(e => e.type === 'project').length} 个项目经历</span>
+				</div>
+				<div class="flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--btn-regular-bg)] border border-[var(--line-color)]">
+					<Icon name="material-symbols:verified-rounded" class="text-[var(--primary)]"></Icon>
+					<span class="text-sm font-medium text-75">{timelineEvents.filter(e => e.type === 'award').length} 个获奖情况</span>
+				</div>
+				<div class="flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--btn-regular-bg)] border border-[var(--line-color)]">
+					<Icon name="material-symbols:article-rounded" class="text-[var(--primary)]"></Icon>
+					<span class="text-sm font-medium text-75">{timelineEvents.filter(e => e.type === 'paper').length} 篇论文</span>
+				</div>
+				<div class="flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--btn-regular-bg)] border border-[var(--line-color)]">
+					<Icon name="material-symbols:verified-rounded" class="text-[var(--primary)]"></Icon>
+					<span class="text-sm font-medium text-75">{timelineEvents.filter(e => e.type === 'certificate').length} 个证书</span>
+				</div>
+				
+			</div>
+		</div>
+
+		<!-- 正在建设中的项目 -->
+		<div class="mb-12">
+			<div class="text-center mb-6">
+				<div class="inline-flex items-center gap-2 mb-2">
+					<Icon name="material-symbols:construction-rounded" class="text-[var(--primary)] text-2xl"></Icon>
+					<h2 class="text-2xl font-bold text-90">正在建设中</h2>
+				</div>
+				<p class="text-75">一些正在开发和完善的项目, 以及正在做的内容</p>
+			</div>
+			
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+				<BuildingCard
+					title="桂界遗梦——数字IP驱动的桂林非遗沉浸式文化体验传承元宇宙"
+					description=""
+					icon="material-symbols:code-rounded"
+					progress={30}
+				/>
+				<BuildingCard
+					title="个人博客优化"
+					description="基于Astro语言以及Fuwari对博客进行改进与优化"
+					icon="material-symbols:code-rounded"
+					progress={23}
+				/>
+				<BuildingCard
+					title="KM_Platform"
+					description="手机端用于方便深度学习如Arxiv Daily, 随机背单词, 监控Weights & Biases获取训练过程, AI交流生图等等"
+					icon="material-symbols:code-rounded"
+					progress={11}
+				/>
+				<BuildingCard
+				title="flow matching"
+				description="学习流匹配"
+				icon="material-symbols:code-rounded"
+				progress={1}
+			/>
+			</div>
+		</div>
+
+
+		<div class="text-center mb-6">
+			<div class="inline-flex items-center gap-2 mb-2">
+				<Icon name="material-symbols:history-rounded" class="text-[var(--primary)] text-2xl"></Icon>
+				<h2 class="text-2xl font-bold text-90">经历</h2>
+			</div>
+		</div>
+
+		<!-- 时间线 -->
+		<div class="relative">
+			<div class="absolute left-0 w-1 bg-gradient-to-b from-[var(--primary)] via-[var(--primary)] to-transparent h-full hidden lg:block">
+				<div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-[var(--primary)] rounded-full animate-pulse"></div>
+				<div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-[var(--primary)] rounded-full"></div>
+			</div>
+			
+			<!-- 事件 -->
+			<div class="space-y-12 lg:pl-8">
+				{timelineEvents.map((event, index) => (
+					<div class="relative flex items-center group">
+						<div class="absolute left-0 transform -translate-x-1/2 w-5 h-5 bg-gradient-to-br from-[var(--primary)] to-[var(--title-active)] rounded-full border-4 border-[var(--card-bg)] z-10 hidden lg:block shadow-lg group-hover:scale-125 transition-transform duration-300"></div>
+						<div class="absolute left-0 w-0.5 h-16 bg-gradient-to-b from-[var(--primary)] to-transparent hidden lg:block"></div>
+						
+						<!-- 卡片 -->
+						<div class="w-full relative lg:pl-8">
+							<div class="absolute top-1/2 left-0 w-8 h-0.5 bg-gradient-to-r from-[var(--primary)] to-transparent hidden lg:block"></div>
+							
+							<TimelineCard
+								date={event.date}
+								title={event.title}
+								description={event.description}
+								icon={event.icon}
+								category={event.category}
+								type={event.type === "" ? undefined : event.type}
+								image={event.image}
+								class="w-full"
+								achievement={event.achievement}
+							/>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+
+		<!-- 底部 -->
+		<div class="text-center mt-16">
+			<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--btn-regular-bg)] text-75">
+				<Icon name="material-symbols:auto-awesome-rounded" class="text-[var(--primary)]"></Icon>
+				<span>kamio-misuzu</span>
+			</div>
+		</div>
+	</div>
+</MainGridLayout>
+
+<style>
+	.card-base::-webkit-scrollbar {
+		width: 6px;
+	}
+	
+	.card-base::-webkit-scrollbar-track {
+		background: var(--btn-regular-bg);
+		border-radius: 3px;
+	}
+	
+	.card-base::-webkit-scrollbar-thumb {
+		background: var(--primary);
+		border-radius: 3px;
+	}
+	
+	.card-base::-webkit-scrollbar-thumb:hover {
+		background: var(--title-active);
+	}
+	
+	@media (max-width: 768px) {
+		.grid-cols-1.md\:grid-cols-2 {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

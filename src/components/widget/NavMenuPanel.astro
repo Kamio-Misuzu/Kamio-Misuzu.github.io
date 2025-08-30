@@ -10,23 +10,92 @@ interface Props {
 const links = Astro.props.links;
 ---
 <div id="nav-menu-panel" class:list={["float-panel float-panel-closed absolute transition-all fixed right-4 px-2 py-2"]}>
-    {links.map((link) => (
-        <a href={link.external ? link.url : url(link.url)} class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8
-            hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition
-        "
-           target={link.external ? "_blank" : null}
-        >
-            <div class="transition text-black/75 dark:text-white/75 font-bold group-hover:text-[var(--primary)] group-active:text-[var(--primary)]">
-                {link.name}
-            </div>
-            {!link.external && <Icon name="material-symbols:chevron-right-rounded"
-                  class="transition text-[1.25rem] text-[var(--primary)]"
-            >
-            </Icon>}
-            {link.external && <Icon name="fa6-solid:arrow-up-right-from-square"
-                  class="transition text-[0.75rem] text-black/25 dark:text-white/25 -translate-x-1"
-            >
-            </Icon>}
-        </a>
-    ))}
+    {links.map((link) => {
+        if (link.children && link.children.length > 0) {
+            return (
+                <div class="nav-dropdown">
+                    <div class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8
+                        hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition cursor-pointer"
+                         onclick="toggleDropdown(this)"
+                    >
+                        <div class="transition text-black/75 dark:text-white/75 font-bold group-hover:text-[var(--primary)] group-active:text-[var(--primary)]">
+                            {link.name}
+                        </div>
+                        <Icon name="material-symbols:keyboard-arrow-down-rounded"
+                              class="transition text-[1.25rem] text-[var(--primary)] rotate-0"
+                        >
+                        </Icon>
+                    </div>
+                    <div class="dropdown-content hidden pl-4">
+                        {link.children.map((child) => (
+                            <a href={child.external ? child.url : url(child.url)} target={child.external ? "_blank" : null}
+                               class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8
+                                   hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition
+                               "
+                            >
+                                <div class="transition text-black/75 dark:text-white/75 font-bold group-hover:text-[var(--primary)] group-active:text-[var(--primary)]">
+                                    {child.name}
+                                </div>
+                                {!child.external && <Icon name="material-symbols:chevron-right-rounded"
+                                      class="transition text-[1.25rem] text-[var(--primary)]"
+                                >
+                                </Icon>}
+                                {child.external && <Icon name="fa6-solid:arrow-up-right-from-square"
+                                      class="transition text-[0.75rem] text-black/25 dark:text-white/25 -translate-x-1"
+                                >
+                                </Icon>}
+                            </a>
+                        ))}
+                    </div>
+                </div>
+            );
+        } else {
+            return (
+                <a href={link.external ? link.url : url(link.url)} class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8
+                    hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition
+                "
+                   target={link.external ? "_blank" : null}
+                >
+                    <div class="transition text-black/75 dark:text-white/75 font-bold group-hover:text-[var(--primary)] group-active:text-[var(--primary)]">
+                        {link.name}
+                    </div>
+                    {!link.external && <Icon name="material-symbols:chevron-right-rounded"
+                          class="transition text-[1.25rem] text-[var(--primary)]"
+                    >
+                    </Icon>}
+                    {link.external && <Icon name="fa6-solid:arrow-up-right-from-square"
+                          class="transition text-[0.75rem] text-black/25 dark:text-white/25 -translate-x-1"
+                    >
+                    </Icon>}
+                </a>
+            );
+        }
+    })}
 </div>
+
+<style>
+.nav-dropdown .dropdown-content {
+    border-left: 2px solid var(--line-color);
+    margin-left: 0.5rem;
+}
+
+.nav-dropdown .dropdown-content a {
+    font-size: 0.875rem;
+    opacity: 0.9;
+}
+</style>
+
+<script>
+function toggleDropdown(element: HTMLElement) {
+    const dropdownContent = element.nextElementSibling as HTMLElement;
+    const icon = element.querySelector('icon') as HTMLElement;
+    
+    if (dropdownContent.classList.contains('hidden')) {
+        dropdownContent.classList.remove('hidden');
+        if (icon) icon.style.transform = 'rotate(180deg)';
+    } else {
+        dropdownContent.classList.add('hidden');
+        if (icon) icon.style.transform = 'rotate(0deg)';
+    }
+}
+</script>

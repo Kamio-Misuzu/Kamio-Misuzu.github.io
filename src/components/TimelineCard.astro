@@ -1,0 +1,105 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+	date: string;
+	title: string;
+	description: string;
+	icon?: string;
+	category?: string;
+	type?: "" | "work" | "project" | "award" | "paper"| "certificate";
+	image?: string;
+	class?: string;
+    achievement?: string;
+}
+
+const { date, title, description, icon, category, type, image, class: className , achievement} = Astro.props;
+---
+
+<div class:list={["card-base flex flex-col w-full rounded-[var(--radius-large)] overflow-hidden relative transition-all duration-500 hover:scale-[1.02] hover:shadow-lg", className]}>
+	<!-- 头部 -->
+	<div class="flex items-center gap-4 p-6 pb-4">
+		<div class="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--title-active)] flex items-center justify-center shadow-lg">
+			{icon ? (
+				<Icon name={icon} class="text-white text-xl"></Icon>
+			) : (
+				<Icon name="material-symbols:event-rounded" class="text-white text-xl"></Icon>
+			)}
+		</div>
+		
+		<!-- 标题和日期 -->
+		<div class="flex-1 min-w-0">
+			<h3 class="text-xl font-bold text-90 mb-1 line-clamp-1 transition-colors duration-300 group-hover:text-[var(--primary)]">{title}</h3>
+			<div class="flex items-center gap-2 text-sm text-75">
+				<Icon name="material-symbols:calendar-month-rounded" class="text-[var(--primary)]"></Icon>
+				<span class="font-medium">{date}</span>
+				{category && (
+					<>
+						<span class="text-meta-divider">•</span>
+						<span class="px-3 py-1 rounded-full bg-gradient-to-r from-[var(--btn-regular-bg)] to-[var(--btn-card-bg-hover)] text-xs font-medium border border-[var(--line-color)]">{category}</span>
+					</>
+				)}
+				{type && (
+					<>
+						<span class="text-meta-divider">•</span>
+						<span class:list={[
+							"px-3 py-1 rounded-full text-xs font-medium border",
+							{
+								"bg-[var(--btn-regular-bg)] text-[var(--primary)] border-[var(--line-color)]": type === "work",
+								"bg-[var(--btn-card-bg-hover)] text-[var(--primary)] border-[var(--line-color)]": type === "project", 
+								"bg-[var(--btn-plain-bg-hover)] text-[var(--primary)] border-[var(--line-color)]": type === "award",
+								"bg-[var(--btn-paper-bg-hover)] text-[var(--primary)] border-[var(--line-color)]": type === "paper",
+								"bg-[var(--btn-certificate-bg-hover)] text-[var(--primary)] border-[var(--line-color)]": type === "certificate"			
+							}
+						]}>
+							{type === "work" ? "工作经历" : type === "project" ? "项目经历" : type ==="award" ? "获奖情况" : type==="paper" ? "论文情况" : type==="certificate" ? "证书情况" : ""}
+						</span>
+					</>
+				)}
+			</div>
+		</div>
+	</div>
+
+	<!-- 内容 -->
+	<div class="px-6 pb-6">
+		<p class="text-75 leading-relaxed mb-4 text-base">{description}</p>
+		
+		<!-- 图片 -->
+		{image && 
+            (
+			<div class="rounded-lg overflow-hidden mb-4 border border-[var(--line-color)]">
+				<img src={image} alt={title} class="w-full h-48 object-cover hover:scale-105 transition-transform duration-500">
+			</div>
+            )
+        }
+
+		
+		<!-- 装饰性元素 -->
+		<div class="flex items-center justify-between pt-2">
+			<div class="flex items-center gap-2 text-xs text-75">
+				<Icon name="material-symbols:trending-up-rounded" class="text-[var(--primary)]"></Icon>
+			</div>
+			{achievement && (
+				<p class="text-75 leading-relaxed text-base text-left flex-1 ml-4">{achievement}</p>
+			)}
+			<div class="w-8 h-0.5 bg-gradient-to-r from-transparent to-[var(--primary)] rounded-full"></div>
+		</div>
+
+		
+	</div>
+
+	<div class="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/5 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+</div>
+
+<style>
+	/* 悬停时的边框效果 */
+	.card-base:hover {
+		border-color: var(--primary);
+	}
+	
+	/* 图标悬停动画 */
+	.card-base:hover .flex-shrink-0 {
+		transform: scale(1.1);
+		transition: transform 0.3s ease;
+	}
+</style>

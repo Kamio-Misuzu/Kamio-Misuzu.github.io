@@ -47,10 +47,20 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.About,
 		LinkPreset.Friends,
 		{
-			name: "GitHub",
-			url: "https://github.com/Kamio-Misuzu", // Internal links should not include the base path, as it is automatically added
-			external: true, // Show an external link icon and will open in a new tab
+			name: "其他",
+			url: "#",
+			children: [
+				{
+					name: "时间线",
+					url: "/timeline/",
+				},
+			],
 		},
+		// {
+		// 	name: "GitHub",
+		// 	url: "https://github.com/Kamio-Misuzu", // Internal links should not include the base path, as it is automatically added
+		// 	external: true, // Show an external link icon and will open in a new tab
+		// },
 	],
 };
 

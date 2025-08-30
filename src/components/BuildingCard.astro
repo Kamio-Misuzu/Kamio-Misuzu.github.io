@@ -1,0 +1,78 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+	title: string;
+	description: string;
+	icon?: string;
+	progress?: number;
+	class?: string;
+}
+
+const { title, description, icon, progress, class: className } = Astro.props;
+---
+
+<div class:list={["building-card flex flex-col p-4 rounded-lg border border-[var(--line-color)] bg-[var(--card-bg)] hover:border-[var(--primary)] transition-all duration-300 hover:shadow-md relative overflow-hidden", className]}>
+	<!-- 头部 -->
+	<div class="flex items-center gap-3 mb-3">
+		<div class="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--title-active)] flex items-center justify-center shadow-sm">
+			{icon ? (
+				<Icon name={icon} class="text-white text-sm"></Icon>
+			) : (
+				<Icon name="material-symbols:construction-rounded" class="text-white text-sm"></Icon>
+			)}
+		</div>
+		
+		<div class="flex-1 min-w-0">
+			<h4 class="text-sm font-semibold text-90 line-clamp-1 leading-tight">{title}</h4>
+		</div>
+		
+		<!-- 建设状态指示器 -->
+		<div class="flex items-center gap-1">
+			<div class="w-2 h-2 bg-[var(--primary)] rounded-full animate-pulse"></div>
+			<span class="text-xs text-75">doing</span>
+		</div>
+	</div>
+
+	<!-- 描述 -->
+	<p class="text-xs text-75 leading-relaxed mb-3 line-clamp-2">{description}</p>
+	
+	<!-- 进度条 -->
+	{progress !== undefined && (
+		<div class="w-full">
+			<div class="flex justify-between items-center mb-1">
+				<span class="text-xs text-75">进度</span>
+				<span class="text-xs font-medium text-[var(--primary)]">{progress}%</span>
+			</div>
+			<div class="w-full bg-[var(--btn-regular-bg)] rounded-full h-1.5">
+				<div 
+					class="bg-gradient-to-r from-[var(--primary)] to-[var(--title-active)] h-1.5 rounded-full transition-all duration-500"
+					style={`width: ${progress}%`}
+				></div>
+			</div>
+		</div>
+	)}
+	
+	<!-- 装饰性背景元素 -->
+	<div class="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-[var(--primary)]/10 to-transparent rounded-full -translate-y-8 translate-x-8"></div>
+</div>
+
+<style>
+	.building-card:hover {
+		transform: translateY(-2px);
+	}
+	
+	.line-clamp-1 {
+		overflow: hidden;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 1;
+	}
+	
+	.line-clamp-2 {
+		overflow: hidden;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+	}
+</style>
