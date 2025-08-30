@@ -15,6 +15,8 @@ import {
 } from "../constants/constants";
 import Layout from "./Layout.astro";
 
+import Carousel from "../components/Carousel.astro";
+
 interface Props {
 	title?: string;
 	banner?: string;
@@ -52,12 +54,42 @@ const mainPanelTop = siteConfig.banner.enable
 </div>
 
 <!-- Banner -->
-{siteConfig.banner.enable && <div id="banner-wrapper" class={`absolute z-10 w-full transition duration-700 overflow-hidden`} style={`top: -${BANNER_HEIGHT_EXTEND}vh`}>
-    <ImageWrapper id="banner" alt="Banner image of the blog" class:list={["object-cover h-full transition duration-700 opacity-0 scale-105"]}
-                  src={siteConfig.banner.src} position={siteConfig.banner.position}
+
+ <!-- 未轮播图 -->
+<!-- {siteConfig.banner.enable && 
+ <div id="banner-wrapper" 
+ class={`absolute z-10 w-full transition duration-700 overflow-hidden`} 
+ style={`top: -${BANNER_HEIGHT_EXTEND}vh`}
+ >
+    <ImageWrapper 
+    id="banner" 
+    alt="Banner image of the blog" 
+    class:list={["object-cover h-full transition duration-700 opacity-0 scale-105"]}
+    src={siteConfig.banner.src} position={siteConfig.banner.position}
     >
     </ImageWrapper>
-</div>}
+</div>} -->
+
+<!-- 轮播图 -->
+{siteConfig.banner.enable && (
+    <div 
+      id="banner-wrapper" 
+      class={`absolute z-10 w-full transition duration-700 overflow-hidden`} 
+      style={`top: -${BANNER_HEIGHT_EXTEND}vh`}
+    >
+      <Carousel 
+        id="banner" 
+        class="object-cover h-full transition duration-700 opacity-0 scale-105"
+        interval={7500}
+        images={[
+          { src: "https://t.alcy.cc/moez", alt: "Banner image of the blog" },
+        //   { src: "https://t.alcy.cc/ysz", alt: "Banner image of the blog" },
+        //   { src: "https://t.alcy.cc/moe", alt: "Banner image of the blog" }
+        ]}
+      />
+    </div>
+  )}
+
 
 <!-- Main content -->
 <div class="absolute w-full z-30 pointer-events-none" style={`top: ${mainPanelTop}`}>
