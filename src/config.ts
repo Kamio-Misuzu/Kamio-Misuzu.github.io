@@ -112,6 +112,18 @@ export const FriendslinkConfig: FriendsLinkConfig = {
 			description: "Kamio-Misuzu的bilibili主页",
 			avatar: "assets/images/demo-avatar.jpg",
 		},
+		{
+			name: "Astro",
+			url: "Astro主页",
+			description: "https://astro.build/",
+			avatar: "https://avatars.githubusercontent.com/u/44914786?s=48&v=4",
+		},
+		{
+			name: "fuwari",
+			url: "https://fuwari.vercel.app/",
+			description: "fuwari博客页面",
+			avatar: "https://fuwari.vercel.app/_astro/demo-avatar.CxcI0ivM_1nbuVe.webp",
+		},
 
 	],
 };
