@@ -4,8 +4,8 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 
 import ConfigCarrier from "@components/ConfigCarrier.astro";
-import SakuraEffect from "../components/mouse/SakuraEffect.astro";
-import SpiderWebEffect from "../components/mouse/SpiderWebEffect.astro";
+import SakuraEffect from "@components/mouse/SakuraEffect.astro";
+import SpiderWebEffect from "@components/mouse/SpiderWebEffect.astro";
 import { profileConfig, siteConfig } from "@/config";
 import {
 	AUTO_MODE,
@@ -171,7 +171,7 @@ const bannerOffset =
 		  data-overlayscrollbars-initialize
 	>
 		<ConfigCarrier></ConfigCarrier>
-		<SakuraEffect />
+		<!-- <SakuraEffect /> -->
 		<SpiderWebEffect />
 		<slot />
 
