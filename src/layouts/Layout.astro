@@ -6,6 +6,7 @@ import "@fontsource/roboto/700.css";
 import ConfigCarrier from "@components/ConfigCarrier.astro";
 import SakuraEffect from "@components/mouse/SakuraEffect.astro";
 import SpiderWebEffect from "@components/mouse/SpiderWebEffect.astro";
+import ClickTextEffect from "@components/mouse/ClickTextEffect.astro";
 import { profileConfig, siteConfig } from "@/config";
 import {
 	AUTO_MODE,
@@ -172,7 +173,9 @@ const bannerOffset =
 	>
 		<ConfigCarrier></ConfigCarrier>
 		<!-- <SakuraEffect /> -->
-		<SpiderWebEffect />
+		<!-- <SpiderWebEffect /> -->
+		<ClickTextEffect />
+		
 		<slot />
 
 		<!-- increase the page height during page transition to prevent the scrolling animation from jumping -->

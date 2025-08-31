@@ -1,0 +1,151 @@
+<!-- 参考点击出现文字特效修改 -->
+
+---
+import { clickContents } from '@components/mouse/click-content-config';
+---
+
+<style>
+    span[style*="position: fixed"] {
+      pointer-events: none !important;
+      user-select: none !important;
+    }
+    
+    .click-image {
+      pointer-events: none !important;
+      user-select: none !important;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+  </style>
+  
+
+<script define:vars={{ clickContents }}>
+  let contentIndex = 0;
+
+  // 随机颜色生成函数
+  function randomColor() {
+    return `rgb(${~~(Math.random() * 255)}, ${~~(Math.random() * 255)}, ${~~(Math.random() * 255)})`;
+  }
+
+  // 创建点击内容效果
+  function createClickContent(event) {
+    const content = clickContents[contentIndex];
+    console.log('content:', content);
+    contentIndex = (contentIndex + 1) % clickContents.length;
+
+    let element;
+
+
+    if (content.type === 'emoji') {
+      // 创建表情符号元素
+      element = document.createElement("span");
+      element.textContent = content.content;
+      element.style.cssText = `
+        position: fixed;
+        left: -100%;
+        pointer-events: none;
+        user-select: none;
+        z-index: 9999;
+        font-weight: bold;
+        font-size: ${content.size}px;
+        white-space: nowrap;
+      `;
+    } else {
+      // 创建图片元素
+      element = document.createElement("img");
+
+      let imageUrl = '';
+      
+      if (content.type === 'random') {
+        const num = String(Math.floor(Math.random() * 39) + 1).padStart(3, '0');
+        const num2=String(Math.floor(Math.random() * 39) + 22).padStart(9, '5751154');
+        if (content.description === 'NachoNeko') {
+          imageUrl = `https://stickershop.line-scdn.net/sticonshop/v1/sticon/686c809c7a295f1761c5b8d6/iPhone/${num}.png?v=1`;
+        } else if (content.description === 'cat_girl') {
+          imageUrl = `https://stickershop.line-scdn.net/sticonshop/v1/sticon/5bfe3880031a67fad2872ad0/iPhone/${num}.png?v=2`;
+        } 
+        else if (content.description === 'hutao') {
+          imageUrl = `https://stickershop.line-scdn.net/stickershop/v1/sticker/${num2}/android/sticker.png?v=1`;
+        } 
+
+        else {
+          imageUrl = "https://stickershop.line-scdn.net/sticonshop/v1/sticon/686c809c7a295f1761c5b8d6/iPhone/001.png?v=1";
+        }
+      } else if (content.type === 'image') {
+        imageUrl = content.content;
+      }
+      
+      element.src = imageUrl;
+      element.alt = content.description || "None";
+        element.className = "click-image";
+        element.style.cssText = `
+            position: fixed;
+            left: -100%;
+            pointer-events: none;
+            user-select: none;
+            z-index: 9999;
+            width: ${content.size}px;
+            height: ${content.size}px;
+            object-fit: cover;
+        `;
+    }
+
+    document.body.appendChild(element);
+
+    // 设置初始位置和样式
+    const x = event.clientX - content.size / 2;
+    let y = event.clientY - content.size;
+    const color = content.type === 'emoji' ? randomColor() : null;
+    let opacity = 1;
+    let scale = 1.2;
+
+    // 动画定时器
+    const timer = setInterval(() => {
+      if (opacity <= 0) {
+        document.body.removeChild(element);
+        clearInterval(timer);
+      } else {
+        if (content.type === 'emoji') {
+          element.style.cssText = `
+            position: fixed;
+            left: ${x}px;
+            top: ${y}px;
+            color: ${color};
+            opacity: ${opacity};
+            transform: scale(${scale});
+            pointer-events: none;
+            user-select: none;
+            z-index: 9999;
+            font-weight: bold;
+            font-size: ${content.size}px;
+            white-space: nowrap;
+          `;
+        } else {
+          element.style.cssText = `
+            position: fixed;
+            left: ${x}px;
+            top: ${y}px;
+            opacity: ${opacity};
+            transform: scale(${scale});
+            pointer-events: none;
+            user-select: none;
+            z-index: 9999;
+            width: ${content.size}px;
+            height: ${content.size}px;
+            object-fit: cover;
+          `;
+        }
+
+        y--;
+        opacity -= 0.016;
+        scale += 0.002;
+      }
+    }, 15);
+  }
+
+  // 页面加载完成后绑定事件
+  document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('click', createClickContent);
+  });
+</script>
+
