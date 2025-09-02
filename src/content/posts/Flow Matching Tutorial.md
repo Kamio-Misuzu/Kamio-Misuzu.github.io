@@ -156,13 +156,21 @@ $$
 
 ### **Normalizing Flows** | 标准化流
 
+说白了就是, 一个对原始图不断转换的过程
+
+![标准化流图](.\imgs\flow_matching_tutorial\1.png)
+
+z_0到z_k(假设为x)就是用一系列雅可比矩阵转换, 这个变换的过程就称为流
+$$
+p_x(x)=p_z(z)\cdot|det(\frac{\partial f(z)}{\partial z})|^{-1}
+$$
 
 
+#### Continuous Normalizing Flows, CNF | 连续归一化流
+
+重在连续, 定义一个速度场, 然后看着点在这个速度场的驱动下，从起始形状平滑、连续地“流动”成最终形状。
 
 
-
-
-### Continuous Normalizing Flows, CNF | 连续归一化流
 
 
 
