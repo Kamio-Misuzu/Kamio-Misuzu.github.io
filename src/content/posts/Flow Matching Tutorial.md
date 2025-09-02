@@ -158,7 +158,9 @@ $$
 
 说白了就是, 一个对原始图不断转换的过程
 
-![标准化流图](.\imgs\flow_matching_tutorial\1.png)
+![标准化流图](imgs/flow_matching_tutorial/1.png)
+
+
 
 z_0到z_k(假设为x)就是用一系列雅可比矩阵转换, 这个变换的过程就称为流
 $$
