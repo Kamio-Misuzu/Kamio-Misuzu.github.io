@@ -32,6 +32,7 @@ lang: 'zh_CN'
 假定题目是找s中在长度k个字串中最多有多少元音字母
 
 ```python
+# Python
 class Solution:
     def maxVowels(self,s,k):
         ans=vowel=0
@@ -51,6 +52,7 @@ class Solution:
 ```
 
 ```java
+// Java
 class Solution:{
     public int maxVowels(String S, int k){
         // toCharArray(): 将一个字符串（String）转换成一个新的字符数组（char[]）
@@ -79,6 +81,7 @@ class Solution:{
 ```
 
 ```javascript
+// JavaScript
 var maxVowels=function(s,k){
     let ans=0, vowel=0;
     for (let i=0;i<s.length;i++){
