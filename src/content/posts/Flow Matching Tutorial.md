@@ -403,6 +403,145 @@ $$
 
 ## code
 
+### 2D FM 
+
+$$
+step中公式(龙格-库塔)计算方法:
+\\
+给定ODE：\frac{dx}{dt} = f(t, x)\\
+
+中点法的更新公式：\\
+k_1 = f(t, x_t)\\
+k_2 = f(t + \frac{h}{2}, x_t + \frac{h}{2} \cdot k_1)\\
+x_{t+h} = x_t + h \cdot k_2\\
+
+其中 h = t_{\text{end}} - t_{\text{start}}
+$$
+
+
+
+```Python
+import torch
+from torch import nn, Tensor
+
+import matplotlib.pyplot as plt
+from sklearn.datasets import make_moons
+
+# model
+class Flow(nn.Module):
+    def __init__(self, dim: int = 2, h: int = 64):
+        super().__init__()
+        self.net = nn.Sequential(
+            nn.Linear(dim + 1, h), nn.ELU(),
+            nn.Linear(h, h), nn.ELU(),
+            nn.Linear(h, h), nn.ELU(),
+            nn.Linear(h, dim))
+
+    def forward(self, t: Tensor, x_t: Tensor) -> Tensor:
+        return self.net(torch.cat((t, x_t), -1))
+
+    def step(self, x_t: Tensor, t_start: Tensor, t_end: Tensor) -> Tensor
+    # 这个类实现了中点法（二阶Runge-Kutta方法）来数值求解ODE：
+    	"""
+    	t_start.view(1, 1): 如果 t_start = 0.5，变成 tensor([[0.5]])
+    	.expand(x_t.shape[0], 1)将张量扩展为形状 (x_t.shape[0], 1)
+    	
+    	example:
+                t_start = torch.tensor(0.5)  # 标量张量
+                x_t = torch.randn(32, 3, 64, 64)  # 批次大小32的图像数据
+                result = t_start.view(1, 1).expand(x_t.shape[0], 1)
+                # result.shape: torch.Size([32, 1])
+                # result: 32个元素值都是0.5
+    	"""
+        t_start = t_start.view(1, 1).expand(x_t.shape[0], 1)
+		
+        # self()=self.forward()
+        # 在 PyTorch 中，当你对 nn.Module 实例使用调用语法 ()，它实际上调用的是 forward 方法
+        return x_t + (t_end - t_start) * self(t=t_start + (t_end - t_start) / 2, x_t= x_t + self(x_t=x_t, t=t_start) * (t_end - t_start) / 2)
+# def step(self, x_t: Tensor, t_start: Tensor, t_end: Tensor) -> Tensor:
+#     # 1. 将时间步扩展到整个批次
+#     t_start = t_start.view(1, 1).expand(x_t.shape[0], 1)
+# 
+#     # 2. 计算时间步长
+#     h = t_end - t_start  # 步长
+# 
+#     # 3. 计算k1: f(t_start, x_t)
+#     k1 = self(t=t_start, x_t=x_t)
+# 
+#     # 4. 计算中点状态: x_t + h/2 * k1
+#     midpoint_x = x_t + k1 * (h / 2)
+#     midpoint_t = t_start + h / 2
+# 
+#     # 5. 计算k2: f(midpoint_t, midpoint_x)
+#     k2 = self(t=midpoint_t, x_t=midpoint_x)
+# 
+#     # 6. 更新状态: x_t + h * k2
+#     return x_t + h * k2
+
+
+# train
+flow = Flow()
+
+optimizer = torch.optim.Adam(flow.parameters(), 1e-2)
+loss_fn = nn.MSELoss()
+
+for _ in range(10000):
+    """
+    成一个包含两个"月牙"形状的二维数据集
+    256: 生成256个数据点
+	noise=0.05: 添加少量噪声（5%）使数据点略微分散，更接近真实数据
+    """
+    x_1 = Tensor(make_moons(256, noise=0.05)[0])
+    
+    # noise
+    x_0 = torch.randn_like(x_1)
+    # 创建一个形状为 (len(x_1), 1) 的张量
+    """
+    torch.rand()：均匀分布，[0, 1)
+    torch.randn()：标准正态分布，均值0，方差1
+    torch.randint()：整数随机数
+    torch.rand_like()：生成与输入张量形状相同的随机数
+    """
+    t = torch.rand(len(x_1), 1)
+	
+    #  最优传输条件求x_t的值
+    x_t = (1 - t) * x_0 + t * x_1
+    # 梯度,即x_t对t的导数
+    dx_t = x_1 - x_0
+    
+	
+    optimizer.zero_grad()
+    # 计算网络模拟的梯度与真实梯度之间的损失
+    loss_fn(flow(t=t, x_t=x_t), dx_t).backward()
+    optimizer.step()
+
+
+# sample
+
+
+x = torch.randn(300, 2)
+n_steps = 8
+fig, axes = plt.subplots(1, n_steps + 1, figsize=(30, 4), sharex=True, sharey=True)
+
+# 创建一个在区间 [0, 1.0] 上均匀分布的数值序列。
+time_steps = torch.linspace(0, 1.0, n_steps + 1)
+
+axes[0].scatter(x.detach()[:, 0], x.detach()[:, 1], s=10)
+axes[0].set_title(f't = {time_steps[0]:.2f}')
+axes[0].set_xlim(-3.0, 3.0)
+axes[0].set_ylim(-3.0, 3.0)
+
+for i in range(n_steps):
+    # 计算每一时刻x_t的情况
+    x = flow.step(x_t=x, t_start=time_steps[i], t_end=time_steps[i + 1])
+    axes[i + 1].scatter(x.detach()[:, 0], x.detach()[:, 1], s=10)
+    axes[i + 1].set_title(f't = {time_steps[i + 1]:.2f}')
+
+plt.tight_layout()
+plt.show()
+
+```
+
 
 
 
