@@ -10,6 +10,17 @@ export interface TimelineEvent {
 }
 
 export const timelineEvents: TimelineEvent[] = [
+    {
+		date: "2025年9月",
+		title: "保研情况",
+		description: "也是意料中拿到了学校的保研资格, 目前在寻找导师中..., 回顾三年发现, 每年综测都是第二(综测第一年年都另有其人), 年年与国家奖学金无望😂",
+		icon: "material-symbols:code-rounded",
+		category: "",
+		type: "",
+		image: "",
+        achievement: ""
+
+	},
 
     {
 		date: "2025年6月",
