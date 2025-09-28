@@ -10,6 +10,16 @@ export interface TimelineEvent {
 }
 
 export const timelineEvents: TimelineEvent[] = [
+	{
+		date: "2025年9月",
+		title: "保研去向",
+		description: "深圳大学计算机与软件学院计算机科学与技术，其实我知道这次保研的去向并不那么理想，我不禁觉得或许人生的轨迹在冥冥之中已经注定",
+		icon: "material-symbols:code-rounded",
+		category: "",
+		type: "",
+		image: "",
+        achievement: ""
+	},
     {
 		date: "2025年9月",
 		title: "一些感受",
