@@ -144,9 +144,9 @@ $$
 
 这部分就是用于优化Shared Encoder， 可以从公式7和8看到，这部分其实就是计算
 
-![image-20250929225446870](C:\Users\zzz\AppData\Roaming\Typora\typora-user-images\image-20250929225446870.png)
+![image-20250929225446870](imgs/med_seg/1-10.png)
 
-![image-20250929225455708](C:\Users\zzz\AppData\Roaming\Typora\typora-user-images\image-20250929225455708.png)
+![image-20250929225455708](imgs/med_seg/1-11.png)
 
 
 
