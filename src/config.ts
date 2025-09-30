@@ -135,6 +135,20 @@ export const FriendslinkConfig: FriendsLinkConfig = {
 			description: "fuwari博客页面",
 			avatar: "https://fuwari.vercel.app/_astro/demo-avatar.CxcI0ivM_1nbuVe.webp",
 		},
+		{
+			name: "Computer Vision Institute, SZU",
+			url: "https://csse.szu.edu.cn/cv/",
+			description: "SZU计算机视觉研究所",
+			avatar: "https://csse.szu.edu.cn/image/university_image/logo/logo_CSSE-logo-blue.png",
+
+		},
+		{
+			name: "机器学习小纵队",
+			url: "https://github.com/FEMATHS",
+			description: "这是一个由机器学习各个领域对计算数学感兴趣的同学组成的学习小组",
+			avatar: "https://avatars.githubusercontent.com/u/136734406?s=200&v=4",
+
+		},
 
 	],
 };

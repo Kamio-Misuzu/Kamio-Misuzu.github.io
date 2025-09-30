@@ -277,7 +277,7 @@ we estimate the average time consumption of **30 iterations on one 3090 GPU** fo
 
 共享特征被聚类在一起，而特定特征被很好地分离
 
-其实我比较好奇这部分作图代码是什么样子的
+其实我比较好奇这部分作图代码是什么样子的（显然看了代码这部分似乎并没有在内）
 
 
 
