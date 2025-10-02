@@ -392,9 +392,9 @@ $$
 
 然后说明在前向过程中，只对缺失的模态进行diffusion，*（我不明白这里为什么只写一个diffusion，到底是加噪还是做了什么其他操作，模态不是缺失了吗，图像哪里来？**以下是询问DeepSeek的答案**，也就是说一开始图像都是有的，只是对需要缺失的模态进行了加噪，然后不需要缺失的模态不进行加噪）*，可用模态不做处理
 
-![image-20251001204846999](C:\Users\zzz\AppData\Roaming\Typora\typora-user-images\image-20251001204846999.png)
+![image-20251001204846999](imgs/med_seg/2-17.png)
 
-![image-20251001205009760](C:\Users\zzz\AppData\Roaming\Typora\typora-user-images\image-20251001205009760.png)
+![image-20251001205009760](imgs/med_seg/2-18.png)
 
 
 
