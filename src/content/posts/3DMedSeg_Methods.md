@@ -31,12 +31,12 @@ img, mask = pkload(os.path.join(self.root, file))
 
 #### 模型方法
 
-![2Dseg2023](imgs\3DMedSeg_Methods\2Dseg2023.png)
+![2Dseg2023](imgs/3DMedSeg_Methods/2Dseg2023.png)
 
 1. 基于CNN的网络用在FLAIR和T1ce两个模态中用于提取边缘检测
-   1. ESAB模块结构![2Dseg2023](imgs\3DMedSeg_Methods\ESAB.png)
+   1. ESAB模块结构![2Dseg2023](imgs/3DMedSeg_Methods/ESAB.png)
 2. 一个基于图卷积的多特征推理块（MFIB）用于融合提取语义特征和边缘特征信息
-   1. MFIB结构![2Dseg2023](imgs\3DMedSeg_Methods\MFIB.png)
+   1. MFIB结构![2Dseg2023](imgs/3DMedSeg_Methods/MFIB.png)
 3. 基于Swin Transformer的语义分割模块来提取脑肿瘤语义特征
 
 #### 创新点
