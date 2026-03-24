@@ -12,6 +12,17 @@ export interface TimelineEvent {
 export const timelineEvents: TimelineEvent[] = [
 	{
 		date: "2026年2月",
+		title: "MICCAI会议论文",
+		description:
+			"投稿MICCAI会议论文: Hierarchical Progressive Cross-modal Information Interaction for Incomplete Multimodal Brain Tumor Segmentation",
+		icon: "material-symbols:code-rounded",
+		category: "论文",
+		type: "paper",
+		image: "",
+		achievement: "under review",
+	},
+	{
+		date: "2026年2月",
 		title: "SIVP期刊论文",
 		description: "25年5月投稿-26年2月接受",
 		icon: "material-symbols:code-rounded",
