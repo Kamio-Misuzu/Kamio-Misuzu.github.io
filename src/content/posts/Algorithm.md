@@ -2,7 +2,7 @@
 title: Algorithm
 published: 2025-09-01
 description: '算法心得'
-image: 'https://t.alcy.cc/moemp'
+image: 'assets/images/demo-avatar.jpg'
 tags: [算法]
 category: '算法'
 draft: false 

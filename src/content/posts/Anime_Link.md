@@ -2,7 +2,7 @@
 title: Anime_Link
 published: 2025-08-29
 description: '一些动漫链接'
-image: 'https://t.alcy.cc/ycy'
+image: 'assets/images/demo-avatar.jpg'
 tags: [动漫]
 category: '动漫'
 draft: false 

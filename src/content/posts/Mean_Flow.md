@@ -2,7 +2,7 @@
 title: Mean_Flow
 published: 2025-09-07
 description: '均值流匹配'
-image: 'https://t.alcy.cc/aimp'
+image: 'assets/images/demo-avatar.jpg'
 tags: [流匹配]
 category: '深度学习'
 draft: false 

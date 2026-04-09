@@ -2,7 +2,7 @@
 title: Flow Matching Tutorial
 published: 2025-08-29
 description: '流匹配教程'
-image: 'https://t.alcy.cc/ai'
+image: 'assets/images/demo-avatar.jpg'
 tags: [流匹配]
 category: '深度学习'
 draft: false 

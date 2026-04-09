@@ -19,15 +19,9 @@ export const siteConfig: SiteConfig = {
 	banner: {
 		enable: true,
 		src: [
-			// {
-			// 	src: "src/assets/images/demo-bg.png"
-			// },
-			// {
-			// 	src: "src/assets/images/151933.jpg"
-			// },
 			{
-				src: "https://t.alcy.cc/moez"
-			}
+				src: "assets/images/demo-avatar.jpg",
+			},
 		], 
 		
 		position: "center", // Equivalent to object-position, only supports 'top', 'center', 'bottom'. 'center' by default

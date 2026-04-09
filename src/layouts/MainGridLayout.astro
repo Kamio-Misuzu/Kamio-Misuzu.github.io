@@ -16,6 +16,15 @@ import {
 import Layout from "./Layout.astro";
 
 import Carousel from "../components/Carousel.astro";
+import demoAvatar from "../assets/images/demo-avatar.jpg";
+
+const bannerImagesResolved = siteConfig.banner.src.map((item) => ({
+	...item,
+	src:
+		item.src === "assets/images/demo-avatar.jpg"
+			? demoAvatar.src
+			: item.src,
+}));
 
 interface Props {
 	title?: string;
@@ -81,7 +90,7 @@ const mainPanelTop = siteConfig.banner.enable
         id="banner" 
         class="object-cover h-full transition duration-700 opacity-0 scale-105"
         interval={7500}
-        images={siteConfig.banner.src}
+        images={bannerImagesResolved}
 
         
       />
@@ -89,12 +98,7 @@ const mainPanelTop = siteConfig.banner.enable
   )}
 
 
-<!-- images={[
-    {src:"src/assets/images/demo-bg.png", alt: "Banner image of the blog"},
-      { src: "https://t.alcy.cc/moez", alt: "Banner image of the blog" },
-      { src: "https://t.alcy.cc/ysz", alt: "Banner image of the blog" },
-      { src: "https://t.alcy.cc/moe", alt: "Banner image of the blog" }
-    ]} -->
+<!-- images={[{ src: "assets/images/demo-avatar.jpg", alt: "Banner image of the blog" }]} -->
 
 <!-- Main content -->
 <div class="absolute w-full z-30 pointer-events-none" style={`top: ${mainPanelTop}`}>
