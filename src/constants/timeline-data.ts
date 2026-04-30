@@ -11,6 +11,17 @@ export interface TimelineEvent {
 
 export const timelineEvents: TimelineEvent[] = [
 	{
+		date: "2026年4月",
+		title: "DSP期刊论文",
+		description:
+			"投稿DSP期刊论文: MSConvFormer: A Multi-Scale Depthwise Convolution Transformer for Medical Time Series Classification",
+		icon: "material-symbols:code-rounded",
+		category: "论文",
+		type: "paper",
+		image: "",
+		achievement: "under review",
+	},
+	{
 		date: "2026年2月",
 		title: "MICCAI会议论文",
 		description:
