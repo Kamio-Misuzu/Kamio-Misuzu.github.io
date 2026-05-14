@@ -10,15 +10,25 @@
 
 ## 研究兴趣
 
-- 扩散模型，Flow Matching，LLM,VLM,MLLM,医学图像分割
-
-
+- 扩散模型，Flow Matching，LLM，VLM，MLLM，医学图像分割
 
 ---
 
 ## 动态
 
+<div class="news-list">
+<article class="news-card">
+<h3 class="news-title">论文列表样式更新</h3>
+<p class="news-meta">2026</p>
+<p class="news-description">论文条目现在支持点击整张卡片展开摘要、资源链接和 BibTeX。</p>
+</article>
 
+<article class="news-card">
+<h3 class="news-title">About 页面支持中英文切换</h3>
+<p class="news-meta">2026</p>
+<p class="news-description">About 页面已拆分为英文和中文两个版本，可以在页面顶部切换。</p>
+</article>
+</div>
 
 ---
 
@@ -27,12 +37,15 @@
 ### 2025-2026（投稿/录用）
 
 <div class="publication-list">
-<article class="publication-card">
+<details class="publication-card">
+<summary class="publication-summary">
+<span>
 <h3 class="publication-title">MSConvFormer: A Multi-Scale Depthwise Convolution Transformer for Medical Time Series Classification</h3>
 <p class="publication-authors">作者列表待补充。</p>
 <p class="publication-venue">Digital Signal Processing（JCR-Q2），审稿中。</p>
-<details class="publication-details">
-<summary>摘要 / 资源</summary>
+</span>
+<span class="publication-cue">详情</span>
+</summary>
 <div class="publication-body">
 <h4>Abstract</h4>
 <p>摘要待补充。</p>
@@ -51,14 +64,16 @@
 }</code></pre>
 </div>
 </details>
-</article>
 
-<article class="publication-card">
+<details class="publication-card">
+<summary class="publication-summary">
+<span>
 <h3 class="publication-title">Hierarchical Progressive Cross-modal Information Interaction for Incomplete Multimodal Brain Tumor Segmentation</h3>
 <p class="publication-authors">作者列表待补充。</p>
 <p class="publication-venue">MICCAI 2026（CCF-B），审稿中。</p>
-<details class="publication-details">
-<summary>摘要 / 资源</summary>
+</span>
+<span class="publication-cue">详情</span>
+</summary>
 <div class="publication-body">
 <h4>Abstract</h4>
 <p>摘要待补充。</p>
@@ -77,14 +92,16 @@
 }</code></pre>
 </div>
 </details>
-</article>
 
-<article class="publication-card">
+<details class="publication-card">
+<summary class="publication-summary">
+<span>
 <h3 class="publication-title">DMKformer: A Dual-Path Routing Transformer with Hybrid Mamba and KAN for Medical Time Series</h3>
 <p class="publication-authors">作者列表待补充。</p>
 <p class="publication-venue">Signal, Image and Video Processing，2026。（JCR-Q3）</p>
-<details class="publication-details">
-<summary>摘要 / 资源</summary>
+</span>
+<span class="publication-cue">详情</span>
+</summary>
 <div class="publication-body">
 <h4>Abstract</h4>
 <p>摘要待补充。</p>
@@ -102,14 +119,16 @@
 }</code></pre>
 </div>
 </details>
-</article>
 
-<article class="publication-card">
+<details class="publication-card">
+<summary class="publication-summary">
+<span>
 <h3 class="publication-title">Gaze Estimation based on Visual State Space Model with Hybrid Features</h3>
 <p class="publication-authors">作者列表待补充。</p>
 <p class="publication-venue">ACM Transactions on Sensor Networks，2025。（JCR-Q1/CCF-B）</p>
-<details class="publication-details">
-<summary>摘要 / 资源</summary>
+</span>
+<span class="publication-cue">详情</span>
+</summary>
 <div class="publication-body">
 <h4>Abstract</h4>
 <p>摘要待补充。</p>
@@ -127,14 +146,16 @@
 }</code></pre>
 </div>
 </details>
-</article>
 
-<article class="publication-card">
+<details class="publication-card">
+<summary class="publication-summary">
+<span>
 <h3 class="publication-title">GA-YOLOv8: A Road Defect Detection Model Based on Improved YOLOv8</h3>
 <p class="publication-authors">作者列表待补充。</p>
 <p class="publication-venue">VSIP 2025。（EI-Core/ACM）</p>
-<details class="publication-details">
-<summary>摘要 / 资源</summary>
+</span>
+<span class="publication-cue">详情</span>
+</summary>
 <div class="publication-body">
 <h4>Abstract</h4>
 <p>摘要待补充。</p>
@@ -152,14 +173,16 @@
 }</code></pre>
 </div>
 </details>
-</article>
 
-<article class="publication-card">
+<details class="publication-card">
+<summary class="publication-summary">
+<span>
 <h3 class="publication-title">MamKanformer: A hybrid Mamba and KAN model based on Medformer for Medical Time-Series Classification</h3>
 <p class="publication-authors">作者列表待补充。</p>
 <p class="publication-venue">CAIT 2024。（EI-Core/IEEE）</p>
-<details class="publication-details">
-<summary>摘要 / 资源</summary>
+</span>
+<span class="publication-cue">详情</span>
+</summary>
 <div class="publication-body">
 <h4>Abstract</h4>
 <p>摘要待补充。</p>
@@ -177,7 +200,6 @@
 }</code></pre>
 </div>
 </details>
-</article>
 </div>
 
 ---

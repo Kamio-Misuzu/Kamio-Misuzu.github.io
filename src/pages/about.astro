@@ -60,23 +60,99 @@ const { Content: ContentZh } = await render(aboutPostZh);
         background: var(--btn-plain-bg-hover);
     }
 
+    :global(.news-list),
     :global(.publication-list) {
         display: grid;
         gap: 1.1rem;
         margin-top: 1rem;
     }
 
+    :global(.news-card),
     :global(.publication-card) {
-        border-left: 3px solid var(--primary);
-        padding: 0.05rem 0 0.05rem 1rem;
+        overflow: hidden;
+        border: 1px solid var(--line-divider);
+        border-left: 4px solid var(--primary);
+        border-radius: var(--radius-large);
+        background: color-mix(in oklab, var(--card-bg) 92%, transparent);
+        box-shadow: 0 12px 32px rgb(0 0 0 / 4%);
+        transition:
+            border-color 0.2s ease,
+            box-shadow 0.2s ease,
+            transform 0.2s ease,
+            background-color 0.2s ease;
     }
 
+    :global(.publication-card) {
+        cursor: pointer;
+    }
+
+    :global(.news-card) {
+        padding: 1rem 1.1rem;
+    }
+
+    :global(.publication-card:hover),
+    :global(.publication-card[open]),
+    :global(.news-card:hover) {
+        border-color: color-mix(in oklab, var(--primary) 45%, var(--line-divider));
+        box-shadow: 0 16px 38px rgb(0 0 0 / 7%);
+        transform: translateY(-1px);
+    }
+
+    :global(.publication-summary) {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 0.75rem;
+        padding: 1rem 1.1rem;
+        list-style: none;
+        user-select: none;
+    }
+
+    :global(.publication-summary::-webkit-details-marker) {
+        display: none;
+    }
+
+    :global(.publication-cue) {
+        align-self: start;
+        border-radius: 999px;
+        border: 1px solid var(--line-divider);
+        padding: 0.2rem 0.65rem;
+        color: var(--primary);
+        background: var(--btn-plain-bg);
+        font-size: 0.78rem;
+        font-weight: 700;
+        line-height: 1.3;
+        white-space: nowrap;
+    }
+
+    :global(.publication-card[open] .publication-cue) {
+        border-color: var(--primary);
+        background: var(--btn-plain-bg-hover);
+    }
+
+    :global(.news-title),
     :global(.publication-title) {
         margin: 0;
         color: var(--text-90);
         font-size: 1.05rem;
         font-weight: 700;
         line-height: 1.45;
+    }
+
+    :global(.news-meta) {
+        margin: 0.25rem 0 0;
+        color: var(--text-50);
+        font-size: 0.9rem;
+        font-weight: 600;
+    }
+
+    :global(.news-description) {
+        margin: 0.45rem 0 0;
+        color: var(--text-75);
+        line-height: 1.7;
+    }
+
+    :global(.publication-title) {
+        margin: 0;
     }
 
     :global(.publication-authors) {
@@ -91,36 +167,11 @@ const { Content: ContentZh } = await render(aboutPostZh);
         font-style: italic;
     }
 
-    :global(.publication-details) {
-        margin-top: 0.55rem;
-    }
-
-    :global(.publication-details summary) {
-        display: inline-flex;
-        cursor: pointer;
-        user-select: none;
-        border-radius: 999px;
-        border: 1px solid var(--line-divider);
-        padding: 0.25rem 0.75rem;
-        color: var(--primary);
-        background: var(--btn-plain-bg);
-        font-size: 0.875rem;
-        font-weight: 600;
-        list-style: none;
-    }
-
-    :global(.publication-details summary::-webkit-details-marker) {
-        display: none;
-    }
-
-    :global(.publication-details[open] summary) {
-        background: var(--btn-plain-bg-hover);
-        border-color: var(--primary);
-    }
-
     :global(.publication-body) {
-        margin-top: 0.9rem;
+        border-top: 1px solid var(--line-divider);
+        padding: 0.9rem 1.1rem 1.05rem;
         color: var(--text-75);
+        cursor: default;
     }
 
     :global(.publication-body h4) {
@@ -138,6 +189,7 @@ const { Content: ContentZh } = await render(aboutPostZh);
     }
 
     :global(.publication-links a),
+    :global(.publication-resource),
     :global(.publication-link-disabled) {
         border-radius: 999px;
         border: 1px solid var(--line-divider);
@@ -147,9 +199,24 @@ const { Content: ContentZh } = await render(aboutPostZh);
         text-decoration: none !important;
     }
 
+    :global(.publication-resource) {
+        color: var(--primary);
+        background: var(--btn-plain-bg);
+    }
+
     :global(.publication-link-disabled) {
         color: var(--text-30);
         cursor: not-allowed;
+    }
+
+    @media (max-width: 640px) {
+        :global(.publication-summary) {
+            grid-template-columns: 1fr;
+        }
+
+        :global(.publication-cue) {
+            justify-self: start;
+        }
     }
 
     :global(.publication-bibtex) {
