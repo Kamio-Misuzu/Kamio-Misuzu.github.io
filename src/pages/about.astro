@@ -220,12 +220,64 @@ const { Content: ContentZh } = await render(aboutPostZh);
     }
 
     :global(.publication-bibtex) {
+        position: relative;
         overflow-x: auto;
+        border: 1px solid color-mix(in oklab, var(--primary) 18%, var(--line-divider));
         border-radius: var(--radius-large);
-        padding: 1rem;
-        background: var(--codeblock-bg);
-        font-size: 0.85rem;
-        line-height: 1.6;
+        margin-top: 0.65rem;
+        padding: 2.55rem 1rem 1rem;
+        background:
+            linear-gradient(
+                180deg,
+                color-mix(in oklab, var(--primary) 8%, transparent),
+                transparent 3.2rem
+            ),
+            var(--codeblock-bg);
+        color: var(--text-75);
+        box-shadow: inset 0 1px 0 rgb(255 255 255 / 5%);
+        font-family:
+            "JetBrains Mono Variable",
+            ui-monospace,
+            SFMono-Regular,
+            Menlo,
+            Monaco,
+            Consolas,
+            "Liberation Mono",
+            "Courier New",
+            monospace;
+        font-size: 0.82rem;
+        line-height: 1.7;
+        white-space: pre;
+        scrollbar-width: thin;
+    }
+
+    :global(.publication-bibtex::before) {
+        content: "BibTeX";
+        position: absolute;
+        top: 0.75rem;
+        left: 1rem;
+        border-radius: 999px;
+        border: 1px solid color-mix(in oklab, var(--primary) 28%, var(--line-divider));
+        padding: 0.15rem 0.6rem;
+        color: var(--primary);
+        background: var(--card-bg);
+        font-family: inherit;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0;
+    }
+
+    :global(.publication-bibtex code) {
+        display: block;
+        padding: 0;
+        background: transparent;
+        color: inherit;
+        overflow: visible;
+    }
+
+    :global(.publication-bibtex code::before),
+    :global(.publication-bibtex code::after) {
+        content: none;
     }
 </style>
 

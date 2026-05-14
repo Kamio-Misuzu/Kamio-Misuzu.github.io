@@ -52,7 +52,7 @@
 <div class="publication-links">
 <span class="publication-link-disabled">Paper</span>
 <span class="publication-link-disabled">Code</span>
-<span class="publication-link-disabled">BibTeX</span>
+
 </div>
 <h4>BibTeX</h4>
 <pre class="publication-bibtex"><code>@article{msconvformer2026,
@@ -80,7 +80,7 @@
 <div class="publication-links">
 <span class="publication-link-disabled">Paper</span>
 <span class="publication-link-disabled">Code</span>
-<span class="publication-link-disabled">BibTeX</span>
+
 </div>
 <h4>BibTeX</h4>
 <pre class="publication-bibtex"><code>@inproceedings{hierarchicalprogressive2026,
@@ -108,7 +108,7 @@
 <div class="publication-links">
 <span class="publication-link-disabled">Paper</span>
 <span class="publication-link-disabled">Code</span>
-<span class="publication-link-disabled">BibTeX</span>
+
 </div>
 <h4>BibTeX</h4>
 <pre class="publication-bibtex"><code>@article{dmkformer2026,
@@ -135,7 +135,7 @@
 <div class="publication-links">
 <span class="publication-link-disabled">Paper</span>
 <span class="publication-link-disabled">Code</span>
-<span class="publication-link-disabled">BibTeX</span>
+
 </div>
 <h4>BibTeX</h4>
 <pre class="publication-bibtex"><code>@article{gazeestimation2025,
@@ -162,7 +162,7 @@
 <div class="publication-links">
 <span class="publication-link-disabled">Paper</span>
 <span class="publication-link-disabled">Code</span>
-<span class="publication-link-disabled">BibTeX</span>
+
 </div>
 <h4>BibTeX</h4>
 <pre class="publication-bibtex"><code>@inproceedings{gayolov82025,
@@ -189,7 +189,7 @@
 <div class="publication-links">
 <span class="publication-link-disabled">Paper</span>
 <span class="publication-link-disabled">Code</span>
-<span class="publication-link-disabled">BibTeX</span>
+
 </div>
 <h4>BibTeX</h4>
 <pre class="publication-bibtex"><code>@inproceedings{mamkanformer2024,
