@@ -1,11 +1,11 @@
 ---
-import MainGridLayout from "../layouts/MainGridLayout.astro";
-import TimelineCard from "../components/TimelineCard.astro";
+import { Icon } from "astro-icon/components";
 import BuildingCard from "../components/BuildingCard.astro";
+import TimelineCard from "../components/TimelineCard.astro";
+import { timelineEvents } from "../constants/timeline-data";
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
-import { Icon } from "astro-icon/components";
-import { timelineEvents } from "../constants/timeline-data";
+import MainGridLayout from "../layouts/MainGridLayout.astro";
 ---
 
 <MainGridLayout title={i18n(I18nKey.timeline)} description="我的成长时间线">
@@ -52,30 +52,31 @@ import { timelineEvents } from "../constants/timeline-data";
 			</div>
 			
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-				<BuildingCard
-					title="桂界遗梦——数字IP驱动的桂林非遗沉浸式文化体验传承元宇宙"
-					description=""
-					icon="material-symbols:code-rounded"
-					progress={30}
-				/>
+
 				<BuildingCard
 					title="个人博客优化"
 					description="基于Astro语言以及Fuwari对博客进行改进与优化"
 					icon="material-symbols:code-rounded"
 					progress={43}
 				/>
-				<BuildingCard
+				<!-- <BuildingCard
 					title="KM_Platform"
 					description="手机端用于方便深度学习如Arxiv Daily, 随机背单词, 监控Weights & Biases获取训练过程, AI交流生图等等"
 					icon="material-symbols:code-rounded"
 					progress={11}
-				/>
-				<BuildingCard
+				/> -->
+				<!-- <BuildingCard
 				title="flow matching"
 				description="学习流匹配"
 				icon="material-symbols:code-rounded"
 				progress={11}
-			/>
+			/> -->
+				<BuildingCard
+					title="MLLM"
+					description="学习多模态大模型"
+					icon="material-symbols:code-rounded"
+					progress={1}
+				/>
 			</div>
 		</div>
 

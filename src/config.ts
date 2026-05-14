@@ -1,7 +1,7 @@
 import type {
 	ExpressiveCodeConfig,
-	LicenseConfig,
 	FriendsLinkConfig,
+	LicenseConfig,
 	NavBarConfig,
 	ProfileConfig,
 	SiteConfig,
@@ -9,8 +9,8 @@ import type {
 import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
-	title: "Kamio-Misuzu",
-	subtitle: "观铃",
+	title: "Zhizun Zeng",
+	subtitle: "zzz",
 	lang: "zh_CN", // Language code, e.g. 'en', 'zh_CN', 'ja', etc.
 	themeColor: {
 		hue: 200, // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
@@ -22,8 +22,8 @@ export const siteConfig: SiteConfig = {
 			{
 				src: "assets/images/demo-avatar.jpg",
 			},
-		], 
-		
+		],
+
 		position: "center", // Equivalent to object-position, only supports 'top', 'center', 'bottom'. 'center' by default
 		credit: {
 			enable: false, // Display the credit text of the banner image
@@ -61,25 +61,14 @@ export const navBarConfig: NavBarConfig = {
 				},
 			],
 		},
-		// {
-		// 	name: "GitHub",
-		// 	url: "https://github.com/Kamio-Misuzu", // Internal links should not include the base path, as it is automatically added
-		// 	external: true, // Show an external link icon and will open in a new tab
-		// },
 	],
 };
 
 export const profileConfig: ProfileConfig = {
 	avatar: "assets/images/demo-avatar.jpg", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
-	name: "Kamio-Misuzu",
+	name: "Zhizun Zeng",
 	bio: "曲中思念今犹在, 不见当年梦中人",
 	links: [
-
-		{
-			name: "bilibili",
-			icon: "fa6-brands:bilibili",
-			url: "https://space.bilibili.com/34160150",
-		},
 		{
 			name: "GitHub",
 			icon: "fa6-brands:github",
@@ -112,12 +101,6 @@ export const FriendslinkConfig: FriendsLinkConfig = {
 			avatar: "assets/images/demo-avatar.jpg",
 		},
 		{
-			name: "Kamio-Misuzu",
-			url: "https://space.bilibili.com/34160150",
-			description: "Kamio-Misuzu的bilibili主页",
-			avatar: "assets/images/demo-avatar.jpg",
-		},
-		{
 			name: "Astro",
 			url: "Astro主页",
 			description: "https://astro.build/",
@@ -127,22 +110,28 @@ export const FriendslinkConfig: FriendsLinkConfig = {
 			name: "fuwari",
 			url: "https://fuwari.vercel.app/",
 			description: "fuwari博客页面",
-			avatar: "https://fuwari.vercel.app/_astro/demo-avatar.CxcI0ivM_1nbuVe.webp",
+			avatar:
+				"https://fuwari.vercel.app/_astro/demo-avatar.CxcI0ivM_1nbuVe.webp",
 		},
 		{
 			name: "Computer Vision Institute, SZU",
 			url: "https://csse.szu.edu.cn/cv/",
 			description: "SZU计算机视觉研究所",
-			avatar: "https://csse.szu.edu.cn/image/university_image/logo/logo_CSSE-logo-blue.png",
-
+			avatar:
+				"https://csse.szu.edu.cn/image/university_image/logo/logo_CSSE-logo-blue.png",
 		},
 		{
 			name: "机器学习小纵队",
 			url: "https://github.com/FEMATHS",
-			description: "这是一个由机器学习各个领域对计算数学感兴趣的同学组成的学习小组",
+			description:
+				"这是一个由机器学习各个领域对计算数学感兴趣的同学组成的学习小组",
 			avatar: "https://avatars.githubusercontent.com/u/136734406?s=200&v=4",
-
 		},
-
+		{
+			name: "VIsual Computing Research Center, SZU",
+			url: "https://vcc.tech/index.html",
+			description: "深圳大学视觉计算中心",
+			avatar: "https://vcc.tech/assets/img/logo.png",
+		},
 	],
 };
