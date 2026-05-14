@@ -202,6 +202,22 @@ const { Content: ContentZh } = await render(aboutPostZh);
     :global(.publication-resource) {
         color: var(--primary);
         background: var(--btn-plain-bg);
+        cursor: pointer;
+        list-style: none;
+        transition:
+            background-color 0.2s ease,
+            border-color 0.2s ease,
+            color 0.2s ease;
+    }
+
+    :global(.publication-resource:hover),
+    :global(.publication-bibtex-details[open] .publication-resource) {
+        border-color: var(--primary);
+        background: var(--btn-plain-bg-hover);
+    }
+
+    :global(.publication-resource::-webkit-details-marker) {
+        display: none;
     }
 
     :global(.publication-link-disabled) {
@@ -219,8 +235,13 @@ const { Content: ContentZh } = await render(aboutPostZh);
         }
     }
 
+    :global(.publication-bibtex-details) {
+        display: contents;
+    }
+
     :global(.publication-bibtex) {
         position: relative;
+        flex: 1 0 100%;
         overflow-x: auto;
         border: 1px solid color-mix(in oklab, var(--primary) 18%, var(--line-divider));
         border-radius: var(--radius-large);

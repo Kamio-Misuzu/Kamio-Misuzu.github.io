@@ -52,9 +52,8 @@
 <div class="publication-links">
 <span class="publication-link-disabled">Paper</span>
 <span class="publication-link-disabled">Code</span>
-
-</div>
-<h4>BibTeX</h4>
+<details class="publication-bibtex-details">
+<summary class="publication-resource">BibTeX</summary>
 <pre class="publication-bibtex"><code>@article{msconvformer2026,
   title = {MSConvFormer: A Multi-Scale Depthwise Convolution Transformer for Medical Time Series Classification},
   author = {To be updated},
@@ -62,6 +61,7 @@
   year = {2026},
   note = {Under review}
 }</code></pre>
+</details>
 </div>
 </details>
 
@@ -80,9 +80,8 @@
 <div class="publication-links">
 <span class="publication-link-disabled">Paper</span>
 <span class="publication-link-disabled">Code</span>
-
-</div>
-<h4>BibTeX</h4>
+<details class="publication-bibtex-details">
+<summary class="publication-resource">BibTeX</summary>
 <pre class="publication-bibtex"><code>@inproceedings{hierarchicalprogressive2026,
   title = {Hierarchical Progressive Cross-modal Information Interaction for Incomplete Multimodal Brain Tumor Segmentation},
   author = {To be updated},
@@ -90,6 +89,7 @@
   year = {2026},
   note = {Under review}
 }</code></pre>
+</details>
 </div>
 </details>
 
@@ -108,15 +108,15 @@
 <div class="publication-links">
 <span class="publication-link-disabled">Paper</span>
 <span class="publication-link-disabled">Code</span>
-
-</div>
-<h4>BibTeX</h4>
+<details class="publication-bibtex-details">
+<summary class="publication-resource">BibTeX</summary>
 <pre class="publication-bibtex"><code>@article{dmkformer2026,
   title = {DMKformer: A Dual-Path Routing Transformer with Hybrid Mamba and KAN for Medical Time Series},
   author = {To be updated},
   journal = {Signal, Image and Video Processing},
   year = {2026}
 }</code></pre>
+</details>
 </div>
 </details>
 
@@ -135,15 +135,15 @@
 <div class="publication-links">
 <span class="publication-link-disabled">Paper</span>
 <span class="publication-link-disabled">Code</span>
-
-</div>
-<h4>BibTeX</h4>
+<details class="publication-bibtex-details">
+<summary class="publication-resource">BibTeX</summary>
 <pre class="publication-bibtex"><code>@article{gazeestimation2025,
   title = {Gaze Estimation based on Visual State Space Model with Hybrid Features},
   author = {To be updated},
   journal = {ACM Transactions on Sensor Networks},
   year = {2025}
 }</code></pre>
+</details>
 </div>
 </details>
 
@@ -162,15 +162,15 @@
 <div class="publication-links">
 <span class="publication-link-disabled">Paper</span>
 <span class="publication-link-disabled">Code</span>
-
-</div>
-<h4>BibTeX</h4>
+<details class="publication-bibtex-details">
+<summary class="publication-resource">BibTeX</summary>
 <pre class="publication-bibtex"><code>@inproceedings{gayolov82025,
   title = {GA-YOLOv8: A Road Defect Detection Model Based on Improved YOLOv8},
   author = {To be updated},
   booktitle = {VSIP},
   year = {2025}
 }</code></pre>
+</details>
 </div>
 </details>
 
@@ -189,15 +189,15 @@
 <div class="publication-links">
 <span class="publication-link-disabled">Paper</span>
 <span class="publication-link-disabled">Code</span>
-
-</div>
-<h4>BibTeX</h4>
+<details class="publication-bibtex-details">
+<summary class="publication-resource">BibTeX</summary>
 <pre class="publication-bibtex"><code>@inproceedings{mamkanformer2024,
   title = {MamKanformer: A hybrid Mamba and KAN model based on Medformer for Medical Time-Series Classification},
   author = {To be updated},
   booktitle = {CAIT},
   year = {2024}
 }</code></pre>
+</details>
 </div>
 </details>
 </div>
