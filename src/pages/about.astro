@@ -7,19 +7,186 @@ import { i18n } from "../i18n/translation";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
 
 const aboutPost = await getEntry("spec", "about");
+const aboutPostZh = await getEntry("spec", "about-zh");
 
-if (!aboutPost) {
+if (!aboutPost || !aboutPostZh) {
 	throw new Error("About page content not found");
 }
 
-const { Content } = await render(aboutPost);
+const { Content: ContentEn } = await render(aboutPost);
+const { Content: ContentZh } = await render(aboutPostZh);
 ---
 <MainGridLayout title={i18n(I18nKey.about)} description={i18n(I18nKey.about)}>
     <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
         <div class="card-base z-10 px-9 py-6 relative w-full ">
-            <Markdown class="mt-2">
-                <Content />
-            </Markdown>
+            <div class="about-lang-tabs mb-6 flex justify-end gap-2" aria-label="About language switcher">
+                <button class="about-lang-tab active" type="button" data-about-lang-button="en" aria-pressed="true">EN</button>
+                <button class="about-lang-tab" type="button" data-about-lang-button="zh" aria-pressed="false">中文</button>
+            </div>
+            <div data-about-lang-panel="en">
+                <Markdown class="mt-2">
+                    <ContentEn />
+                </Markdown>
+            </div>
+            <div data-about-lang-panel="zh" hidden>
+                <Markdown class="mt-2">
+                    <ContentZh />
+                </Markdown>
+            </div>
         </div>
     </div>
 </MainGridLayout>
+
+<style>
+    .about-lang-tab {
+        border-radius: 999px;
+        border: 1px solid var(--line-divider);
+        padding: 0.35rem 0.85rem;
+        color: var(--text-50);
+        background: var(--btn-plain-bg);
+        font-size: 0.875rem;
+        font-weight: 600;
+        line-height: 1.25rem;
+        transition:
+            background-color 0.2s ease,
+            color 0.2s ease,
+            border-color 0.2s ease;
+    }
+
+    .about-lang-tab:hover,
+    .about-lang-tab.active {
+        border-color: var(--primary);
+        color: var(--primary);
+        background: var(--btn-plain-bg-hover);
+    }
+
+    :global(.publication-list) {
+        display: grid;
+        gap: 1.1rem;
+        margin-top: 1rem;
+    }
+
+    :global(.publication-card) {
+        border-left: 3px solid var(--primary);
+        padding: 0.05rem 0 0.05rem 1rem;
+    }
+
+    :global(.publication-title) {
+        margin: 0;
+        color: var(--text-90);
+        font-size: 1.05rem;
+        font-weight: 700;
+        line-height: 1.45;
+    }
+
+    :global(.publication-authors) {
+        margin: 0.35rem 0 0;
+        color: var(--text-75);
+        line-height: 1.7;
+    }
+
+    :global(.publication-venue) {
+        margin: 0.25rem 0 0;
+        color: var(--text-50);
+        font-style: italic;
+    }
+
+    :global(.publication-details) {
+        margin-top: 0.55rem;
+    }
+
+    :global(.publication-details summary) {
+        display: inline-flex;
+        cursor: pointer;
+        user-select: none;
+        border-radius: 999px;
+        border: 1px solid var(--line-divider);
+        padding: 0.25rem 0.75rem;
+        color: var(--primary);
+        background: var(--btn-plain-bg);
+        font-size: 0.875rem;
+        font-weight: 600;
+        list-style: none;
+    }
+
+    :global(.publication-details summary::-webkit-details-marker) {
+        display: none;
+    }
+
+    :global(.publication-details[open] summary) {
+        background: var(--btn-plain-bg-hover);
+        border-color: var(--primary);
+    }
+
+    :global(.publication-body) {
+        margin-top: 0.9rem;
+        color: var(--text-75);
+    }
+
+    :global(.publication-body h4) {
+        margin: 0.9rem 0 0.25rem;
+        color: var(--text-90);
+        font-size: 0.95rem;
+        font-weight: 700;
+    }
+
+    :global(.publication-links) {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 0.75rem 0;
+    }
+
+    :global(.publication-links a),
+    :global(.publication-link-disabled) {
+        border-radius: 999px;
+        border: 1px solid var(--line-divider);
+        padding: 0.25rem 0.75rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-decoration: none !important;
+    }
+
+    :global(.publication-link-disabled) {
+        color: var(--text-30);
+        cursor: not-allowed;
+    }
+
+    :global(.publication-bibtex) {
+        overflow-x: auto;
+        border-radius: var(--radius-large);
+        padding: 1rem;
+        background: var(--codeblock-bg);
+        font-size: 0.85rem;
+        line-height: 1.6;
+    }
+</style>
+
+<script>
+    const storageKey = "about-lang";
+    const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-about-lang-button]"));
+    const panels = Array.from(document.querySelectorAll<HTMLElement>("[data-about-lang-panel]"));
+
+    const setAboutLang = (lang: string) => {
+        buttons.forEach((button) => {
+            const isActive = button.dataset.aboutLangButton === lang;
+            button.classList.toggle("active", isActive);
+            button.setAttribute("aria-pressed", String(isActive));
+        });
+
+        panels.forEach((panel) => {
+            panel.hidden = panel.dataset.aboutLangPanel !== lang;
+        });
+
+        localStorage.setItem(storageKey, lang);
+    };
+
+    const initialLang = localStorage.getItem(storageKey) ?? (navigator.language.startsWith("zh") ? "zh" : "en");
+    setAboutLang(initialLang);
+
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            setAboutLang(button.dataset.aboutLangButton ?? "en");
+        });
+    });
+</script>
