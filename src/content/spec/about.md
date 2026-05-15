@@ -41,7 +41,7 @@
 
 ## News
 
-<div class="news-list">
+<!-- <div class="news-list">
 <article class="news-card">
 <h3 class="news-title">Publication list updated</h3>
 <p class="news-meta">2026</p>
@@ -53,7 +53,7 @@
 <p class="news-meta">2026</p>
 <p class="news-description">The about page now supports English and Chinese content switching.</p>
 </article>
-</div>
+</div> -->
 
 ## Publications
 
@@ -120,24 +120,25 @@
 <summary class="publication-summary">
 <span>
 <h3 class="publication-title">DMKformer: A Dual-Path Routing Transformer with Hybrid Mamba and KAN for Medical Time Series</h3>
-<p class="publication-authors">Author list to be updated.</p>
+<p class="publication-authors">Zhizun Zeng, Qiuyuan Gan, Wei Zhang, Yujie Li</p>
 <p class="publication-venue">Signal, Image and Video Processing, 2026. (JCR-Q3)</p>
 </span>
 <span class="publication-cue">Details</span>
 </summary>
 <div class="publication-body">
 <h4>Abstract</h4>
-<p>Abstract to be updated.</p>
+<p>Transformer has shown great potential in modeling global dependencies in sequential data, research on Transformer-based variant architectures for medical time series analysis has attracted growing attention. However, challenges remain in capturing complex local patterns and long-term dependencies in medical time series due to their high-dimensional nonlinearities and temporal correlations. To address this, we propose a Transformer model DMKformer which incorporates a new feature fusion strategy named 2R-Attention. Specifically, on the basis of the original Transformer, we adopt the STAR and the self-attention structure to enhance the ability of the attention module to capture and utilize the information of long-term dependencies in the global signal. Meanwhile, a one-dimensional DWC module is introduced to improve local information capture and reduce overfitting. Additionally, we employ Mamba to optimize FFN for long sequences and utilize a KAN network to strengthen classification capabilities. We conduct extensive experiments on three publicly available datasets under both subject-independent and subject-dependent settings. The experimental results demonstrate that our method outperforms 11 benchmark models, achieving an average F1 score improvement of 2%, validating its effectiveness.</p>
 <div class="publication-links">
 <span class="publication-link-disabled">Paper</span>
 <span class="publication-link-disabled">Code</span>
 <details class="publication-bibtex-details">
 <summary class="publication-resource">BibTeX</summary>
-<pre class="publication-bibtex"><code>@article{dmkformer2026,
-  title = {DMKformer: A Dual-Path Routing Transformer with Hybrid Mamba and KAN for Medical Time Series},
-  author = {To be updated},
-  journal = {Signal, Image and Video Processing},
-  year = {2026}
+<pre class="publication-bibtex"><code>@article{Zeng2026DmkformerAD,
+  title={Dmkformer: a dual-path routing Transformer with hybrid Mamba and KAN for medical time series},
+  author={Zhizun Zeng and Qiuyuan Gan and Wei Zhang and Yujie Li},
+  journal={Signal, Image and Video Processing},
+  year={2026},
+  url={https://api.semanticscholar.org/CorpusID:286478032}
 }</code></pre>
 </details>
 </div>
@@ -148,24 +149,32 @@
 <summary class="publication-summary">
 <span>
 <h3 class="publication-title">Gaze Estimation based on Visual State Space Model with Hybrid Features</h3>
-<p class="publication-authors">Author list to be updated.</p>
+<p class="publication-authors">Yujie Li, Rongjie Liu, Zhizun Zeng, Ziwen Wang, Yuhang Hong, Benying Tan</p>
 <p class="publication-venue">ACM Transactions on Sensor Networks, 2025. (JCR-Q1/CCF-B)</p>
 </span>
 <span class="publication-cue">Details</span>
 </summary>
 <div class="publication-body">
 <h4>Abstract</h4>
-<p>Abstract to be updated.</p>
+<p>Visual State Space Model (denoted as VMamba), a vision-based model proposed to introduce Mamba into computer vision, has shown strong performance in recent work on computer vision tasks. However, the performance of VMamba in gaze estimation is still to be explored. In this paper, we propose two VMamba-based gaze estimation approaches: GazeVM-Pure based on pure VMamba and GazeVM-Hybrid based on hybrid VMamba. GazeVM-Pure is used to estimate gaze direction according to the original VMamba structure. GazeVM-Hybrid combines Convolutional Neural Network (CNN) and VMamba, where the Visual State Space (VSS) Block (the core module of VMamba) is used as a complementary component of the CNN. In GazeVM-Hybrid, the convolutional layers of ResNet-34 are used to learn local feature maps from face images, and VSS Block is used to capture global relations from feature maps. The experimental results show that GazeVM-Hybrid exhibits superior performance compared with existing state-of-the-art techniques with a nearly 0.11 decrease in angle error compared with Static Transformer Temporal Differential Network (STTDN) on the EyeDiap dataset.</p>
 <div class="publication-links">
 <span class="publication-link-disabled">Paper</span>
 <span class="publication-link-disabled">Code</span>
 <details class="publication-bibtex-details">
 <summary class="publication-resource">BibTeX</summary>
-<pre class="publication-bibtex"><code>@article{gazeestimation2025,
-  title = {Gaze Estimation based on Visual State Space Model with Hybrid Features},
-  author = {To be updated},
-  journal = {ACM Transactions on Sensor Networks},
-  year = {2025}
+<pre class="publication-bibtex"><code>@article{10.1145/3765746,
+author = {Li, Yujie and Liu, Rongjie and Zeng, Zhizun and Wang, Ziwen and Hong, Yuhang and Tan, Benying},
+title = {Gaze Estimation Based on Visual State Space Model with Hybrid Features},
+year = {2025},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+issn = {1550-4859},
+url = {https://doi.org/10.1145/3765746},
+doi = {10.1145/3765746},
+note = {Just Accepted},
+journal = {ACM Trans. Sen. Netw.},
+month = sep,
+keywords = {Gaze Estimation, State Space Model, VMamba, Hybrid Model}
 }</code></pre>
 </details>
 </div>
@@ -176,24 +185,33 @@
 <summary class="publication-summary">
 <span>
 <h3 class="publication-title">GA-YOLOv8: A Road Defect Detection Model Based on Improved YOLOv8</h3>
-<p class="publication-authors">Author list to be updated.</p>
+<p class="publication-authors">ZhiZun Zeng, RongJie Liu, YongHang Huang, YuJie Li, BenYing Tan</p>
 <p class="publication-venue">VSIP 2025. (EI-Core/ACM)</p>
 </span>
 <span class="publication-cue">Details</span>
 </summary>
 <div class="publication-body">
 <h4>Abstract</h4>
-<p>Abstract to be updated.</p>
+<p>Timely and accurate detection of pavement defects is essential for maintaining road safety. Traditional manual detection methods are labor-intensive, costly, and inefficient. To address the challenges posed by various defect scales, complex backgrounds, and subtle visibility of defects, this paper proposes an enhanced pavement defect detection model, GA-YOLOv8s, based on YOLOv8s. Our approach contains several key improvements. First, we add an additional P6 layer to YOLOv8s, thus introducing a multi-scale detection strategy that enables the model to capture deeper semantic features and improve the detection of small targets such as cracks. Second, we propose the C2f-GDC module, which maintains the model’s ability to extract fine-grained features, especially for small defects such as cracks, while reducing GFLOPs. Finally, we integrate the Adaptive Graphic Channel Attention (AGCA) mechanism to improve cross-layer feature fusion to effectively balance deep semantic information and shallow geometric details. Experimental results show that the mAP value is improved by 3.5% compared to the YOLOv8s model. Compared with other algorithms, the method proposed in this paper performs better in small and mild damage detection.</p>
 <div class="publication-links">
 <span class="publication-link-disabled">Paper</span>
 <span class="publication-link-disabled">Code</span>
 <details class="publication-bibtex-details">
 <summary class="publication-resource">BibTeX</summary>
-<pre class="publication-bibtex"><code>@inproceedings{gayolov82025,
-  title = {GA-YOLOv8: A Road Defect Detection Model Based on Improved YOLOv8},
-  author = {To be updated},
-  booktitle = {VSIP},
-  year = {2025}
+<pre class="publication-bibtex"><code>@inproceedings{10.1145/3708568.3708574,
+author = {Zeng, ZhiZun and Liu, RongJie and Huang, YongHang and Li, YuJie and Tan, BenYing},
+title = {GA-YOLOv8: A Road Defect Detection Model Based on Improved YOLOv8},
+year = {2025},
+isbn = {9798400709647},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3708568.3708574},
+doi = {10.1145/3708568.3708574},
+booktitle = {Proceedings of the 2024 6th International Conference on Video, Signal and Image Processing},
+pages = {36–41},
+numpages = {6},
+keywords = {Object Detection, Cross-Layer Feature Fusion, C2f-GDC Module, Adaptive Graphic Channel Attention (AGCA)},
+series = {VSIP '24}
 }</code></pre>
 </details>
 </div>
@@ -204,25 +222,29 @@
 <summary class="publication-summary">
 <span>
 <h3 class="publication-title">MamKanformer: A hybrid Mamba and KAN model based on Medformer for Medical Time-Series Classification</h3>
-<p class="publication-authors">Author list to be updated.</p>
+<p class="publication-authors">Zhizun Zeng, Qiuyuan Gan, Zhoukun Yan, Wei Zhang</p>
 <p class="publication-venue">CAIT 2024. (EI-Core/IEEE)</p>
 </span>
 <span class="publication-cue">Details</span>
 </summary>
 <div class="publication-body">
 <h4>Abstract</h4>
-<p>Abstract to be updated.</p>
+<p>The rapid advancements in sensing technology and artificial intelligence have spurred a substantial number of novel demands and challenges within the realm of medical time series analysis. Notably, the effective extraction and utilization of the long-term and short-term dependency relationships, along with the features at various granularities encapsulated within high-dimensional and multivariate time series, have emerged as one of the pressing issues that demand immediate resolution. To address these, we propose a deep learning model MamKanformer for multichannel EEG signal processing. The model firstly solves the problem of long-short term dependencies which are difficult to be modeled effectively by Feed Forward in Transformer by using Mamba architecture. Subsequently, Kan is utilized to capture the critical feature information of different granularities contained in the time series data to assist in enhancing the output of the model. Finally, extensive experiments conducted on three public datasets have effectively verified the efficacy of the method proposed in this paper. Specifically, the MamKanformer model has demonstrated a superior performance over the other 11 baselines. It has achieved an average top ranking across all six metrics within the three datasets, which unequivocally attests to the outstanding capabilities of our proposed method.</p>
 <div class="publication-links">
 <span class="publication-link-disabled">Paper</span>
 <span class="publication-link-disabled">Code</span>
 <details class="publication-bibtex-details">
 <summary class="publication-resource">BibTeX</summary>
-<pre class="publication-bibtex"><code>@inproceedings{mamkanformer2024,
-  title = {MamKanformer: A hybrid Mamba and KAN model based on Medformer for Medical Time-Series Classification},
-  author = {To be updated},
-  booktitle = {CAIT},
-  year = {2024}
-}</code></pre>
+<pre class="publication-bibtex"><code>@INPROCEEDINGS{10962940,
+  author={Zeng, Zhizun and Gan, Qiuyuan and Yan, Zhoukun and Zhang, Wei},
+  booktitle={2024 5th International Conference on Computers and Artificial Intelligence Technology (CAIT)}, 
+  title={MamKanformer: A hybrid Mamba and KAN model based on Medformer for Medical Time-Series Classification}, 
+  year={2024},
+  volume={},
+  number={},
+  pages={212-217},
+  keywords={Deep learning;Time series analysis;Brain modeling;Transformers;Feature extraction;Electroencephalography;Stability analysis;Feeds;Artificial intelligence;Signal resolution;EEG;multivariate time series;Transformer;Mamba;Kan},
+  doi={10.1109/CAIT64506.2024.10962940}}</code></pre>
 </details>
 </div>
 </div>
