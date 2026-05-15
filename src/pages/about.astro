@@ -489,30 +489,34 @@ for (const [path, url] of Object.entries(certImageRecords)) {
     }
 
     /* 外链美化：带 href 的链接显示为主色 + 外链箭头 */
+
     :global(a.publication-link-disabled[href]) {
         color: var(--primary);
         border-color: color-mix(in oklab, var(--primary) 38%, var(--line-divider));
         background: transparent;
         cursor: pointer;
-        position: relative;
-        padding-right: 1.4rem;
+        display: inline-flex;          /* 变成 flex 容器 */
+        align-items: center;
+        gap: 0.3rem;                  /* 文字和箭头的间距 */
+        text-decoration: none;
         transition: background-color 0.2s, border-color 0.2s;
     }
+
     :global(a.publication-link-disabled[href]:hover) {
         background: color-mix(in oklab, var(--primary) 7%, var(--btn-plain-bg));
         border-color: var(--primary);
     }
+
+    /* 使用 ::after 作为图标，自然跟在文字后面 */
     :global(a.publication-link-disabled[href]::after) {
         content: "";
-        position: absolute;
-        right: 0.6rem;
-        top: 50%;
-        transform: translateY(-50%);
+        display: block;
         width: 0.7rem;
         height: 0.7rem;
+        flex-shrink: 0;               /* 防止被挤压变形 */
         background-color: currentColor;
-        -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><path d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/><polyline points='15 3 21 3 21 9'/><line x1='10' y1='14' x2='21' y2='3'/></svg>");
         mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><path d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/><polyline points='15 3 21 3 21 9'/><line x1='10' y1='14' x2='21' y2='3'/></svg>");
+        -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><path d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/><polyline points='15 3 21 3 21 9'/><line x1='10' y1='14' x2='21' y2='3'/></svg>");
         opacity: 0.8;
     }
 
