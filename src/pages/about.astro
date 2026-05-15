@@ -509,13 +509,14 @@ for (const [path, url] of Object.entries(certImageRecords)) {
         border-color: var(--primary);
     }
 
-    /* 箭头图标，作为 flex 子元素跟在文字后面 */
-    :global(a.publication-link-disabled[href]::after) {
+    /* 箭头图标，作为 flex 子元素放在文字前面 */
+    :global(a.publication-link-disabled[href]::before) {
         content: "";
         display: block;
         width: 0.7rem;
         height: 0.7rem;
         flex-shrink: 0;              /* 防止被挤压 */
+        margin-right: 0.25rem;
         background-color: currentColor;
         mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><path d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/><polyline points='15 3 21 3 21 9'/><line x1='10' y1='14' x2='21' y2='3'/></svg>");
         -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><path d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/><polyline points='15 3 21 3 21 9'/><line x1='10' y1='14' x2='21' y2='3'/></svg>");
