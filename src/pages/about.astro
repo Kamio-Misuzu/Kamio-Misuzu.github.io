@@ -53,11 +53,9 @@ for (const [path, url] of Object.entries(certImageRecords)) {
             </div>
         </main>
 
-        <aside class="about-shell-aside">
-            <nav class="about-toc" data-about-toc aria-label="On this page" hidden>
-                <p class="about-toc-title" data-about-toc-title>On this page</p>
-                <ol class="about-toc-list" data-about-toc-list></ol>
-            </nav>
+        <aside class="about-toc" data-about-toc aria-label="On this page" hidden>
+            <p class="about-toc-title" data-about-toc-title>On this page</p>
+            <ol class="about-toc-list" data-about-toc-list></ol>
         </aside>
     </div>
 
@@ -84,27 +82,88 @@ for (const [path, url] of Object.entries(certImageRecords)) {
 </script>
 
 <style>
-    /* ============ 整体布局：宽屏卡片 + 右侧目录，窄屏只显示卡片 ============ */
+    /* ============ 整体布局：宽屏时目录悬浮于右侧 ============ */
     .about-shell {
         position: relative;
         display: block;
     }
     .about-shell-main { min-width: 0; }
-    .about-shell-aside { display: none; }
 
-    @media (min-width: 1280px) {
-        .about-shell {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) 14.5rem;
-            gap: 1.5rem;
-            align-items: start;
-        }
-        .about-shell-aside {
-            display: block;
-            position: sticky;
-            top: 5rem;          /* sticky 触发后停留位置（避开顶部导航） */
-            align-self: start;
-        }
+    /* 目录改为固定定位，由 JS 控制 left / top */
+    .about-toc {
+        position: fixed;
+        z-index: 50;
+        top: 5rem;               /* 与顶部导航间距，JS 会动态覆盖 */
+        width: 14.5rem;
+        max-height: calc(100vh - 7rem);
+        overflow-y: auto;
+        padding: 0.95rem 1rem;
+        border: 1px solid var(--line-divider);
+        border-radius: var(--radius-large);
+        background: color-mix(in oklab, var(--card-bg) 88%, transparent);
+        -webkit-backdrop-filter: blur(10px) saturate(140%);
+        backdrop-filter: blur(10px) saturate(140%);
+        box-shadow: 0 10px 28px -18px rgb(0 0 0 / 35%);
+        scrollbar-width: thin;
+        scrollbar-color: color-mix(in oklab, var(--primary) 25%, transparent) transparent;
+        transition: opacity 0.2s;
+    }
+    .about-toc[hidden] {
+        display: none;
+    }
+    .about-toc::-webkit-scrollbar { width: 4px; }
+    .about-toc::-webkit-scrollbar-thumb {
+        background: color-mix(in oklab, var(--primary) 30%, transparent);
+        border-radius: 999px;
+    }
+
+    .about-toc-title {
+        margin: 0 0 0.55rem;
+        padding: 0 0.55rem;
+        color: var(--text-50);
+        font-family: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+    }
+
+    .about-toc-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.12rem;
+    }
+    .about-toc-list li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .about-toc-link {
+        display: block;
+        padding: 0.4rem 0.55rem;
+        border-left: 2px solid transparent;
+        border-radius: 6px;
+        color: var(--text-75);
+        font-size: 0.85rem;
+        font-weight: 500;
+        line-height: 1.4;
+        text-decoration: none;
+        transition: color 0.18s, background-color 0.18s, border-color 0.18s, padding-left 0.18s;
+    }
+    .about-toc-link:hover {
+        color: var(--text-90);
+        background: var(--btn-plain-bg);
+        padding-left: 0.7rem;
+    }
+    .about-toc-link.is-active {
+        color: var(--primary);
+        background: color-mix(in oklab, var(--primary) 7%, var(--btn-plain-bg));
+        border-left-color: var(--primary);
+        font-weight: 600;
+        padding-left: 0.7rem;
     }
 
     /* ============ 语言切换 ============ */
@@ -386,6 +445,7 @@ for (const [path, url] of Object.entries(certImageRecords)) {
         gap: 0.5rem;
         margin: 0.75rem 0;
     }
+    /* 按钮基础样式 */
     :global(.publication-links a),
     :global(.publication-resource),
     :global(.publication-link-disabled) {
@@ -396,6 +456,8 @@ for (const [path, url] of Object.entries(certImageRecords)) {
         font-weight: 600;
         text-decoration: none !important;
     }
+
+    /* BibTeX 切换按钮 */
     :global(.publication-resource) {
         display: inline-flex;
         align-items: center;
@@ -419,9 +481,39 @@ for (const [path, url] of Object.entries(certImageRecords)) {
         background: color-mix(in oklab, var(--primary) 7%, var(--btn-plain-bg));
     }
     :global(.publication-resource::-webkit-details-marker) { display: none; }
-    :global(.publication-link-disabled) {
+
+    /* 禁用链接（真正不可用） */
+    :global(.publication-link-disabled:not([href])) {
         color: var(--text-30);
         cursor: not-allowed;
+    }
+
+    /* 外链美化：带 href 的链接显示为主色 + 外链箭头 */
+    :global(a.publication-link-disabled[href]) {
+        color: var(--primary);
+        border-color: color-mix(in oklab, var(--primary) 38%, var(--line-divider));
+        background: transparent;
+        cursor: pointer;
+        position: relative;
+        padding-right: 1.4rem;
+        transition: background-color 0.2s, border-color 0.2s;
+    }
+    :global(a.publication-link-disabled[href]:hover) {
+        background: color-mix(in oklab, var(--primary) 7%, var(--btn-plain-bg));
+        border-color: var(--primary);
+    }
+    :global(a.publication-link-disabled[href]::after) {
+        content: "";
+        position: absolute;
+        right: 0.6rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0.7rem;
+        height: 0.7rem;
+        background-color: currentColor;
+        -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><path d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/><polyline points='15 3 21 3 21 9'/><line x1='10' y1='14' x2='21' y2='3'/></svg>");
+        mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><path d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/><polyline points='15 3 21 3 21 9'/><line x1='10' y1='14' x2='21' y2='3'/></svg>");
+        opacity: 0.8;
     }
 
     @media (max-width: 640px) {
@@ -814,75 +906,6 @@ for (const [path, url] of Object.entries(certImageRecords)) {
             max-height: calc(100vh - 2rem);
         }
     }
-
-    /* ============ 右侧目录 ============ */
-    :global(.about-toc) {
-        width: 100%;
-        max-height: calc(100vh - 7rem);
-        overflow-y: auto;
-        padding: 0.95rem 1rem;
-        border: 1px solid var(--line-divider);
-        border-radius: var(--radius-large);
-        background: color-mix(in oklab, var(--card-bg) 88%, transparent);
-        -webkit-backdrop-filter: blur(10px) saturate(140%);
-        backdrop-filter: blur(10px) saturate(140%);
-        box-shadow: 0 10px 28px -18px rgb(0 0 0 / 35%);
-        scrollbar-width: thin;
-        scrollbar-color: color-mix(in oklab, var(--primary) 25%, transparent) transparent;
-    }
-    :global(.about-toc[hidden]) { display: none; }
-    :global(.about-toc::-webkit-scrollbar) { width: 4px; }
-    :global(.about-toc::-webkit-scrollbar-thumb) {
-        background: color-mix(in oklab, var(--primary) 30%, transparent);
-        border-radius: 999px;
-    }
-    :global(.about-toc-title) {
-        margin: 0 0 0.55rem;
-        padding: 0 0.55rem;
-        color: var(--text-50);
-        font-family: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
-        font-size: 0.68rem;
-        font-weight: 700;
-        letter-spacing: 0.13em;
-        text-transform: uppercase;
-    }
-    :global(.about-toc-list) {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        gap: 0.12rem;
-    }
-    :global(.about-toc-list li) {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
-    :global(.about-toc-link) {
-        display: block;
-        padding: 0.4rem 0.55rem;
-        border-left: 2px solid transparent;
-        border-radius: 6px;
-        color: var(--text-75);
-        font-size: 0.85rem;
-        font-weight: 500;
-        line-height: 1.4;
-        text-decoration: none;
-        transition: color 0.18s, background-color 0.18s, border-color 0.18s, padding-left 0.18s;
-    }
-    :global(.about-toc-link:hover) {
-        color: var(--text-90);
-        background: var(--btn-plain-bg);
-        padding-left: 0.7rem;
-    }
-    :global(.about-toc-link.is-active) {
-        color: var(--primary);
-        background: color-mix(in oklab, var(--primary) 7%, var(--btn-plain-bg));
-        border-left-color: var(--primary);
-        font-weight: 600;
-        padding-left: 0.7rem;
-    }
 </style>
 
 <script>
@@ -1070,8 +1093,29 @@ for (const [path, url] of Object.entries(certImageRecords)) {
         });
     }
 
-    // ---------- 右侧目录 ----------
+    // ---------- 右侧目录（悬浮固定定位）----------
     let tocObserver = null;
+
+    function positionToc() {
+        const toc = document.querySelector("[data-about-toc]");
+        if (!toc) return;
+        const card = document.querySelector(".card-base");
+        if (!card) return;
+
+        const minWidth = 1280; // 小于此宽度隐藏目录
+        if (window.innerWidth < minWidth) {
+            toc.hidden = true;
+            return;
+        }
+
+        const cardRect = card.getBoundingClientRect();
+        const rightOffset = Math.min(24, (window.innerWidth - cardRect.right) / 2);
+        const left = cardRect.right + rightOffset + 16; // 16px 间距
+
+        toc.style.left = `${left}px`;
+        toc.style.top = "5rem";    // 保持与顶部导航的距离
+        toc.hidden = false;
+    }
 
     function rebuildToc(currentLang) {
         const toc = document.querySelector("[data-about-toc]");
@@ -1094,7 +1138,7 @@ for (const [path, url] of Object.entries(certImageRecords)) {
             return;
         }
 
-        toc.hidden = false;
+        // 标题本地化
         if (titleEl) {
             titleEl.textContent = currentLang === "zh" ? "本页目录" : "On this page";
         }
@@ -1124,6 +1168,7 @@ for (const [path, url] of Object.entries(certImageRecords)) {
         });
 
         setupTocObserver(h2s);
+        positionToc(); // 重建后重新定位
     }
 
     function setupTocObserver(headings) {
@@ -1160,6 +1205,19 @@ for (const [path, url] of Object.entries(certImageRecords)) {
 
         headings.forEach((h) => tocObserver.observe(h));
     }
+
+    // 窗口 resize 和滚动时重新定位目录
+    let positionTocThrottle = null;
+    function onPositionUpdate() {
+        if (positionTocThrottle) return;
+        positionTocThrottle = requestAnimationFrame(() => {
+            positionToc();
+            positionTocThrottle = null;
+        });
+    }
+
+    window.addEventListener("resize", onPositionUpdate);
+    window.addEventListener("scroll", onPositionUpdate, { passive: true });
 
     function bootstrap() {
         initLangSwitch();
