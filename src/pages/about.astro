@@ -1,5 +1,4 @@
 ---
-
 import { getEntry, render } from "astro:content";
 import Markdown from "@components/misc/Markdown.astro";
 import I18nKey from "../i18n/i18nKey";
@@ -15,7 +14,21 @@ if (!aboutPost || !aboutPostZh) {
 
 const { Content: ContentEn } = await render(aboutPost);
 const { Content: ContentZh } = await render(aboutPostZh);
+
+// 把 src/content/spec/awards/ 下所有图片在编译时导入，得到一个
+// { 文件名: 实际URL } 的查询表。
+const certImageRecords = import.meta.glob(
+	"../content/spec/awards/*.{png,jpg,jpeg,webp,gif}",
+	{ eager: true, query: "?url", import: "default" },
+) as Record<string, string>;
+
+const certImageMap: Record<string, string> = {};
+for (const [path, url] of Object.entries(certImageRecords)) {
+	const filename = path.split("/").pop();
+	if (filename) certImageMap[filename] = url;
+}
 ---
+
 <MainGridLayout title={i18n(I18nKey.about)} description={i18n(I18nKey.about)}>
     <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
         <div class="card-base z-10 px-9 py-6 relative w-full ">
@@ -62,8 +75,13 @@ const { Content: ContentZh } = await render(aboutPostZh);
     </div>
 </MainGridLayout>
 
+<!-- 把编译期生成的图片URL查询表注入到 window，供下面的 module 脚本使用 -->
+<script is:inline define:vars={{ certImageMap }}>
+    window.__certImageMap = certImageMap;
+</script>
+
 <style>
-    /* ============ 语言切换 ============ */
+    /* ============ 语言切换 tabs ============ */
     .about-lang-tabs {
         margin-bottom: 0.5rem;
     }
@@ -88,7 +106,7 @@ const { Content: ContentZh } = await render(aboutPostZh);
         background: var(--btn-plain-bg-hover);
     }
 
-    /* ============ Hero 标签 ============ */
+    /* ============ Hero 小标签 ============ */
     .about-hero {
         display: flex;
         align-items: center;
@@ -115,50 +133,39 @@ const { Content: ContentZh } = await render(aboutPostZh);
         line-height: 1;
     }
 
-    /* ============ 章节标题 (h1/h2) ============ */
-    :global(.about-content) {
-        counter-reset: about-section;
-    }
-
+    /* ============ 章节标题（去掉 § 编号，改用下方主色短划线） ============ */
     :global(.about-content h1),
     :global(.about-content h2) {
-        counter-increment: about-section;
-        display: flex !important;
-        align-items: center;
-        gap: 0.85rem;
+        position: relative;
+        display: block !important;
         margin: 2.4rem 0 1.2rem !important;
-        padding-bottom: 0.7rem !important;
-        font-size: 1.35rem !important;
+        padding: 0 0 0.7rem !important;
+        font-size: 1.4rem !important;
         font-weight: 800 !important;
         color: var(--text-90) !important;
         border-bottom: 1px solid var(--line-divider) !important;
         letter-spacing: -0.005em;
     }
-    :global(.about-content > h1:first-child),
-    :global(.about-content > h2:first-child),
-    :global(.about-content > :first-child h1),
-    :global(.about-content > :first-child h2) {
-        margin-top: 0.5rem !important;
-    }
     :global(.about-content h1::before),
     :global(.about-content h2::before) {
-        content: "§ " counter(about-section, decimal-leading-zero);
-        font-family:
-            "JetBrains Mono Variable",
-            ui-monospace,
-            SFMono-Regular,
-            Menlo,
-            monospace;
-        font-size: 0.76rem;
-        font-weight: 700;
-        color: var(--primary);
-        letter-spacing: 0.06em;
-        padding: 0.22rem 0.7rem;
-        background: color-mix(in oklab, var(--primary) 8%, var(--btn-plain-bg));
-        border: 1px solid color-mix(in oklab, var(--primary) 20%, var(--line-divider));
+        content: none !important;
+    }
+    :global(.about-content h1::after),
+    :global(.about-content h2::after) {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 2.4rem;
+        height: 2px;
+        background: var(--primary);
         border-radius: 999px;
-        line-height: 1;
-        white-space: nowrap;
+    }
+    :global(.about-content > :first-child h2),
+    :global(.about-content > h2:first-child),
+    :global(.about-content > :first-child h1),
+    :global(.about-content > h1:first-child) {
+        margin-top: 0.5rem !important;
     }
 
     /* 隐藏 markdown 的 hr（h2 底线已是分隔） */
@@ -324,7 +331,7 @@ const { Content: ContentZh } = await render(aboutPostZh);
         box-shadow: 0 6px 16px -8px color-mix(in oklab, var(--primary) 50%, transparent);
     }
 
-    /* ============ 动态 / 论文卡片 (沿用并精修) ============ */
+    /* ============ 动态 / 论文卡片 ============ */
     :global(.news-list),
     :global(.publication-list) {
         display: grid;
@@ -522,71 +529,49 @@ const { Content: ContentZh } = await render(aboutPostZh);
         display: contents;
     }
 
-    /* ============ BibTeX 代码块 ============ */
+    /* ============ BibTeX 代码块 ——— 柔和浅色版 ============ */
     :global(.publication-bibtex) {
         position: relative;
-        flex: 1 0 100%;
         overflow: hidden;
         margin-top: 0.85rem;
         padding: 0;
-        border: 1px solid color-mix(in oklab, var(--primary) 14%, var(--line-divider));
+        border: 1px solid var(--line-divider);
         border-radius: var(--radius-large);
-        background: transparent;
-        box-shadow:
-            0 1px 0 rgb(255 255 255 / 4%) inset,
-            0 10px 28px -14px color-mix(in oklab, var(--primary) 35%, transparent);
+        background: color-mix(in oklab, var(--codeblock-bg) 55%, var(--card-bg));
+        box-shadow: none;
     }
+    /* "BibTeX" 标签药丸（取代之前的深色顶栏） */
     :global(.publication-bibtex::before) {
-        content: "";
-        display: block;
-        height: 2.5rem;
-        background:
-            linear-gradient(
-                90deg,
-                color-mix(in oklab, var(--primary) 10%, var(--card-bg)),
-                color-mix(in oklab, var(--primary) 4%, var(--card-bg))
-            );
-        border-bottom: 1px solid color-mix(in oklab, var(--primary) 12%, var(--line-divider));
-    }
-    :global(.publication-bibtex::after) {
         content: "BibTeX";
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 2.5rem;
-        display: flex;
-        align-items: center;
-        padding: 0 0.9rem 0 5rem;
-        color: color-mix(in oklab, var(--primary) 78%, var(--text-50));
+        top: 0.7rem;
+        left: 0.95rem;
+        z-index: 1;
+        padding: 0.18rem 0.62rem;
+        border-radius: 999px;
+        background: color-mix(in oklab, var(--primary) 8%, var(--card-bg));
+        border: 1px solid color-mix(in oklab, var(--primary) 18%, var(--line-divider));
+        color: color-mix(in oklab, var(--primary) 78%, var(--text-90));
         font-family:
             "JetBrains Mono Variable",
             ui-monospace,
             SFMono-Regular,
             Menlo,
             monospace;
-        font-size: 0.72rem;
+        font-size: 0.66rem;
         font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        pointer-events: none;
-        background:
-            radial-gradient(circle at 1.1rem 50%, #ff5f57 0 5px, transparent 5.5px),
-            radial-gradient(circle at 2.1rem 50%, #febc2e 0 5px, transparent 5.5px),
-            radial-gradient(circle at 3.1rem 50%, #28c840 0 5px, transparent 5.5px);
-        background-repeat: no-repeat;
+        letter-spacing: 0.1em;
+        line-height: 1;
+    }
+    /* 去掉之前的 macOS 小圆点 */
+    :global(.publication-bibtex::after) {
+        content: none;
     }
     :global(.publication-bibtex code) {
         display: block;
-        padding: 1rem 1.1rem 1.05rem;
-        background:
-            linear-gradient(
-                180deg,
-                color-mix(in oklab, var(--primary) 3%, transparent) 0,
-                transparent 6rem
-            ),
-            color-mix(in oklab, var(--codeblock-bg) 88%, var(--card-bg));
-        color: color-mix(in oklab, var(--text-75) 92%, var(--text-50));
+        padding: 2.7rem 1.1rem 1.05rem;
+        background: transparent;
+        color: var(--text-90);
         font-family:
             "JetBrains Mono Variable",
             ui-monospace,
@@ -597,7 +582,7 @@ const { Content: ContentZh } = await render(aboutPostZh);
             "Liberation Mono",
             "Courier New",
             monospace;
-        font-size: 0.82rem;
+        font-size: 0.84rem;
         line-height: 1.75;
         white-space: pre;
         overflow-x: auto;
@@ -616,37 +601,36 @@ const { Content: ContentZh } = await render(aboutPostZh);
         background: color-mix(in oklab, var(--primary) 30%, transparent);
         border-radius: 999px;
     }
-
     :global(.publication-bibtex-copy) {
         position: absolute;
-        top: 0.45rem;
-        right: 0.5rem;
+        top: 0.6rem;
+        right: 0.65rem;
         z-index: 2;
         display: inline-flex;
         align-items: center;
         gap: 0.3rem;
-        height: 1.65rem;
-        padding: 0 0.65rem;
-        border: 1px solid color-mix(in oklab, var(--primary) 22%, var(--line-divider));
+        height: 1.6rem;
+        padding: 0 0.6rem;
+        border: 1px solid var(--line-divider);
         border-radius: 999px;
-        background: color-mix(in oklab, var(--card-bg) 88%, transparent);
-        color: color-mix(in oklab, var(--primary) 82%, var(--text-50));
+        background: color-mix(in oklab, var(--card-bg) 95%, transparent);
+        color: color-mix(in oklab, var(--primary) 75%, var(--text-90));
         font-family:
             "JetBrains Mono Variable",
             ui-monospace,
             SFMono-Regular,
             Menlo,
             monospace;
-        font-size: 0.68rem;
+        font-size: 0.66rem;
         font-weight: 700;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.06em;
         text-transform: uppercase;
         cursor: pointer;
         transition: all 0.18s ease;
     }
     :global(.publication-bibtex-copy:hover) {
-        border-color: var(--primary);
-        background: color-mix(in oklab, var(--primary) 12%, var(--card-bg));
+        border-color: color-mix(in oklab, var(--primary) 35%, var(--line-divider));
+        background: color-mix(in oklab, var(--primary) 8%, var(--card-bg));
         color: var(--primary);
     }
     :global(.publication-bibtex-copy:active) {
@@ -655,11 +639,11 @@ const { Content: ContentZh } = await render(aboutPostZh);
     :global(.publication-bibtex-copy.is-copied) {
         border-color: #28c840;
         color: #1f9b34;
-        background: color-mix(in oklab, #28c840 12%, var(--card-bg));
+        background: color-mix(in oklab, #28c840 10%, var(--card-bg));
     }
     :global(.publication-bibtex-copy svg) {
-        width: 0.8rem;
-        height: 0.8rem;
+        width: 0.78rem;
+        height: 0.78rem;
         stroke: currentColor;
         stroke-width: 2;
         fill: none;
@@ -675,10 +659,12 @@ const { Content: ContentZh } = await render(aboutPostZh);
         margin-top: 0.25rem;
     }
     :global(.award-group-title) {
-        display: flex;
+        display: flex !important;
         align-items: center;
         gap: 0.6rem;
         margin: 0 0 0.85rem !important;
+        padding: 0 !important;
+        border: none !important;
         font-size: 1rem !important;
         font-weight: 700 !important;
         color: var(--text-90) !important;
@@ -689,6 +675,9 @@ const { Content: ContentZh } = await render(aboutPostZh);
         height: 1rem;
         background: var(--primary);
         border-radius: 2px;
+    }
+    :global(.award-group-title::after) {
+        content: none !important;
     }
     :global(.award-list) {
         display: grid;
@@ -807,10 +796,15 @@ const { Content: ContentZh } = await render(aboutPostZh);
             background-color 0.2s ease,
             right 0.2s ease;
     }
-    :global(.award-item.has-cert:hover::after) {
+    :global(.award-item.has-cert:hover::after),
+    :global(.award-item.has-cert:focus-visible::after) {
         opacity: 0.95;
         background-color: var(--primary);
         right: 0.75rem;
+    }
+    :global(.award-item.has-cert:focus-visible) {
+        outline: 2px solid var(--primary);
+        outline-offset: 2px;
     }
 
     /* ============ 证书弹窗 ============ */
@@ -979,52 +973,53 @@ const { Content: ContentZh } = await render(aboutPostZh);
 </style>
 
 <script>
-    // ---------- About 页中英文切换 ----------
-    const storageKey = "about-lang";
-    const buttons = Array.from(
-        document.querySelectorAll<HTMLButtonElement>("[data-about-lang-button]"),
-    );
-    const panels = Array.from(
-        document.querySelectorAll<HTMLElement>("[data-about-lang-panel]"),
-    );
+    // ============================================================
+    //  统一注册函数：把所有需要在 DOM 出现后绑定的事件都放进来。
+    //  每次重新被调用都是安全的（用 data-* 标记防止重复绑定）。
+    // ============================================================
 
-    const setAboutLang = (lang: string) => {
-        buttons.forEach((button) => {
-            const isActive = button.dataset.aboutLangButton === lang;
-            button.classList.toggle("active", isActive);
-            button.setAttribute("aria-pressed", String(isActive));
-        });
-        panels.forEach((panel) => {
-            panel.hidden = panel.dataset.aboutLangPanel !== lang;
-        });
-        localStorage.setItem(storageKey, lang);
-    };
+    const STORAGE_KEY = "about-lang";
 
-    const initialLang =
-        localStorage.getItem(storageKey) ??
-        (navigator.language.startsWith("zh") ? "zh" : "en");
-    setAboutLang(initialLang);
+    function initLangSwitch() {
+        const buttons = Array.from(document.querySelectorAll("[data-about-lang-button]"));
+        const panels = Array.from(document.querySelectorAll("[data-about-lang-panel]"));
+        if (buttons.length === 0 || panels.length === 0) return;
 
-    buttons.forEach((button) => {
-        button.addEventListener("click", () => {
-            setAboutLang(button.dataset.aboutLangButton ?? "en");
+        const setLang = (lang) => {
+            buttons.forEach((b) => {
+                const active = b.dataset.aboutLangButton === lang;
+                b.classList.toggle("active", active);
+                b.setAttribute("aria-pressed", String(active));
+            });
+            panels.forEach((p) => {
+                p.hidden = p.dataset.aboutLangPanel !== lang;
+            });
+            try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) { /* SSR / 隐私浏览 */ }
+        };
+
+        // 初始语言：本地存储 → 浏览器语言 → en
+        let initial = "en";
+        try {
+            initial = localStorage.getItem(STORAGE_KEY)
+                ?? (navigator.language.startsWith("zh") ? "zh" : "en");
+        } catch (e) {
+            initial = navigator.language.startsWith("zh") ? "zh" : "en";
+        }
+        setLang(initial);
+
+        buttons.forEach((b) => {
+            if (b.dataset.langBound === "true") return;
+            b.dataset.langBound = "true";
+            b.addEventListener("click", () => setLang(b.dataset.aboutLangButton ?? "en"));
         });
-    });
+    }
 
     // ---------- BibTeX 复制按钮 ----------
-    const COPY_ICON = `
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-            <rect x="9" y="9" width="11" height="11" rx="2"></rect>
-            <path d="M5 15V6a2 2 0 0 1 2-2h9"></path>
-        </svg>`;
-    const CHECK_ICON = `
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-            <polyline points="20 6 9 17 4 12"></polyline>
-        </svg>`;
+    const COPY_ICON = `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V6a2 2 0 0 1 2-2h9"></path></svg>`;
+    const CHECK_ICON = `<svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
 
-    const enhanceBibtexBlocks = () => {
-        const blocks = document.querySelectorAll<HTMLPreElement>("pre.publication-bibtex");
-        blocks.forEach((pre) => {
+    function enhanceBibtex() {
+        document.querySelectorAll("pre.publication-bibtex").forEach((pre) => {
             if (pre.dataset.copyEnhanced === "true") return;
             pre.dataset.copyEnhanced = "true";
 
@@ -1038,17 +1033,18 @@ const { Content: ContentZh } = await render(aboutPostZh);
             btn.addEventListener("click", async (event) => {
                 event.preventDefault();
                 event.stopPropagation();
-                const text = pre.querySelector("code")?.innerText ?? pre.innerText;
+                const codeEl = pre.querySelector("code");
+                const text = (codeEl ? codeEl.innerText : pre.innerText).trim();
                 try {
-                    await navigator.clipboard.writeText(text.trim());
-                } catch {
+                    await navigator.clipboard.writeText(text);
+                } catch (e) {
                     const ta = document.createElement("textarea");
-                    ta.value = text.trim();
+                    ta.value = text;
                     ta.style.position = "fixed";
                     ta.style.opacity = "0";
                     document.body.appendChild(ta);
                     ta.select();
-                    document.execCommand("copy");
+                    try { document.execCommand("copy"); } catch (_) {}
                     document.body.removeChild(ta);
                 }
                 btn.classList.add("is-copied");
@@ -1059,107 +1055,124 @@ const { Content: ContentZh } = await render(aboutPostZh);
                 }, 1600);
             });
         });
-    };
-
-    enhanceBibtexBlocks();
-    document.addEventListener("astro:page-load", enhanceBibtexBlocks);
+    }
 
     // ---------- 证书弹窗 ----------
-    const certModal = document.querySelector<HTMLElement>("[data-cert-modal]");
-    const certImg = certModal?.querySelector<HTMLImageElement>("[data-cert-modal-img]");
-    const certTitle = certModal?.querySelector<HTMLElement>("[data-cert-modal-title]");
-    const certBackdrop = certModal?.querySelector<HTMLElement>("[data-cert-modal-backdrop]");
-    const certCloseBtn = certModal?.querySelector<HTMLButtonElement>("[data-cert-modal-close]");
-    const certSpinner = certModal?.querySelector<HTMLElement>("[data-cert-modal-spinner]");
+    function resolveCertUrl(key) {
+        if (!key) return "";
+        const map = window.__certImageMap || {};
+        if (map[key]) return map[key];                          // 完整匹配
+        const base = key.split("/").pop();
+        if (base && map[base]) return map[base];                // 按 basename 匹配
+        return key;                                             // 兜底：直接当 URL 用
+    }
 
-    let certLastFocus: HTMLElement | null = null;
+    function initCertModal() {
+        const modal = document.querySelector("[data-cert-modal]");
+        if (!modal) return;
+        if (modal.dataset.bound === "true") return;
+        modal.dataset.bound = "true";
 
-    const openCert = (url: string, title: string, source: HTMLElement | null) => {
-        if (!certModal || !certImg || !certTitle || !certSpinner) return;
-        certLastFocus = source;
-        certTitle.textContent = title;
-        certImg.classList.remove("is-loaded");
-        certSpinner.classList.remove("is-hidden");
-        certImg.src = url;
-        certImg.alt = title;
-        certModal.hidden = false;
-        // 强制一次 reflow 触发过渡
-        void certModal.offsetWidth;
-        certModal.dataset.state = "open";
-        document.body.style.overflow = "hidden";
-        setTimeout(() => certCloseBtn?.focus(), 50);
-    };
+        const img = modal.querySelector("[data-cert-modal-img]");
+        const titleEl = modal.querySelector("[data-cert-modal-title]");
+        const backdrop = modal.querySelector("[data-cert-modal-backdrop]");
+        const closeBtn = modal.querySelector("[data-cert-modal-close]");
+        const spinner = modal.querySelector("[data-cert-modal-spinner]");
+        if (!img || !titleEl || !spinner) return;
 
-    const closeCert = () => {
-        if (!certModal) return;
-        delete certModal.dataset.state;
-        document.body.style.overflow = "";
-        setTimeout(() => {
-            certModal.hidden = true;
-            if (certImg) certImg.src = "";
-            if (certLastFocus) {
-                certLastFocus.focus?.();
-                certLastFocus = null;
-            }
-        }, 220);
-    };
+        let lastFocus = null;
 
-    if (certImg && certSpinner) {
-        certImg.addEventListener("load", () => {
-            certImg.classList.add("is-loaded");
-            certSpinner.classList.add("is-hidden");
+        const open = (rawKey, title, source) => {
+            const url = resolveCertUrl(rawKey);
+            lastFocus = source;
+            titleEl.textContent = title || "";
+            img.classList.remove("is-loaded");
+            spinner.classList.remove("is-hidden");
+            img.src = url;
+            img.alt = title || "";
+            modal.hidden = false;
+            void modal.offsetWidth;
+            modal.dataset.state = "open";
+            document.body.style.overflow = "hidden";
+            setTimeout(() => closeBtn && closeBtn.focus(), 50);
+        };
+
+        const close = () => {
+            delete modal.dataset.state;
+            document.body.style.overflow = "";
+            setTimeout(() => {
+                modal.hidden = true;
+                img.src = "";
+                if (lastFocus) {
+                    try { lastFocus.focus(); } catch (e) {}
+                    lastFocus = null;
+                }
+            }, 220);
+        };
+
+        img.addEventListener("load", () => {
+            img.classList.add("is-loaded");
+            spinner.classList.add("is-hidden");
         });
-        certImg.addEventListener("error", () => {
-            certSpinner.classList.add("is-hidden");
-            if (certTitle) {
-                certTitle.textContent = "图片加载失败 / Image failed to load: " + certImg.src;
+        img.addEventListener("error", () => {
+            spinner.classList.add("is-hidden");
+            titleEl.textContent =
+                "图片加载失败 / Image failed to load: " + img.src;
+        });
+
+        document.addEventListener("click", (event) => {
+            const t = event.target;
+            if (!t) return;
+
+            const item = t.closest && t.closest(".award-item.has-cert");
+            if (item && !(t.closest && t.closest("[data-cert-modal]"))) {
+                event.preventDefault();
+                const key = item.dataset.cert || "";
+                const title = item.dataset.certTitle || "";
+                if (key) open(key, title, item);
+                return;
+            }
+
+            if (
+                (t.closest && t.closest("[data-cert-modal-close]")) ||
+                t === backdrop
+            ) {
+                close();
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && !modal.hidden) {
+                close();
+                return;
+            }
+            if (event.key === "Enter" || event.key === " ") {
+                const active = document.activeElement;
+                if (active && active.classList && active.classList.contains("has-cert")) {
+                    event.preventDefault();
+                    const key = active.dataset.cert || "";
+                    const title = active.dataset.certTitle || "";
+                    if (key) open(key, title, active);
+                }
             }
         });
     }
 
-    // 委托点击：奖项卡片
-    document.addEventListener("click", (event) => {
-        const target = event.target as HTMLElement | null;
-        if (!target) return;
-
-        const item = target.closest<HTMLElement>(".award-item.has-cert");
-        if (item && !target.closest("[data-cert-modal]")) {
-            event.preventDefault();
-            const url = item.dataset.cert ?? "";
-            const title = item.dataset.certTitle ?? "";
-            if (url) openCert(url, title, item);
-            return;
-        }
-
-        if (target.closest("[data-cert-modal-close]") || target === certBackdrop) {
-            closeCert();
-        }
-    });
-
-    // 键盘：Enter / Space 触发；ESC 关闭
-    document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && certModal && !certModal.hidden) {
-            closeCert();
-            return;
-        }
-        if (event.key === "Enter" || event.key === " ") {
-            const active = document.activeElement as HTMLElement | null;
-            if (active?.classList.contains("has-cert")) {
-                event.preventDefault();
-                const url = active.dataset.cert ?? "";
-                const title = active.dataset.certTitle ?? "";
-                if (url) openCert(url, title, active);
-            }
-        }
-    });
-
-    // 让 has-cert 卡片支持键盘聚焦
-    const makeAwardsFocusable = () => {
-        document.querySelectorAll<HTMLElement>(".award-item.has-cert").forEach((el) => {
+    function makeAwardsFocusable() {
+        document.querySelectorAll(".award-item.has-cert").forEach((el) => {
             if (!el.hasAttribute("tabindex")) el.setAttribute("tabindex", "0");
             if (!el.hasAttribute("role")) el.setAttribute("role", "button");
         });
-    };
-    makeAwardsFocusable();
-    document.addEventListener("astro:page-load", makeAwardsFocusable);
+    }
+
+    function bootstrap() {
+        initLangSwitch();
+        enhanceBibtex();
+        initCertModal();
+        makeAwardsFocusable();
+    }
+
+    bootstrap();
+    document.addEventListener("astro:page-load", bootstrap);
+    document.addEventListener("astro:after-swap", bootstrap);
 </script>

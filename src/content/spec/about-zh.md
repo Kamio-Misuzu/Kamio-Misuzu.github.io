@@ -261,7 +261,7 @@
 <p class="award-detail">Global · 一等奖</p>
 </div>
 </li>
-<li class="award-item has-cert" data-cert="/  /icm-mcm.png" data-cert-title="美国大学生数学建模竞赛 · Honorable Mention">
+<li class="award-item has-cert" data-cert="/awards/icm-mcm.png" data-cert-title="美国大学生数学建模竞赛 · Honorable Mention">
 <span class="award-medal" aria-hidden="true">HM</span>
 <div class="award-text">
 <p class="award-name">美国大学生数学建模竞赛</p>
