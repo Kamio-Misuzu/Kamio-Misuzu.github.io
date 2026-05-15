@@ -15,8 +15,8 @@ if (!aboutPost || !aboutPostZh) {
 const { Content: ContentEn } = await render(aboutPost);
 const { Content: ContentZh } = await render(aboutPostZh);
 
-// 把 src/content/spec/awards/ 下所有图片在编译时导入，得到一个
-// { 文件名: 实际URL } 的查询表。
+// 在编译期把 src/content/spec/awards/ 下的所有图片导入成 URL，
+// 通过 window.__certImageMap 提供给前端模态弹窗使用。
 const certImageRecords = import.meta.glob(
 	"../content/spec/awards/*.{png,jpg,jpeg,webp,gif}",
 	{ eager: true, query: "?url", import: "default" },
@@ -38,10 +38,6 @@ for (const [path, url] of Object.entries(certImageRecords)) {
                 <button class="about-lang-tab" type="button" data-about-lang-button="zh" aria-pressed="false">中文</button>
             </div>
 
-            <div class="about-hero" aria-hidden="true">
-                <span class="about-hero-tag">ABOUT</span>
-            </div>
-
             <div data-about-lang-panel="en" class="about-content">
                 <Markdown class="mt-2">
                     <ContentEn />
@@ -55,6 +51,12 @@ for (const [path, url] of Object.entries(certImageRecords)) {
         </div>
     </div>
 
+    <!-- 右侧目录（仅宽屏显示，自动从当前面板的 h2 生成） -->
+    <nav class="about-toc" data-about-toc aria-label="On this page" hidden>
+        <p class="about-toc-title" data-about-toc-title>On this page</p>
+        <ol class="about-toc-list" data-about-toc-list></ol>
+    </nav>
+
     <!-- 证书弹窗 -->
     <div class="cert-modal" data-cert-modal hidden role="dialog" aria-modal="true" aria-labelledby="cert-modal-caption">
         <div class="cert-modal-backdrop" data-cert-modal-backdrop aria-hidden="true"></div>
@@ -64,26 +66,23 @@ for (const [path, url] of Object.entries(certImageRecords)) {
                     <path d="M6 6 L18 18 M18 6 L6 18"></path>
                 </svg>
             </button>
-            <figure class="cert-modal-figure">
-                <div class="cert-modal-image-wrap">
-                    <div class="cert-modal-spinner" data-cert-modal-spinner aria-hidden="true"></div>
-                    <img class="cert-modal-image" data-cert-modal-img src="" alt="" />
-                </div>
-                <figcaption class="cert-modal-caption" id="cert-modal-caption" data-cert-modal-title></figcaption>
-            </figure>
+            <div class="cert-modal-image-wrap">
+                <div class="cert-modal-spinner" data-cert-modal-spinner aria-hidden="true"></div>
+                <img class="cert-modal-image" data-cert-modal-img src="" alt="" />
+            </div>
+            <p class="cert-modal-caption" id="cert-modal-caption" data-cert-modal-title></p>
         </div>
     </div>
 </MainGridLayout>
 
-<!-- 把编译期生成的图片URL查询表注入到 window，供下面的 module 脚本使用 -->
 <script is:inline define:vars={{ certImageMap }}>
     window.__certImageMap = certImageMap;
 </script>
 
 <style>
-    /* ============ 语言切换 tabs ============ */
+    /* ============ 语言切换 ============ */
     .about-lang-tabs {
-        margin-bottom: 0.5rem;
+        margin-bottom: 1rem;
     }
     .about-lang-tab {
         border-radius: 999px;
@@ -106,34 +105,7 @@ for (const [path, url] of Object.entries(certImageRecords)) {
         background: var(--btn-plain-bg-hover);
     }
 
-    /* ============ Hero 小标签 ============ */
-    .about-hero {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        margin: 0.25rem 0 1.5rem;
-        padding-bottom: 1.1rem;
-        border-bottom: 1px dashed var(--line-divider);
-    }
-    .about-hero-tag {
-        font-family:
-            "JetBrains Mono Variable",
-            ui-monospace,
-            SFMono-Regular,
-            Menlo,
-            monospace;
-        font-size: 0.74rem;
-        font-weight: 700;
-        color: var(--primary);
-        padding: 0.22rem 0.65rem;
-        border: 1px solid color-mix(in oklab, var(--primary) 22%, var(--line-divider));
-        border-radius: 999px;
-        background: color-mix(in oklab, var(--primary) 6%, var(--btn-plain-bg));
-        letter-spacing: 0.1em;
-        line-height: 1;
-    }
-
-    /* ============ 章节标题（去掉 § 编号，改用下方主色短划线） ============ */
+    /* ============ 章节标题 (h2) —— 仅下方主色短划，无前缀符号 ============ */
     :global(.about-content h1),
     :global(.about-content h2) {
         position: relative;
@@ -145,6 +117,7 @@ for (const [path, url] of Object.entries(certImageRecords)) {
         color: var(--text-90) !important;
         border-bottom: 1px solid var(--line-divider) !important;
         letter-spacing: -0.005em;
+        scroll-margin-top: 5rem;
     }
     :global(.about-content h1::before),
     :global(.about-content h2::before) {
@@ -168,7 +141,6 @@ for (const [path, url] of Object.entries(certImageRecords)) {
         margin-top: 0.5rem !important;
     }
 
-    /* 隐藏 markdown 的 hr（h2 底线已是分隔） */
     :global(.about-content hr) {
         display: none !important;
     }
@@ -529,49 +501,27 @@ for (const [path, url] of Object.entries(certImageRecords)) {
         display: contents;
     }
 
-    /* ============ BibTeX 代码块 ——— 柔和浅色版 ============ */
+    /* ============ BibTeX 代码块 ——— 极简版 ============ */
     :global(.publication-bibtex) {
         position: relative;
         overflow: hidden;
-        margin-top: 0.85rem;
-        padding: 0;
+        margin: 0.75rem 0 0 !important;
+        padding: 0 !important;
         border: 1px solid var(--line-divider);
-        border-radius: var(--radius-large);
-        background: color-mix(in oklab, var(--codeblock-bg) 55%, var(--card-bg));
-        box-shadow: none;
+        border-radius: 10px;
+        background: var(--codeblock-bg) !important;
+        box-shadow: none !important;
     }
-    /* "BibTeX" 标签药丸（取代之前的深色顶栏） */
-    :global(.publication-bibtex::before) {
-        content: "BibTeX";
-        position: absolute;
-        top: 0.7rem;
-        left: 0.95rem;
-        z-index: 1;
-        padding: 0.18rem 0.62rem;
-        border-radius: 999px;
-        background: color-mix(in oklab, var(--primary) 8%, var(--card-bg));
-        border: 1px solid color-mix(in oklab, var(--primary) 18%, var(--line-divider));
-        color: color-mix(in oklab, var(--primary) 78%, var(--text-90));
-        font-family:
-            "JetBrains Mono Variable",
-            ui-monospace,
-            SFMono-Regular,
-            Menlo,
-            monospace;
-        font-size: 0.66rem;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        line-height: 1;
-    }
-    /* 去掉之前的 macOS 小圆点 */
+    /* 清掉之前残留的 ::before / ::after 装饰 */
+    :global(.publication-bibtex::before),
     :global(.publication-bibtex::after) {
-        content: none;
+        content: none !important;
     }
     :global(.publication-bibtex code) {
         display: block;
-        padding: 2.7rem 1.1rem 1.05rem;
-        background: transparent;
-        color: var(--text-90);
+        padding: 1rem 1.1rem !important;
+        background: transparent !important;
+        color: var(--text-90) !important;
         font-family:
             "JetBrains Mono Variable",
             ui-monospace,
@@ -579,20 +529,18 @@ for (const [path, url] of Object.entries(certImageRecords)) {
             Menlo,
             Monaco,
             Consolas,
-            "Liberation Mono",
-            "Courier New",
             monospace;
-        font-size: 0.84rem;
-        line-height: 1.75;
+        font-size: 0.82rem;
+        line-height: 1.7;
         white-space: pre;
         overflow-x: auto;
-        scrollbar-width: thin;
-        scrollbar-color: color-mix(in oklab, var(--primary) 25%, transparent) transparent;
         tab-size: 2;
+        scrollbar-width: thin;
+        scrollbar-color: color-mix(in oklab, var(--primary) 30%, transparent) transparent;
     }
     :global(.publication-bibtex code::before),
     :global(.publication-bibtex code::after) {
-        content: none;
+        content: none !important;
     }
     :global(.publication-bibtex code::-webkit-scrollbar) {
         height: 6px;
@@ -601,36 +549,42 @@ for (const [path, url] of Object.entries(certImageRecords)) {
         background: color-mix(in oklab, var(--primary) 30%, transparent);
         border-radius: 999px;
     }
+
+    /* Copy 按钮：右上角的小图标按钮，hover 才明显 */
     :global(.publication-bibtex-copy) {
         position: absolute;
-        top: 0.6rem;
-        right: 0.65rem;
+        top: 0.45rem;
+        right: 0.45rem;
         z-index: 2;
         display: inline-flex;
         align-items: center;
         gap: 0.3rem;
-        height: 1.6rem;
-        padding: 0 0.6rem;
-        border: 1px solid var(--line-divider);
-        border-radius: 999px;
-        background: color-mix(in oklab, var(--card-bg) 95%, transparent);
-        color: color-mix(in oklab, var(--primary) 75%, var(--text-90));
+        height: 1.55rem;
+        padding: 0 0.55rem;
+        border: 1px solid transparent;
+        border-radius: 7px;
+        background: transparent;
+        color: var(--text-50);
         font-family:
             "JetBrains Mono Variable",
             ui-monospace,
             SFMono-Regular,
             Menlo,
             monospace;
-        font-size: 0.66rem;
+        font-size: 0.65rem;
         font-weight: 700;
         letter-spacing: 0.06em;
         text-transform: uppercase;
         cursor: pointer;
+        opacity: 0.7;
         transition: all 0.18s ease;
     }
+    :global(.publication-bibtex:hover .publication-bibtex-copy) {
+        opacity: 1;
+    }
     :global(.publication-bibtex-copy:hover) {
-        border-color: color-mix(in oklab, var(--primary) 35%, var(--line-divider));
-        background: color-mix(in oklab, var(--primary) 8%, var(--card-bg));
+        border-color: var(--line-divider);
+        background: color-mix(in oklab, var(--card-bg) 80%, transparent);
         color: var(--primary);
     }
     :global(.publication-bibtex-copy:active) {
@@ -639,7 +593,8 @@ for (const [path, url] of Object.entries(certImageRecords)) {
     :global(.publication-bibtex-copy.is-copied) {
         border-color: #28c840;
         color: #1f9b34;
-        background: color-mix(in oklab, #28c840 10%, var(--card-bg));
+        background: color-mix(in oklab, #28c840 10%, transparent);
+        opacity: 1;
     }
     :global(.publication-bibtex-copy svg) {
         width: 0.78rem;
@@ -767,7 +722,7 @@ for (const [path, url] of Object.entries(certImageRecords)) {
         letter-spacing: 0.01em;
     }
 
-    /* ============ 可点击查看证书的奖项 ============ */
+    /* ============ 可点击查看证书 ============ */
     :global(.award-item.has-cert) {
         position: relative;
         padding-right: 2.5rem;
@@ -791,10 +746,7 @@ for (const [path, url] of Object.entries(certImageRecords)) {
         mask-size: contain;
         -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><path d='M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z'/><circle cx='12' cy='12' r='3'/></svg>");
         mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><path d='M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z'/><circle cx='12' cy='12' r='3'/></svg>");
-        transition:
-            opacity 0.2s ease,
-            background-color 0.2s ease,
-            right 0.2s ease;
+        transition: opacity 0.2s, background-color 0.2s, right 0.2s;
     }
     :global(.award-item.has-cert:hover::after),
     :global(.award-item.has-cert:focus-visible::after) {
@@ -807,14 +759,14 @@ for (const [path, url] of Object.entries(certImageRecords)) {
         outline-offset: 2px;
     }
 
-    /* ============ 证书弹窗 ============ */
+    /* ============ 证书弹窗 ——— 用 flex 让图片永远不溢出 ============ */
     :global(.cert-modal) {
         position: fixed;
         inset: 0;
         z-index: 9999;
         display: grid;
         place-items: center;
-        padding: 1.5rem;
+        padding: 2rem 1.5rem;
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.22s ease;
@@ -826,84 +778,77 @@ for (const [path, url] of Object.entries(certImageRecords)) {
     :global(.cert-modal-backdrop) {
         position: absolute;
         inset: 0;
-        background: rgb(8 10 14 / 72%);
+        background: rgb(8 10 14 / 75%);
         -webkit-backdrop-filter: blur(8px) saturate(140%);
         backdrop-filter: blur(8px) saturate(140%);
     }
     :global(.cert-modal-stage) {
         position: relative;
         z-index: 1;
-        max-width: min(92vw, 1100px);
-        max-height: 88vh;
+        width: min(94vw, 1200px);
+        max-height: calc(100vh - 4rem);
         display: flex;
         flex-direction: column;
-        gap: 0.75rem;
+        gap: 0.7rem;
         transform: scale(0.96) translateY(8px);
+        opacity: 0;
         transition:
             transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
             opacity 0.22s ease;
-        opacity: 0;
     }
     :global(.cert-modal[data-state="open"] .cert-modal-stage) {
         transform: scale(1) translateY(0);
         opacity: 1;
     }
+    /* 关闭按钮 —— 弹窗内部右上角，悬浮在图片之上 */
     :global(.cert-modal-close) {
         position: absolute;
-        top: -2.85rem;
-        right: -0.25rem;
-        width: 2.25rem;
-        height: 2.25rem;
+        top: 0.55rem;
+        right: 0.55rem;
+        z-index: 3;
+        width: 2.1rem;
+        height: 2.1rem;
         border-radius: 999px;
-        border: 1px solid rgb(255 255 255 / 22%);
-        background: rgb(255 255 255 / 10%);
-        color: rgb(255 255 255 / 92%);
+        border: 1px solid rgb(255 255 255 / 25%);
+        background: rgb(20 20 24 / 55%);
+        -webkit-backdrop-filter: blur(6px);
+        backdrop-filter: blur(6px);
+        color: rgb(255 255 255 / 95%);
         display: grid;
         place-items: center;
         cursor: pointer;
-        transition:
-            background-color 0.18s,
-            border-color 0.18s,
-            transform 0.18s;
+        transition: all 0.18s;
     }
     :global(.cert-modal-close:hover) {
-        background: rgb(255 255 255 / 18%);
-        border-color: rgb(255 255 255 / 38%);
+        background: rgb(20 20 24 / 80%);
+        border-color: rgb(255 255 255 / 45%);
     }
-    :global(.cert-modal-close:active) {
-        transform: scale(0.95);
-    }
+    :global(.cert-modal-close:active) { transform: scale(0.95); }
     :global(.cert-modal-close svg) {
-        width: 1rem;
-        height: 1rem;
-        stroke: currentColor;
-        stroke-width: 2;
-        fill: none;
-        stroke-linecap: round;
+        width: 1rem; height: 1rem;
+        stroke: currentColor; stroke-width: 2;
+        fill: none; stroke-linecap: round;
     }
-    :global(.cert-modal-figure) {
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 0.7rem;
-        align-items: center;
-    }
+    /* 图片容器：弹性扩展，永远不超出 stage */
     :global(.cert-modal-image-wrap) {
         position: relative;
-        min-width: 18rem;
-        min-height: 12rem;
-        max-width: 100%;
+        flex: 1 1 auto;
+        min-height: 0;
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         border-radius: var(--radius-large);
         overflow: hidden;
-        background: rgb(255 255 255 / 6%);
+        background: rgb(255 255 255 / 5%);
         box-shadow:
             0 30px 80px rgb(0 0 0 / 50%),
             0 0 0 1px rgb(255 255 255 / 8%);
     }
     :global(.cert-modal-image) {
         display: block;
-        max-width: min(92vw, 1100px);
-        max-height: 76vh;
+        max-width: 100%;
+        max-height: 100%;
         width: auto;
         height: auto;
         object-fit: contain;
@@ -924,31 +869,28 @@ for (const [path, url] of Object.entries(certImageRecords)) {
         border: 2px solid rgb(255 255 255 / 18%);
         border-top-color: rgb(255 255 255 / 78%);
         animation: cert-spin 0.9s linear infinite;
-        opacity: 1;
         transition: opacity 0.2s ease;
     }
-    :global(.cert-modal-spinner.is-hidden) {
-        opacity: 0;
-    }
+    :global(.cert-modal-spinner.is-hidden) { opacity: 0; }
     @keyframes cert-spin {
-        to {
-            transform: rotate(360deg);
-        }
+        to { transform: rotate(360deg); }
     }
     :global(.cert-modal-caption) {
+        flex: 0 0 auto;
+        align-self: center;
         margin: 0;
-        max-width: min(92vw, 1100px);
-        padding: 0.5rem 0.95rem;
+        padding: 0.45rem 0.95rem;
+        max-width: 100%;
         border-radius: 999px;
-        background: rgb(255 255 255 / 8%);
-        color: rgb(255 255 255 / 92%);
+        background: rgb(255 255 255 / 10%);
+        color: rgb(255 255 255 / 94%);
         font-family:
             "JetBrains Mono Variable",
             ui-monospace,
             SFMono-Regular,
             Menlo,
             monospace;
-        font-size: 0.78rem;
+        font-size: 0.76rem;
         letter-spacing: 0.04em;
         text-align: center;
         line-height: 1.5;
@@ -956,30 +898,101 @@ for (const [path, url] of Object.entries(certImageRecords)) {
     }
 
     @media (max-width: 640px) {
-        :global(.cert-modal) {
-            padding: 1rem;
-        }
-        :global(.cert-modal-close) {
-            top: 0.5rem;
-            right: 0.5rem;
-        }
-        :global(.cert-modal-stage) {
-            padding-top: 2.5rem;
-        }
-        :global(.cert-modal-image) {
-            max-height: 68vh;
-        }
+        :global(.cert-modal) { padding: 1rem; }
+        :global(.cert-modal-stage) { max-height: calc(100vh - 2rem); }
+    }
+
+    /* ============ 右侧目录 ============ */
+    :global(.about-toc) {
+        position: fixed;
+        top: 6.5rem;
+        right: 2rem;
+        z-index: 40;
+        width: 14rem;
+        max-height: calc(100vh - 9rem);
+        overflow-y: auto;
+        padding: 0.95rem 1rem;
+        border: 1px solid var(--line-divider);
+        border-radius: var(--radius-large);
+        background: color-mix(in oklab, var(--card-bg) 80%, transparent);
+        -webkit-backdrop-filter: blur(10px) saturate(140%);
+        backdrop-filter: blur(10px) saturate(140%);
+        box-shadow: 0 10px 28px -18px rgb(0 0 0 / 35%);
+        scrollbar-width: thin;
+        scrollbar-color: color-mix(in oklab, var(--primary) 25%, transparent) transparent;
+    }
+    :global(.about-toc[hidden]) { display: none; }
+    :global(.about-toc::-webkit-scrollbar) { width: 4px; }
+    :global(.about-toc::-webkit-scrollbar-thumb) {
+        background: color-mix(in oklab, var(--primary) 30%, transparent);
+        border-radius: 999px;
+    }
+    :global(.about-toc-title) {
+        margin: 0 0 0.55rem;
+        padding: 0 0.55rem;
+        color: var(--text-50);
+        font-family:
+            "JetBrains Mono Variable",
+            ui-monospace,
+            SFMono-Regular,
+            Menlo,
+            monospace;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+    }
+    :global(.about-toc-list) {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.12rem;
+    }
+    :global(.about-toc-list li) {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    :global(.about-toc-link) {
+        display: block;
+        padding: 0.4rem 0.55rem;
+        border-left: 2px solid transparent;
+        border-radius: 6px;
+        color: var(--text-75);
+        font-size: 0.85rem;
+        font-weight: 500;
+        line-height: 1.4;
+        text-decoration: none;
+        transition:
+            color 0.18s,
+            background-color 0.18s,
+            border-color 0.18s,
+            padding-left 0.18s;
+    }
+    :global(.about-toc-link:hover) {
+        color: var(--text-90);
+        background: var(--btn-plain-bg);
+        padding-left: 0.7rem;
+    }
+    :global(.about-toc-link.is-active) {
+        color: var(--primary);
+        background: color-mix(in oklab, var(--primary) 7%, var(--btn-plain-bg));
+        border-left-color: var(--primary);
+        font-weight: 600;
+        padding-left: 0.7rem;
+    }
+    /* 窄屏隐藏目录 */
+    @media (max-width: 1400px) {
+        :global(.about-toc) { display: none !important; }
     }
 </style>
 
 <script>
-    // ============================================================
-    //  统一注册函数：把所有需要在 DOM 出现后绑定的事件都放进来。
-    //  每次重新被调用都是安全的（用 data-* 标记防止重复绑定）。
-    // ============================================================
-
     const STORAGE_KEY = "about-lang";
 
+    // ---------- 语言切换 ----------
     function initLangSwitch() {
         const buttons = Array.from(document.querySelectorAll("[data-about-lang-button]"));
         const panels = Array.from(document.querySelectorAll("[data-about-lang-panel]"));
@@ -994,10 +1007,11 @@ for (const [path, url] of Object.entries(certImageRecords)) {
             panels.forEach((p) => {
                 p.hidden = p.dataset.aboutLangPanel !== lang;
             });
-            try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) { /* SSR / 隐私浏览 */ }
+            try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
+            // 切换语言后重建目录（当前可见面板的 h2）
+            requestAnimationFrame(() => rebuildToc(lang));
         };
 
-        // 初始语言：本地存储 → 浏览器语言 → en
         let initial = "en";
         try {
             initial = localStorage.getItem(STORAGE_KEY)
@@ -1061,10 +1075,10 @@ for (const [path, url] of Object.entries(certImageRecords)) {
     function resolveCertUrl(key) {
         if (!key) return "";
         const map = window.__certImageMap || {};
-        if (map[key]) return map[key];                          // 完整匹配
+        if (map[key]) return map[key];
         const base = key.split("/").pop();
-        if (base && map[base]) return map[base];                // 按 basename 匹配
-        return key;                                             // 兜底：直接当 URL 用
+        if (base && map[base]) return map[base];
+        return key;
     }
 
     function initCertModal() {
@@ -1116,14 +1130,12 @@ for (const [path, url] of Object.entries(certImageRecords)) {
         });
         img.addEventListener("error", () => {
             spinner.classList.add("is-hidden");
-            titleEl.textContent =
-                "图片加载失败 / Image failed to load: " + img.src;
+            titleEl.textContent = "图片加载失败 / Image failed to load: " + img.src;
         });
 
         document.addEventListener("click", (event) => {
             const t = event.target;
             if (!t) return;
-
             const item = t.closest && t.closest(".award-item.has-cert");
             if (item && !(t.closest && t.closest("[data-cert-modal]"))) {
                 event.preventDefault();
@@ -1132,7 +1144,6 @@ for (const [path, url] of Object.entries(certImageRecords)) {
                 if (key) open(key, title, item);
                 return;
             }
-
             if (
                 (t.closest && t.closest("[data-cert-modal-close]")) ||
                 t === backdrop
@@ -1165,11 +1176,109 @@ for (const [path, url] of Object.entries(certImageRecords)) {
         });
     }
 
+    // ---------- 右侧目录 ----------
+    let tocObserver = null;
+
+    function rebuildToc(currentLang) {
+        const toc = document.querySelector("[data-about-toc]");
+        if (!toc) return;
+        const list = toc.querySelector("[data-about-toc-list]");
+        const titleEl = toc.querySelector("[data-about-toc-title]");
+        if (!list) return;
+
+        // 找当前可见的语言面板
+        const activePanel = currentLang
+            ? document.querySelector(`[data-about-lang-panel="${currentLang}"]`)
+            : document.querySelector("[data-about-lang-panel]:not([hidden])");
+        if (!activePanel) {
+            toc.hidden = true;
+            return;
+        }
+
+        const h2s = Array.from(activePanel.querySelectorAll("h2"));
+        if (h2s.length === 0) {
+            toc.hidden = true;
+            return;
+        }
+
+        toc.hidden = false;
+        if (titleEl) {
+            titleEl.textContent = currentLang === "zh" ? "本页目录" : "On this page";
+        }
+        list.innerHTML = "";
+
+        h2s.forEach((h2, idx) => {
+            if (!h2.id) {
+                const lang = activePanel.dataset.aboutLangPanel || "en";
+                h2.id = `about-${lang}-${idx}`;
+            }
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+            a.href = "#" + h2.id;
+            a.textContent = (h2.textContent || "").trim();
+            a.className = "about-toc-link";
+            a.dataset.tocTarget = h2.id;
+            a.addEventListener("click", (e) => {
+                e.preventDefault();
+                const target = document.getElementById(h2.id);
+                if (target) {
+                    target.scrollIntoView({ behavior: "smooth", block: "start" });
+                    try { history.replaceState(null, "", "#" + h2.id); } catch (_) {}
+                }
+            });
+            li.appendChild(a);
+            list.appendChild(li);
+        });
+
+        setupTocObserver(h2s);
+    }
+
+    function setupTocObserver(headings) {
+        if (tocObserver) tocObserver.disconnect();
+
+        const links = Array.from(document.querySelectorAll(".about-toc-link"));
+        const visible = new Set();
+
+        tocObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    visible.add(entry.target.id);
+                } else {
+                    visible.delete(entry.target.id);
+                }
+            });
+
+            // 选择处于"激活窗口"内最靠上的那一个 h2
+            const ordered = headings.filter((h) => visible.has(h.id));
+            const activeId = ordered.length
+                ? ordered[0].id
+                : (() => {
+                    // 没有任何 h2 在窗口内时，取上方最近的一个
+                    let last = null;
+                    for (const h of headings) {
+                        if (h.getBoundingClientRect().top < window.innerHeight * 0.3) last = h;
+                    }
+                    return last ? last.id : (headings[0] && headings[0].id);
+                })();
+
+            links.forEach((link) => {
+                link.classList.toggle("is-active", link.dataset.tocTarget === activeId);
+            });
+        }, {
+            // 上 15% 是触发区上沿，下 70% 是下沿（视口中间 15% 区域为"激活窗口"）
+            rootMargin: "-15% 0px -70% 0px",
+            threshold: 0,
+        });
+
+        headings.forEach((h) => tocObserver.observe(h));
+    }
+
     function bootstrap() {
         initLangSwitch();
         enhanceBibtex();
         initCertModal();
         makeAwardsFocusable();
+        rebuildToc();
     }
 
     bootstrap();
