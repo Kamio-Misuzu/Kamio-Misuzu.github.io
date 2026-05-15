@@ -498,6 +498,7 @@ for (const [path, url] of Object.entries(certImageRecords)) {
         display: inline-flex;
         flex-direction: row;         /* 强制水平排列 */
         align-items: center;
+        flex-wrap: nowrap;           /* 防止换行 */
         gap: 0.3rem;
         white-space: nowrap;         /* 文字和箭头始终在同一行 */
         text-decoration: none;
@@ -512,7 +513,7 @@ for (const [path, url] of Object.entries(certImageRecords)) {
     /* 箭头图标，作为 flex 子元素放在文字前面 */
     :global(a.publication-link-disabled[href]::before) {
         content: "";
-        display: block;
+        display: inline-block;       /* 改为 inline-block 保持行内 */
         width: 0.7rem;
         height: 0.7rem;
         flex-shrink: 0;              /* 防止被挤压 */
