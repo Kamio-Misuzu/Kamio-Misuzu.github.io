@@ -1,18 +1,43 @@
-# Education
+## Education
 
-**Shenzhen University** | Master's in Computer Science & Technology  
-*Sept 2026 - June 2029* | Shenzhen, Guangdong
+<div class="edu-list">
 
-**Guilin University of Electronic Technology** | Bachelor's in Artificial Intelligence  
-*Sept 2022 - June 2026* | Guilin, Guangxi
+<article class="edu-card">
+<div class="edu-marker" aria-hidden="true"></div>
+<div class="edu-body">
+<h3 class="edu-school">Shenzhen University</h3>
+<p class="edu-degree">M.S. · Computer Science & Technology</p>
+<div class="edu-meta">
+<span class="edu-pill edu-pill-date">2026.09 – 2029.06</span>
+<span class="edu-pill edu-pill-loc">Shenzhen, Guangdong</span>
+</div>
+</div>
+</article>
 
----
+<article class="edu-card">
+<div class="edu-marker" aria-hidden="true"></div>
+<div class="edu-body">
+<h3 class="edu-school">Guilin University of Electronic Technology</h3>
+<p class="edu-degree">B.S. · Artificial Intelligence</p>
+<div class="edu-meta">
+<span class="edu-pill edu-pill-date">2022.09 – 2026.06</span>
+<span class="edu-pill edu-pill-loc">Guilin, Guangxi</span>
+</div>
+</div>
+</article>
+
+</div>
 
 ## Research Interests
 
-- Diffusion Models, Flow Matching, LLM, VLM, MLLM, Medical Image Segmentation
-
----
+<div class="interest-tags">
+<span class="interest-tag">Diffusion Models</span>
+<span class="interest-tag">Flow Matching</span>
+<span class="interest-tag">LLM</span>
+<span class="interest-tag">VLM</span>
+<span class="interest-tag">MLLM</span>
+<span class="interest-tag">Medical Image Segmentation</span>
+</div>
 
 ## News
 
@@ -30,11 +55,7 @@
 </article>
 </div>
 
----
-
 ## Publications
-
-### 2025-2026 (Submitted/Accepted)
 
 <div class="publication-list">
 <details class="publication-card">
@@ -62,6 +83,7 @@
   note = {Under review}
 }</code></pre>
 </details>
+</div>
 </div>
 </details>
 
@@ -91,6 +113,7 @@
 }</code></pre>
 </details>
 </div>
+</div>
 </details>
 
 <details class="publication-card">
@@ -117,6 +140,7 @@
   year = {2026}
 }</code></pre>
 </details>
+</div>
 </div>
 </details>
 
@@ -145,6 +169,7 @@
 }</code></pre>
 </details>
 </div>
+</div>
 </details>
 
 <details class="publication-card">
@@ -171,6 +196,7 @@
   year = {2025}
 }</code></pre>
 </details>
+</div>
 </div>
 </details>
 
@@ -199,23 +225,76 @@
 }</code></pre>
 </details>
 </div>
+</div>
 </details>
 </div>
 
----
-
 ## Awards & Honors
 
-### Academic Excellence
-- **GPA 3.84/5** - Top 2% of major
-- **First-Class University Scholarship** - Annual award
+<div class="award-section">
+<h3 class="award-group-title">Academic Excellence</h3>
+<ul class="award-list">
+<li class="award-item">
+<span class="award-medal" aria-hidden="true">A+</span>
+<div class="award-text">
+<p class="award-name">GPA 3.84 / 5</p>
+<p class="award-detail">Top 2% of major</p>
+</div>
+</li>
+<li class="award-item">
+<span class="award-medal" aria-hidden="true">★</span>
+<div class="award-text">
+<p class="award-name">First-Class University Scholarship</p>
+<p class="award-detail">Annual award</p>
+</div>
+</li>
+</ul>
+</div>
 
-
-### Competition Awards
-- **Huawei ICT Competition - Ascend AI Track** - First Prize (Global)
-- **American College Mathematical Modeling Competition** - Honorable Mention
-- **Challenge Cup "Cluster Assault" Virtual-Real Linkage Competition** - Second Prize (National)
-- **"Blue Bridge Cup" National Software Competition (Group B)** - Third Prize (National)
-- **National Mathematical Modeling Contest** - Second Prize (National Level)
-- **National University Mathematics Competition** - First Prize (Provincial Level)
----
+<div class="award-section">
+<h3 class="award-group-title">Competitions</h3>
+<ul class="award-list">
+<li class="award-item award-gold has-cert" data-cert="/awards/huawei-ict.png" data-cert-title="Huawei ICT Competition · Ascend AI Track · Global First Prize">
+<span class="award-medal" aria-hidden="true">1st</span>
+<div class="award-text">
+<p class="award-name">Huawei ICT Competition · Ascend AI Track</p>
+<p class="award-detail">Global · First Prize</p>
+</div>
+</li>
+<li class="award-item has-cert" data-cert="/awards/icm-mcm.png" data-cert-title="American College MCM · Honorable Mention">
+<span class="award-medal" aria-hidden="true">HM</span>
+<div class="award-text">
+<p class="award-name">American College Mathematical Modeling Competition</p>
+<p class="award-detail">Honorable Mention</p>
+</div>
+</li>
+<li class="award-item award-silver has-cert" data-cert="/awards/challenge-cup.png" data-cert-title="Challenge Cup &ldquo;Cluster Assault&rdquo; Competition · National Second Prize">
+<span class="award-medal" aria-hidden="true">2nd</span>
+<div class="award-text">
+<p class="award-name">Challenge Cup "Cluster Assault" Virtual-Real Linkage Competition</p>
+<p class="award-detail">National · Second Prize</p>
+</div>
+</li>
+<li class="award-item award-bronze has-cert" data-cert="/awards/blue-bridge.png" data-cert-title="&ldquo;Blue Bridge Cup&rdquo; National Software Competition (Group B) · National Third Prize">
+<span class="award-medal" aria-hidden="true">3rd</span>
+<div class="award-text">
+<p class="award-name">"Blue Bridge Cup" National Software Competition (Group B)</p>
+<p class="award-detail">National · Third Prize</p>
+</div>
+</li>
+<li class="award-item award-silver has-cert" data-cert="/awards/cumcm.jpg" data-cert-title="National Mathematical Modeling Contest · National Second Prize">
+<span class="award-medal" aria-hidden="true">2nd</span>
+<div class="award-text">
+<p class="award-name">National Mathematical Modeling Contest</p>
+<p class="award-detail">National · Second Prize</p>
+</div>
+</li>
+<li class="award-item award-gold has-cert" data-cert="/awards/math-competition.jpg" data-cert-title="National University Mathematics Competition · Provincial First Prize">
+<span class="award-medal" aria-hidden="true">1st</span>
+<div class="award-text">
+<p class="award-name">National University Mathematics Competition</p>
+<p class="award-detail">Provincial · First Prize</p>
+</div>
+</li>
+</ul>
+</div>
