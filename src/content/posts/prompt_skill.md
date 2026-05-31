@@ -1,8 +1,8 @@
 ---
 title: AI 提示词库
-published: 2026-6-1
+published: 2026-06-01
 description: '优质AI提示词集合'
-image: ''
+image: 'assets/images/demo-avatar.jpg'
 tags: [AI, 提示词, 工作流]
 category: 'AI工具'
 draft: false
@@ -18,7 +18,7 @@ lang: 'zh_CN'
 }
 
 .qa-item {
-  border: 2px solid var(--theme-color, #8b5cf6);
+  border: 2px solid var(--theme-color, #776de4);
   border-radius: 0.75rem;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -116,8 +116,7 @@ lang: 'zh_CN'
     </div>
     <div class="qa-answer">
       <div class="qa-answer-content">
-        <p><strong>A：你是一位资深简历顾问。请帮我用 STAR 法则重构简历中的经历描述。</strong></p>
-        
+        A：你是一位资深简历顾问。请帮我用 STAR 法则重构简历中的经历描述。
         <h4>【STAR 在简历中的应用规则】</h4>
         <ul>
           <li>每条 bullet 聚焦一件事,结构为:动作动词开头 → 具体做法 → 可量化的结果</li>
