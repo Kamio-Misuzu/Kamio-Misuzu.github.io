@@ -37,6 +37,7 @@
 <span class="interest-tag">VLM</span>
 <span class="interest-tag">MLLM</span>
 <span class="interest-tag">Medical Image Segmentation</span>
+<span class="interest-tag">Agent</span>
 </div>
 
 ## News
