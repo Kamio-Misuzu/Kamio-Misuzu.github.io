@@ -1,8 +1,7 @@
 ---
 title: AI 提示词库
-published: 2025-09-15
+published: 2026-6-1
 description: '优质AI提示词集合'
-image: 'assets/images/demo-avatar.jpg'
 tags: [AI, 提示词, 工作流]
 category: 'AI工具'
 draft: false
@@ -72,6 +71,7 @@ lang: 'zh_CN'
 .qa-item.expanded .qa-answer {
   max-height: 800px;
   padding: 1.25rem;
+  background: #e0f2fe;
 }
 
 .qa-answer-content {
