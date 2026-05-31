@@ -2,6 +2,7 @@
 title: AI 提示词库
 published: 2026-6-1
 description: '优质AI提示词集合'
+image: ''
 tags: [AI, 提示词, 工作流]
 category: 'AI工具'
 draft: false
