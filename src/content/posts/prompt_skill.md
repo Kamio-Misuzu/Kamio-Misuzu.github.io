@@ -2,7 +2,7 @@
 title: AI 提示词库
 published: 2026-06-01
 description: '优质AI提示词集合'
-image: 'assets/images/demo-avatar.jpg'
+image: ''
 tags: [AI, 提示词, 工作流]
 category: 'AI工具'
 draft: false
@@ -126,7 +126,6 @@ lang: 'zh_CN'
           <li>每条控制在 1-2 行,1 句话讲完</li>
           <li>保持事实,绝不夸大或虚构我没提供的信息</li>
         </ul>
-
         <h4>【输出要求】</h4>
         <ol>
           <li>先按上述规则重写每一条</li>
