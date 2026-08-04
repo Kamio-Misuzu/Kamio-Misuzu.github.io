@@ -916,7 +916,7 @@ for (const [path, url] of Object.entries(certImageRecords)) {
     }
 </style>
 
-<script>
+<script is:inline>
     const STORAGE_KEY = "about-lang";
 
     function initLangSwitch() {
@@ -1248,7 +1248,8 @@ for (const [path, url] of Object.entries(certImageRecords)) {
     }
 
     scheduleBootstrap();
-    document.addEventListener("DOMContentLoaded", scheduleBootstrap, { once: true });
+    window.addEventListener("load", scheduleBootstrap, { once: false });
+    document.addEventListener("DOMContentLoaded", scheduleBootstrap, { once: false });
     document.addEventListener("astro:page-load", scheduleBootstrap);
     document.addEventListener("astro:after-swap", scheduleBootstrap);
 </script>
