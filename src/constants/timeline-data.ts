@@ -16,7 +16,7 @@ export const timelineEvents: TimelineEvent[] = [
 		description:"在南京开为网络科技有限公司实习",
 		icon: "material-symbols:code-rounded",
 		category: "实习",
-		type: "Internship",
+		type: "work",
 		image: "",
 		achievement: "",
 	},
