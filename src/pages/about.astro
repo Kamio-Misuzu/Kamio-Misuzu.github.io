@@ -1227,6 +1227,8 @@ for (const [path, url] of Object.entries(certImageRecords)) {
     window.addEventListener("resize", onPositionUpdate);
     window.addEventListener("scroll", onPositionUpdate, { passive: true });
 
+    let bootstrapFrame = null;
+
     function bootstrap() {
         initLangSwitch();
         enhanceBibtex();
@@ -1235,7 +1237,18 @@ for (const [path, url] of Object.entries(certImageRecords)) {
         rebuildToc();
     }
 
-    bootstrap();
-    document.addEventListener("astro:page-load", bootstrap);
-    document.addEventListener("astro:after-swap", bootstrap);
+    function scheduleBootstrap() {
+        if (bootstrapFrame !== null) {
+            cancelAnimationFrame(bootstrapFrame);
+        }
+        bootstrapFrame = requestAnimationFrame(() => {
+            bootstrapFrame = null;
+            bootstrap();
+        });
+    }
+
+    scheduleBootstrap();
+    document.addEventListener("DOMContentLoaded", scheduleBootstrap, { once: true });
+    document.addEventListener("astro:page-load", scheduleBootstrap);
+    document.addEventListener("astro:after-swap", scheduleBootstrap);
 </script>

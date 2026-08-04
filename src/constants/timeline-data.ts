@@ -10,11 +10,21 @@ export interface TimelineEvent {
 }
 
 export const timelineEvents: TimelineEvent[] = [
+		{
+		date: "2026年8月",
+		title: "实习",
+		description:"在南京开为网络科技有限公司实习",
+		icon: "material-symbols:code-rounded",
+		category: "实习",
+		type: "Internship",
+		image: "",
+		achievement: "",
+	},
 	{
 		date: "2026年4月",
-		title: "DSP期刊论文",
+		title: "期刊论文",
 		description:
-			"投稿DSP期刊论文: MSConvFormer: A Multi-Scale Depthwise Convolution Transformer for Medical Time Series Classification",
+			"投稿期刊论文: MSConvFormer: A Multi-Scale Depthwise Convolution Transformer for Medical Time Series Classification",
 		icon: "material-symbols:code-rounded",
 		category: "论文",
 		type: "paper",
@@ -23,9 +33,9 @@ export const timelineEvents: TimelineEvent[] = [
 	},
 	{
 		date: "2026年2月",
-		title: "MICCAI会议论文",
+		title: "会议论文",
 		description:
-			"投稿MICCAI会议论文: Hierarchical Progressive Cross-modal Information Interaction for Incomplete Multimodal Brain Tumor Segmentation",
+			"投稿会议论文: Hierarchical Progressive Cross-modal Information Interaction for Incomplete Multimodal Brain Tumor Segmentation",
 		icon: "material-symbols:code-rounded",
 		category: "论文",
 		type: "paper",
