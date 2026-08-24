@@ -35,16 +35,16 @@ for (const [path, url] of Object.entries(certImageRecords)) {
                 <div class="card-base z-10 px-9 py-6 relative w-full ">
 
                     <div class="about-lang-tabs flex justify-end gap-2" aria-label="About language switcher">
-                        <button class="about-lang-tab active" type="button" data-about-lang-button="en" aria-pressed="true">EN</button>
-                        <button class="about-lang-tab" type="button" data-about-lang-button="zh" aria-pressed="false">中文</button>
+                        <button class="about-lang-tab" type="button" data-about-lang-button="en" aria-pressed="false">EN</button>
+                        <button class="about-lang-tab active" type="button" data-about-lang-button="zh" aria-pressed="true">中文</button>
                     </div>
 
-                    <div data-about-lang-panel="en" class="about-content">
+                    <div data-about-lang-panel="en" class="about-content" hidden>
                         <Markdown class="mt-2">
                             <ContentEn />
                         </Markdown>
                     </div>
-                    <div data-about-lang-panel="zh" class="about-content" hidden>
+                    <div data-about-lang-panel="zh" class="about-content">
                         <Markdown class="mt-2">
                             <ContentZh />
                         </Markdown>
@@ -75,11 +75,10 @@ for (const [path, url] of Object.entries(certImageRecords)) {
             <p class="cert-modal-caption" id="cert-modal-caption" data-cert-modal-title></p>
         </div>
     </div>
-</MainGridLayout>
 
-<script is:inline define:vars={{ certImageMap }}>
-    window.__certImageMap = certImageMap;
-</script>
+    <script is:inline define:vars={{ certImageMap }}>
+        window.__certImageMap = certImageMap;
+    </script>
 
 <style>
     /* ============ 整体布局：宽屏时目录悬浮于右侧 ============ */
@@ -937,12 +936,11 @@ for (const [path, url] of Object.entries(certImageRecords)) {
             requestAnimationFrame(() => rebuildToc(lang));
         };
 
-        let initial = "en";
+        let initial = "zh";
         try {
-            initial = localStorage.getItem(STORAGE_KEY)
-                ?? (navigator.language.startsWith("zh") ? "zh" : "en");
+            initial = localStorage.getItem(STORAGE_KEY) ?? "zh";
         } catch (e) {
-            initial = navigator.language.startsWith("zh") ? "zh" : "en";
+            initial = "zh";
         }
         setLang(initial);
 
@@ -1253,3 +1251,4 @@ for (const [path, url] of Object.entries(certImageRecords)) {
     document.addEventListener("astro:page-load", scheduleBootstrap);
     document.addEventListener("astro:after-swap", scheduleBootstrap);
 </script>
+</MainGridLayout>
