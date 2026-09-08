@@ -1,4 +1,5 @@
 # Timeline
+- 26.8.17 修复第一次加载页面下，点击“关于”页面时候只出现英文页面，点击“中文”按钮却没反应的bug
 - 9.2 markdown中要添加local图片, 不需要在前面加入./ (比如./imgs/flow_matching_tutorial/1.png❌ imgs/flow_matching_tutorial/1.png ✔)
 - 9.1 添加鼠标点击文本特效, 引入随机表情(NachoNeko, cat girl, 胡桃等), 可以在"\src\components\mouse\click-content-config.ts"添加表情属性, 在"\src\components\mouse\ClickTextEffect.astro"作相应的修改
 - 8.31 增加背景"蜘蛛网", 在"\src\layouts\Layout.astro"的\<body>下添加<SpiderWebEffect/>
