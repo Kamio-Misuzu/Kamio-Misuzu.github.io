@@ -28,11 +28,11 @@ for (const [path, url] of Object.entries(certImageRecords)) {
 }
 ---
 
-<MainGridLayout title={i18n(I18nKey.about)} description={i18n(I18nKey.about)}>
+<MainGridLayout title={i18n(I18nKey.about)} description="曾智尊（Zhizun Zeng）· 深圳大学计算机科学与技术硕士生。教育背景、实习、论文、项目、竞赛获奖与专业技能。">
     <div class="about-shell">
         <main class="about-shell-main">
             <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
-                <div class="card-base z-10 px-9 py-6 relative w-full ">
+                <div class="card-base z-10 px-5 md:px-9 py-6 relative w-full ">
 
                     <div class="about-lang-tabs flex justify-end gap-2" aria-label="About language switcher">
                         <button class="about-lang-tab" type="button" data-about-lang-button="en" aria-pressed="false">EN</button>
@@ -81,6 +81,43 @@ for (const [path, url] of Object.entries(certImageRecords)) {
     </script>
 
 <style>
+    :global(.about-content h1:first-of-type) {
+        font-size: 1.8rem !important;
+        line-height: 1.45;
+    }
+    :global(.resume-name-en) {
+        display: inline-block;
+        color: var(--text-75);
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
+    :global(.about-content .news-meta) {
+        line-height: 1.7;
+        overflow-wrap: anywhere;
+    }
+    :global(.about-content .news-description ul),
+    :global(.about-content .publication-body ul) {
+        padding-left: 1.2rem;
+        margin: 0.65rem 0 0;
+    }
+    :global(.about-content .news-description li),
+    :global(.about-content .publication-body li) {
+        margin: 0.6rem 0;
+    }
+    :global(.about-content .publication-title) {
+        overflow-wrap: anywhere;
+    }
+    @media (max-width: 640px) {
+        :global(.about-content .award-list) {
+            grid-template-columns: minmax(0, 1fr);
+        }
+        :global(.about-content .edu-card) {
+            grid-template-columns: 0.85rem minmax(0, 1fr);
+            gap: 0.65rem;
+            padding: 0.9rem;
+        }
+        :global(.about-content .edu-marker) { width: 0.85rem; }
+    }
     /* ============ 整体布局：宽屏时目录悬浮于右侧 ============ */
     .about-shell {
         position: relative;
@@ -916,6 +953,12 @@ for (const [path, url] of Object.entries(certImageRecords)) {
 </style>
 
 <script is:inline>
+    (() => {
+    // Swup reruns inline scripts when returning to this page.
+    // Dispose the previous page handlers before binding the current content.
+    if (typeof window.__aboutPageCleanup === "function") window.__aboutPageCleanup();
+    const lifecycle = new AbortController();
+    const { signal } = lifecycle;
     const STORAGE_KEY = "about-lang";
 
     function initLangSwitch() {
@@ -1073,7 +1116,7 @@ for (const [path, url] of Object.entries(certImageRecords)) {
             ) {
                 close();
             }
-        });
+        }, { signal });
 
         document.addEventListener("keydown", (event) => {
             if (event.key === "Escape" && !modal.hidden) {
@@ -1089,7 +1132,7 @@ for (const [path, url] of Object.entries(certImageRecords)) {
                     if (key) open(key, title, active);
                 }
             }
-        });
+        }, { signal });
     }
 
     function makeAwardsFocusable() {
@@ -1222,8 +1265,8 @@ for (const [path, url] of Object.entries(certImageRecords)) {
         });
     }
 
-    window.addEventListener("resize", onPositionUpdate);
-    window.addEventListener("scroll", onPositionUpdate, { passive: true });
+    window.addEventListener("resize", onPositionUpdate, { signal });
+    window.addEventListener("scroll", onPositionUpdate, { passive: true, signal });
 
     let bootstrapFrame = null;
 
@@ -1246,9 +1289,16 @@ for (const [path, url] of Object.entries(certImageRecords)) {
     }
 
     scheduleBootstrap();
-    window.addEventListener("load", scheduleBootstrap, { once: false });
-    document.addEventListener("DOMContentLoaded", scheduleBootstrap, { once: false });
-    document.addEventListener("astro:page-load", scheduleBootstrap);
-    document.addEventListener("astro:after-swap", scheduleBootstrap);
+    window.addEventListener("load", scheduleBootstrap, { signal });
+    document.addEventListener("DOMContentLoaded", scheduleBootstrap, { signal });
+    document.addEventListener("astro:page-load", scheduleBootstrap, { signal });
+    document.addEventListener("astro:after-swap", scheduleBootstrap, { signal });
+    window.__aboutPageCleanup = () => {
+        lifecycle.abort();
+        if (tocObserver) tocObserver.disconnect();
+        if (bootstrapFrame !== null) cancelAnimationFrame(bootstrapFrame);
+        if (positionTocThrottle !== null) cancelAnimationFrame(positionTocThrottle);
+    };
+    })();
 </script>
 </MainGridLayout>

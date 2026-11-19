@@ -10,7 +10,7 @@ import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
 	title: "Zhizun Zeng",
-	subtitle: "zzz",
+	subtitle: "生成式模型 · 多模态学习 · 医学影像分析",
 	lang: "zh_CN", // Language code, e.g. 'en', 'zh_CN', 'ja', etc.
 	themeColor: {
 		hue: 200, // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
@@ -67,17 +67,22 @@ export const navBarConfig: NavBarConfig = {
 export const profileConfig: ProfileConfig = {
 	avatar: "assets/images/demo-avatar.jpg", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
 	name: "Zhizun Zeng",
-	bio: "曲中思念今犹在, 不见当年梦中人",
+	bio: "曾智尊 · 深圳大学计算机科学与技术硕士生",
 	links: [
 		{
-			name: "GitHub",
+			name: "GitHub · 个人主页",
 			icon: "fa6-brands:github",
 			url: "https://github.com/Kamio-Misuzu",
 		},
 		{
-			name: "GitHub",
+			name: "GitHub · 研究代码",
 			icon: "fa6-brands:github",
 			url: "https://github.com/ZengZ-233",
+		},
+		{
+			name: "邮箱",
+			icon: "fa6-solid:envelope",
+			url: "mailto:1176017541@qq.com",
 		},
 	],
 };

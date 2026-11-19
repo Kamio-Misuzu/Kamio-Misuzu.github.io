@@ -1,3 +1,9 @@
+# Zhizun Zeng <span class="resume-name-en">曾智尊</span>
+
+M.S. student in Computer Science and Technology at Shenzhen University, with a B.S. in Artificial Intelligence from Guilin University of Electronic Technology. My interests include generative models, multimodal learning, and medical image analysis, with experience in model evaluation, inference optimization, and on-device deployment.
+
+[Email](mailto:1176017541@qq.com) · [GitHub](https://github.com/Kamio-Misuzu) · [Research code](https://github.com/ZengZ-233)
+
 ## Education
 
 <div class="edu-list">
@@ -6,7 +12,7 @@
 <div class="edu-marker" aria-hidden="true"></div>
 <div class="edu-body">
 <h3 class="edu-school">Shenzhen University</h3>
-<p class="edu-degree">M.S. · Computer Science & Technology</p>
+<p class="edu-degree">M.S. · Computer Science &amp; Technology · College of Computer Science and Software Engineering</p>
 <div class="edu-meta">
 <span class="edu-pill edu-pill-date">2026.09 – 2029.06</span>
 <span class="edu-pill edu-pill-loc">Shenzhen, Guangdong</span>
@@ -18,11 +24,12 @@
 <div class="edu-marker" aria-hidden="true"></div>
 <div class="edu-body">
 <h3 class="edu-school">Guilin University of Electronic Technology</h3>
-<p class="edu-degree">B.S. · Artificial Intelligence</p>
+<p class="edu-degree">B.S. · Artificial Intelligence · School of Artificial Intelligence</p>
 <div class="edu-meta">
 <span class="edu-pill edu-pill-date">2022.09 – 2026.06</span>
 <span class="edu-pill edu-pill-loc">Guilin, Guangxi</span>
 </div>
+<p class="edu-degree">GPA 4.45 / 5 · Top 2% of major · Recommended for postgraduate admission</p>
 </div>
 </article>
 
@@ -31,90 +38,40 @@
 ## Research Interests
 
 <div class="interest-tags">
-<span class="interest-tag">Diffusion Models</span>
-<span class="interest-tag">Flow Matching</span>
-<span class="interest-tag">LLM</span>
+<span class="interest-tag">Reward Model</span>
+<span class="interest-tag">Reinforcement Learning</span>
 <span class="interest-tag">VLM</span>
 <span class="interest-tag">MLLM</span>
+<span class="interest-tag">Diffusion Models</span>
+<span class="interest-tag">Flow Matching</span>
 <span class="interest-tag">Medical Image Segmentation</span>
-<span class="interest-tag">Agent</span>
+<span class="interest-tag">Multimodal Learning</span>
 </div>
 
-## News
+## Internship Experience
 
-<!-- <div class="news-list">
-<article class="news-card">
-<h3 class="news-title">Publication list updated</h3>
-<p class="news-meta">2026</p>
-<p class="news-description">The publication section now supports expandable paper cards with abstracts, resources, and BibTeX entries.</p>
-</article>
+<div class="news-list">
+<article class="news-card"><h3 class="news-title">Nanjing Kaiwei Network Technology Co., Ltd.</h3><p class="news-meta">Jun - Aug 2026 · Nanjing · Research Intern · Image Generation / Model Evaluation</p><div class="news-description"><ul>
+<li><strong>Text-to-image evaluation:</strong> Built an end-to-end benchmark on Qwen-Image-Bench spanning 5 primary dimensions and 56 fine-grained metrics. Standardized prompts, IDs, random seeds, and judging parameters across GPT Image 2, Nano Banana Pro, Nano Banana, and ERNIE-Image; completed 20,000 automated judging inferences on 1,000 Image Arena prompts for cross-model comparison.</li>
+<li><strong>Multi-model pipeline:</strong> Implemented a JSONL-driven framework for local GPU inference and remote APIs, with isolated model outputs, checkpoint resumption, response parsing, and image integrity checks.</li>
+<li><strong>Deployment and inference:</strong> Deployed the approximately 30GB ERNIE-Image model and multiple DiT checkpoints using diffusers and transformers. Used multi-GPU data parallelism to generate 1,000 reproducible, intact 1024 × 1024 images per checkpoint group.</li>
+<li><strong>Judge optimization:</strong> Addressed CUDA OOM and full reruns in the original single-GPU judging script through sharded multi-GPU scheduling, automatic resumption, and completeness checks. Reduced peak GPU memory usage to approximately 78GB and judging time from about 9 hours on one GPU to 2.3 hours on six GPUs.</li>
+</ul></div></article>
+</div>
 
-<article class="news-card">
-<h3 class="news-title">About page bilingual version launched</h3>
-<p class="news-meta">2026</p>
-<p class="news-description">The about page now supports English and Chinese content switching.</p>
-</article>
-</div> -->
+## Publications & Submissions
 
-## Publications
+### First & Student First Author
 
 <div class="publication-list">
 <details class="publication-card">
-<summary class="publication-summary">
-<span>
-<h3 class="publication-title">MSConvFormer: A Multi-Scale Depthwise Convolution Transformer for Medical Time Series Classification</h3>
-<p class="publication-authors">Author list to be updated.</p>
-<p class="publication-venue">Digital Signal Processing (JCR-Q2), under review.</p>
-</span>
-<span class="publication-cue">Details</span>
-</summary>
-<div class="publication-body">
-<h4>Abstract</h4>
-<p>Abstract to be updated.</p>
-<div class="publication-links">
-<span class="publication-link-disabled">Paper</span>
-<!-- <span class="publication-link-disabled">Code</span> -->
-<details class="publication-bibtex-details">
-<summary class="publication-resource">BibTeX</summary>
-<pre class="publication-bibtex"><code>@article{msconvformer2026,
-  title = {MSConvFormer: A Multi-Scale Depthwise Convolution Transformer for Medical Time Series Classification},
-  author = {To be updated},
-  journal = {Digital Signal Processing},
-  year = {2026},
-  note = {Under review}
-}</code></pre>
-</details>
-</div>
-</div>
+<summary class="publication-summary"><span><h3 class="publication-title">More Should Be Better: Incremental Self-Distillation Multimodal Brain Tumor Segmentation with Missing Modalities</h3><p class="publication-venue">ICLR 2027 · CCF-A · Student first author · Submitted</p></span><span class="publication-cue">+</span></summary>
+<div class="publication-body"><p>Research on multimodal brain tumor segmentation with missing modalities using incremental self-distillation.</p></div>
 </details>
 
 <details class="publication-card">
-<summary class="publication-summary">
-<span>
-<h3 class="publication-title">Hierarchical Progressive Cross-modal Information Interaction for Incomplete Multimodal Brain Tumor Segmentation</h3>
-<p class="publication-authors">Author list to be updated.</p>
-<p class="publication-venue">MICCAI 2026 (CCF-B), under review.</p>
-</span>
-<span class="publication-cue">Details</span>
-</summary>
-<div class="publication-body">
-<h4>Abstract</h4>
-<p>Abstract to be updated.</p>
-<div class="publication-links">
-<span class="publication-link-disabled">Paper</span>
-<!-- <span class="publication-link-disabled">Code</span> -->
-<details class="publication-bibtex-details">
-<summary class="publication-resource">BibTeX</summary>
-<pre class="publication-bibtex"><code>@inproceedings{hierarchicalprogressive2026,
-  title = {Hierarchical Progressive Cross-modal Information Interaction for Incomplete Multimodal Brain Tumor Segmentation},
-  author = {To be updated},
-  booktitle = {MICCAI},
-  year = {2026},
-  note = {Under review}
-}</code></pre>
-</details>
-</div>
-</div>
+<summary class="publication-summary"><span><h3 class="publication-title">MSConvFormer: A Multi-Scale Depthwise Convolution Transformer for Medical Time Series Classification</h3><p class="publication-venue">Digital Signal Processing 2026 · JCR-Q2 · First author · Submitted</p></span><span class="publication-cue">+</span></summary>
+<div class="publication-body"><p>A multi-scale depthwise convolution Transformer for medical time series classification.</p></div>
 </details>
 
 <details class="publication-card">
@@ -122,7 +79,7 @@
 <span>
 <h3 class="publication-title">DMKformer: A Dual-Path Routing Transformer with Hybrid Mamba and KAN for Medical Time Series</h3>
 <p class="publication-authors">Zhizun Zeng, Qiuyuan Gan, Wei Zhang, Yujie Li</p>
-<p class="publication-venue">Signal, Image and Video Processing, 2026. (JCR-Q3)</p>
+<p class="publication-venue">Signal, Image and Video Processing, 2026. (JCR-Q3) · First author · Accepted</p>
 </span>
 <span class="publication-cue">Details</span>
 </summary>
@@ -133,9 +90,7 @@
 <a class="publication-link-disabled" href="https://link.springer.com/article/10.1007/s11760-026-05188-7">
   Paper
 </a>
-<!-- <a class="publication-link-disabled" href="https://github.com/ZengZ-233/DMKformer">
-  Code
-</a> -->
+
 <details class="publication-bibtex-details">
 <summary class="publication-resource">BibTeX</summary>
 <pre class="publication-bibtex"><code>@article{Zeng2026DmkformerAD,
@@ -153,47 +108,9 @@
 <details class="publication-card">
 <summary class="publication-summary">
 <span>
-<h3 class="publication-title">Gaze Estimation based on Visual State Space Model with Hybrid Features</h3>
-<p class="publication-authors">Yujie Li, Rongjie Liu, Zhizun Zeng, Ziwen Wang, Yuhang Hong, Benying Tan</p>
-<p class="publication-venue">ACM Transactions on Sensor Networks, 2025. (JCR-Q1/CCF-B)</p>
-</span>
-<span class="publication-cue">Details</span>
-</summary>
-<div class="publication-body">
-<h4>Abstract</h4>
-<p>Visual State Space Model (denoted as VMamba), a vision-based model proposed to introduce Mamba into computer vision, has shown strong performance in recent work on computer vision tasks. However, the performance of VMamba in gaze estimation is still to be explored. In this paper, we propose two VMamba-based gaze estimation approaches: GazeVM-Pure based on pure VMamba and GazeVM-Hybrid based on hybrid VMamba. GazeVM-Pure is used to estimate gaze direction according to the original VMamba structure. GazeVM-Hybrid combines Convolutional Neural Network (CNN) and VMamba, where the Visual State Space (VSS) Block (the core module of VMamba) is used as a complementary component of the CNN. In GazeVM-Hybrid, the convolutional layers of ResNet-34 are used to learn local feature maps from face images, and VSS Block is used to capture global relations from feature maps. The experimental results show that GazeVM-Hybrid exhibits superior performance compared with existing state-of-the-art techniques with a nearly 0.11 decrease in angle error compared with Static Transformer Temporal Differential Network (STTDN) on the EyeDiap dataset.</p>
-<div class="publication-links">
-<a class="publication-link-disabled" href="https://dl.acm.org/doi/10.1145/3765746">
-  Paper
-</a>
-<!-- <span class="publication-link-disabled">Code</span> -->
-<details class="publication-bibtex-details">
-<summary class="publication-resource">BibTeX</summary>
-<pre class="publication-bibtex"><code>@article{10.1145/3765746,
-author = {Li, Yujie and Liu, Rongjie and Zeng, Zhizun and Wang, Ziwen and Hong, Yuhang and Tan, Benying},
-title = {Gaze Estimation Based on Visual State Space Model with Hybrid Features},
-year = {2025},
-publisher = {Association for Computing Machinery},
-address = {New York, NY, USA},
-issn = {1550-4859},
-url = {https://doi.org/10.1145/3765746},
-doi = {10.1145/3765746},
-note = {Just Accepted},
-journal = {ACM Trans. Sen. Netw.},
-month = sep,
-keywords = {Gaze Estimation, State Space Model, VMamba, Hybrid Model}
-}</code></pre>
-</details>
-</div>
-</div>
-</details>
-
-<details class="publication-card">
-<summary class="publication-summary">
-<span>
 <h3 class="publication-title">GA-YOLOv8: A Road Defect Detection Model Based on Improved YOLOv8</h3>
 <p class="publication-authors">ZhiZun Zeng, RongJie Liu, YongHang Huang, YuJie Li, BenYing Tan</p>
-<p class="publication-venue">VSIP 2025. (EI-Core/ACM)</p>
+<p class="publication-venue">VSIP 2025. (EI-Core/ACM) · First author · Accepted</p>
 </span>
 <span class="publication-cue">Details</span>
 </summary>
@@ -204,7 +121,7 @@ keywords = {Gaze Estimation, State Space Model, VMamba, Hybrid Model}
 <a class="publication-link-disabled" href="https://dl.acm.org/doi/10.1145/3708568.3708574">
   Paper
 </a>
-<!-- <span class="publication-link-disabled">Code</span> -->
+
 <details class="publication-bibtex-details">
 <summary class="publication-resource">BibTeX</summary>
 <pre class="publication-bibtex"><code>@inproceedings{10.1145/3708568.3708574,
@@ -232,7 +149,7 @@ series = {VSIP '24}
 <span>
 <h3 class="publication-title">MamKanformer: A hybrid Mamba and KAN model based on Medformer for Medical Time-Series Classification</h3>
 <p class="publication-authors">Zhizun Zeng, Qiuyuan Gan, Zhoukun Yan, Wei Zhang</p>
-<p class="publication-venue">CAIT 2024. (EI-Core/IEEE)</p>
+<p class="publication-venue">CAIT 2024. (EI-Core/IEEE) · First author · Accepted</p>
 </span>
 <span class="publication-cue">Details</span>
 </summary>
@@ -243,7 +160,7 @@ series = {VSIP '24}
 <a class="publication-link-disabled" href="https://ieeexplore.ieee.org/document/10962940">
   Paper
 </a>
-<!-- <span class="publication-link-disabled">Code</span> -->
+
 <details class="publication-bibtex-details">
 <summary class="publication-resource">BibTeX</summary>
 <pre class="publication-bibtex"><code>@INPROCEEDINGS{10962940,
@@ -262,72 +179,124 @@ series = {VSIP '24}
 </details>
 </div>
 
-## Awards & Honors
+### Co-author
 
-<div class="award-section">
-<h3 class="award-group-title">Academic Excellence</h3>
-<ul class="award-list">
-<li class="award-item">
-<span class="award-medal" aria-hidden="true">A+</span>
-<div class="award-text">
-<p class="award-name">GPA 3.84 / 5</p>
-<p class="award-detail">Top 2% of major</p>
+<div class="publication-list">
+<details class="publication-card">
+<summary class="publication-summary"><span><h3 class="publication-title">AdaCARLA: Adaptive Optimization for Self-supervised Contrastive Learning for Time Series Anomaly Detection</h3><p class="publication-venue">ICONIP Abstract 2026 · CCF-C · Second author · Accepted</p></span><span class="publication-cue">+</span></summary>
+<div class="publication-body"><p>Adaptive optimization of self-supervised contrastive learning for time series anomaly detection.</p></div>
+</details>
+
+<details class="publication-card">
+<summary class="publication-summary">
+<span>
+<h3 class="publication-title">Gaze Estimation based on Visual State Space Model with Hybrid Features</h3>
+<p class="publication-authors">Yujie Li, Rongjie Liu, Zhizun Zeng, Ziwen Wang, Yuhang Hong, Benying Tan</p>
+<p class="publication-venue">ACM Transactions on Sensor Networks, 2025. (JCR-Q1/CCF-B) · Student second author · Accepted</p>
+</span>
+<span class="publication-cue">Details</span>
+</summary>
+<div class="publication-body">
+<h4>Abstract</h4>
+<p>Visual State Space Model (denoted as VMamba), a vision-based model proposed to introduce Mamba into computer vision, has shown strong performance in recent work on computer vision tasks. However, the performance of VMamba in gaze estimation is still to be explored. In this paper, we propose two VMamba-based gaze estimation approaches: GazeVM-Pure based on pure VMamba and GazeVM-Hybrid based on hybrid VMamba. GazeVM-Pure is used to estimate gaze direction according to the original VMamba structure. GazeVM-Hybrid combines Convolutional Neural Network (CNN) and VMamba, where the Visual State Space (VSS) Block (the core module of VMamba) is used as a complementary component of the CNN. In GazeVM-Hybrid, the convolutional layers of ResNet-34 are used to learn local feature maps from face images, and VSS Block is used to capture global relations from feature maps. The experimental results show that GazeVM-Hybrid exhibits superior performance compared with existing state-of-the-art techniques with a nearly 0.11 decrease in angle error compared with Static Transformer Temporal Differential Network (STTDN) on the EyeDiap dataset.</p>
+<div class="publication-links">
+<a class="publication-link-disabled" href="https://dl.acm.org/doi/10.1145/3765746">
+  Paper
+</a>
+
+<details class="publication-bibtex-details">
+<summary class="publication-resource">BibTeX</summary>
+<pre class="publication-bibtex"><code>@article{10.1145/3765746,
+author = {Li, Yujie and Liu, Rongjie and Zeng, Zhizun and Wang, Ziwen and Hong, Yuhang and Tan, Benying},
+title = {Gaze Estimation Based on Visual State Space Model with Hybrid Features},
+year = {2025},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+issn = {1550-4859},
+url = {https://doi.org/10.1145/3765746},
+doi = {10.1145/3765746},
+note = {Just Accepted},
+journal = {ACM Trans. Sen. Netw.},
+month = sep,
+keywords = {Gaze Estimation, State Space Model, VMamba, Hybrid Model}
+}</code></pre>
+</details>
 </div>
-</li>
-<li class="award-item">
-<span class="award-medal" aria-hidden="true">★</span>
-<div class="award-text">
-<p class="award-name">First-Class University Scholarship</p>
-<p class="award-detail">Annual award</p>
 </div>
-</li>
-</ul>
+</details>
 </div>
 
-<div class="award-section">
-<h3 class="award-group-title">Competitions</h3>
+## Research Projects
+
+<div class="publication-list">
+<details class="publication-card">
+<summary class="publication-summary"><span><h3 class="publication-title">Real-time Road Safety Detection with Lightweight Neural Networks</h3><p class="publication-venue">Provincial undergraduate research project · Project Lead · May 2024 - May 2025</p></span><span class="publication-cue">+</span></summary>
+<div class="publication-body"><ul>
+<li><strong>Model:</strong> Designed C2f-GDC (DynamicConv) on YOLOv8s and selected AGCA after comparing seven attention mechanisms. Improved mAP@0.5 from 87.4% to 90.9% while reducing GFLOPs by approximately 8%.</li>
+<li><strong>Deployment:</strong> Converted PyTorch weights through ONNX to NCNN, addressing operator compatibility and quantization accuracy loss. Integrated C++ inference through JNI for 30+ FPS on vivo S15e, with real-time, image, and video detection and visualization.</li>
+<li><strong>Outputs:</strong> First-author GA-YOLOv8 paper and software copyright for the Road Safety Detection System.</li>
+</ul></div>
+</details>
+
+<details class="publication-card">
+<summary class="publication-summary"><span><h3 class="publication-title">GazeScreen: Webcam-based 2D Screen Gaze Tracking</h3><p class="publication-venue">National undergraduate research project · Second Lead · May 2024 - May 2026</p></span><span class="publication-cue">+</span></summary>
+<div class="publication-body"><ul>
+<li><strong>Model:</strong> Contributed to a hybrid CNN-VMamba architecture combining ResNet-34 and VSS Blocks. Achieved a mean angular error of 4.91° on EyeDiap with approximately 0.25 additional GFLOPs.</li>
+<li><strong>System:</strong> Built an OpenCV / PyTorch capture and inference pipeline with gaze-to-screen coordinate mapping and smoothing for real-time fixation visualization.</li>
+<li><strong>Output:</strong> Student second-author paper accepted by ACM TOSN 2025 (JCR-Q1 / CCF-B).</li>
+</ul></div>
+</details>
+
+<details class="publication-card">
+<summary class="publication-summary"><span><h3 class="publication-title">Guijie Yimeng: A Digital-IP-driven Immersive Heritage Metaverse</h3><p class="publication-venue">Provincial undergraduate research project · Second Lead · May 2025 - May 2026</p></span><span class="publication-cue">+</span></summary>
+<div class="publication-body"><ul>
+<li><strong>AIGC:</strong> Led character generation using LoRA fine-tuning for controllable heritage-themed IP characters, and integrated an LLM for multilingual dialogue.</li>
+<li><strong>Integration:</strong> Connected AIGC content to XR environments and blockchain digital collectibles for a no-code creation space. Filed an invention patent application for AR smart glasses for cultural heritage guidance.</li>
+</ul></div>
+</details>
+
+<details class="publication-card">
+<summary class="publication-summary"><span><h3 class="publication-title">Campus Q&amp;A App: A LoRA-tuned Assistant for New Students</h3><p class="publication-venue">Core Member</p></span><span class="publication-cue">+</span></summary>
+<div class="publication-body"><ul>
+<li><strong>Data and fine-tuning:</strong> Independently curated 1,000+ instruction pairs covering campus navigation, dining, information queries, and activity management. Cleaned, formatted, and filtered the dataset for LoRA fine-tuning of an open-source language model.</li>
+<li><strong>Service:</strong> Exposed inference through Flask for an Android conversational app. Obtained the software copyright for the Campus Q&amp;A App.</li>
+</ul></div>
+</details>
+</div>
+
+## Competition Awards
+
 <ul class="award-list">
-<li class="award-item award-gold has-cert" data-cert="/awards/huawei-ict.png" data-cert-title="Huawei ICT Competition · Ascend AI Track · Global First Prize">
-<span class="award-medal" aria-hidden="true">1st</span>
-<div class="award-text">
-<p class="award-name">Huawei ICT Competition · Ascend AI Track</p>
-<p class="award-detail">Global · First Prize</p>
-</div>
-</li>
-<li class="award-item has-cert" data-cert="/awards/icm-mcm.png" data-cert-title="American College MCM · Honorable Mention">
-<span class="award-medal" aria-hidden="true">HM</span>
-<div class="award-text">
-<p class="award-name">American College Mathematical Modeling Competition</p>
-<p class="award-detail">Honorable Mention</p>
-</div>
-</li>
-<li class="award-item award-silver has-cert" data-cert="/awards/challenge-cup.png" data-cert-title="Challenge Cup &ldquo;Cluster Assault&rdquo; Competition · National Second Prize">
-<span class="award-medal" aria-hidden="true">2nd</span>
-<div class="award-text">
-<p class="award-name">Challenge Cup "Cluster Assault" Virtual-Real Linkage Competition</p>
-<p class="award-detail">National · Second Prize</p>
-</div>
-</li>
-<li class="award-item award-bronze has-cert" data-cert="/awards/blue-bridge.png" data-cert-title="&ldquo;Blue Bridge Cup&rdquo; National Software Competition (Group B) · National Third Prize">
-<span class="award-medal" aria-hidden="true">3rd</span>
-<div class="award-text">
-<p class="award-name">"Blue Bridge Cup" National Software Competition (Group B)</p>
-<p class="award-detail">National · Third Prize</p>
-</div>
-</li>
-<li class="award-item award-silver has-cert" data-cert="/awards/cumcm.jpg" data-cert-title="National Mathematical Modeling Contest · National Second Prize">
-<span class="award-medal" aria-hidden="true">2nd</span>
-<div class="award-text">
-<p class="award-name">National Mathematical Modeling Contest</p>
-<p class="award-detail">National · Second Prize</p>
-</div>
-</li>
-<li class="award-item award-gold has-cert" data-cert="/awards/math-competition.jpg" data-cert-title="National University Mathematics Competition · Provincial First Prize">
-<span class="award-medal" aria-hidden="true">1st</span>
-<div class="award-text">
-<p class="award-name">National University Mathematics Competition</p>
-<p class="award-detail">Provincial · First Prize</p>
-</div>
-</li>
+<li class="award-item award-silver"><span class="award-medal" aria-hidden="true">2nd</span><div class="award-text"><p class="award-name">Huawei Cup Graduate Mathematical Modeling Competition</p><p class="award-detail">2026 · National Second Prize · Top 2.5%</p></div></li>
+<li class="award-item award-gold has-cert" data-cert="/awards/huawei-ict.png" data-cert-title="Huawei ICT Competition · Ascend AI Track · 2025 · Global First Prize"><span class="award-medal" aria-hidden="true">1st</span><div class="award-text"><p class="award-name">Huawei ICT Competition · Ascend AI Track</p><p class="award-detail">2025 · Global First Prize</p></div></li>
+<li class="award-item has-cert" data-cert="/awards/icm-mcm.png" data-cert-title="Mathematical Contest in Modeling (MCM) · 2025 · Honorable Mention"><span class="award-medal" aria-hidden="true">HM</span><div class="award-text"><p class="award-name">Mathematical Contest in Modeling (MCM)</p><p class="award-detail">2025 · Honorable Mention</p></div></li>
+<li class="award-item award-silver has-cert" data-cert="/awards/cumcm.jpg" data-cert-title="China Undergraduate Mathematical Contest in Modeling · 2024 · National Second Prize"><span class="award-medal" aria-hidden="true">2nd</span><div class="award-text"><p class="award-name">China Undergraduate Mathematical Contest in Modeling</p><p class="award-detail">2024 · National Second Prize</p></div></li>
+<li class="award-item award-silver has-cert" data-cert="/awards/challenge-cup.png" data-cert-title="Challenge Cup · Swarm Intelligence Virtual-Real Competition · 2024 · National Second Prize"><span class="award-medal" aria-hidden="true">2nd</span><div class="award-text"><p class="award-name">Challenge Cup · Swarm Intelligence Virtual-Real Competition</p><p class="award-detail">2024 · National Second Prize</p></div></li>
+<li class="award-item award-bronze has-cert" data-cert="/awards/blue-bridge.png" data-cert-title="Lanqiao Cup National Software Competition · Group B · 2025 · National Third Prize"><span class="award-medal" aria-hidden="true">3rd</span><div class="award-text"><p class="award-name">Lanqiao Cup National Software Competition · Group B</p><p class="award-detail">2025 · National Third Prize</p></div></li>
+<li class="award-item award-gold has-cert" data-cert="/awards/math-competition.jpg" data-cert-title="National Undergraduate Mathematics Competition · 2023 · Provincial First Prize"><span class="award-medal" aria-hidden="true">1st</span><div class="award-text"><p class="award-name">National Undergraduate Mathematics Competition</p><p class="award-detail">2023 · Provincial First Prize</p></div></li>
 </ul>
+
+## Honors & Scholarships
+
+<ul class="award-list">
+<li class="award-item"><span class="award-medal" aria-hidden="true">★</span><div class="award-text"><p class="award-name">Graduate Entrance Scholarship</p><p class="award-detail">2026 - 2027 · CNY 15,000</p></div></li>
+<li class="award-item"><span class="award-medal" aria-hidden="true">★</span><div class="award-text"><p class="award-name">Second-Class University Scholarship</p><p class="award-detail">2023 - 2024 · CNY 800</p></div></li>
+<li class="award-item"><span class="award-medal" aria-hidden="true">★</span><div class="award-text"><p class="award-name">First-Class University Scholarship</p><p class="award-detail">2022 - 2023 · CNY 1,600</p></div></li>
+</ul>
+
+## Patents & Software Copyrights
+
+<div class="news-list">
+<article class="news-card"><h3 class="news-title">AR Smart Glasses for Cultural Heritage Guidance</h3><p class="news-meta">Invention patent application · Jul 2025</p><div class="news-description"></div></article>
+<article class="news-card"><h3 class="news-title">Campus Q&amp;A App</h3><p class="news-meta">Software copyright · 2026</p><div class="news-description"></div></article>
+<article class="news-card"><h3 class="news-title">Road Safety Detection System</h3><p class="news-meta">Software copyright · Oct 2024</p><div class="news-description"></div></article>
 </div>
+
+## Skills
+
+<ul>
+<li><strong>Languages:</strong> Python, C++, LaTeX.</li>
+<li><strong>Frameworks:</strong> PyTorch, Lightning, Ultralytics, diffusers, transformers, OpenCV, LangChain.</li>
+<li><strong>Engineering:</strong> Multi-GPU parallel inference, ONNX / NCNN deployment, LoRA fine-tuning, Flask services, Linux / Git.</li>
+<li><strong>English:</strong> CET-4.</li>
+</ul>

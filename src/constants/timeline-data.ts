@@ -10,49 +10,123 @@ export interface TimelineEvent {
 }
 
 export const timelineEvents: TimelineEvent[] = [
-		{
-		date: "2026年8月",
-		title: "实习",
-		description:"在南京开为网络科技有限公司实习",
+	{
+		date: "2026年",
+		title: "ICLR 2027 · 论文投稿",
+		description: "More Should Be Better: Incremental Self-Distillation Multimodal Brain Tumor Segmentation with Missing Modalities。",
 		icon: "material-symbols:code-rounded",
-		category: "实习",
-		type: "work",
-		image: "",
-		achievement: "",
+		category: "论文",
+		type: "paper",
+		achievement: "学生一作 · 在投",
 	},
 	{
-		date: "2026年4月",
-		title: "期刊论文",
+		date: "2026年",
+		title: "AdaCARLA · ICONIP Abstract",
+		description: "AdaCARLA: Adaptive Optimization for Self-supervised Contrastive Learning for Time Series Anomaly Detection，ICONIP Abstract 2026（CCF-C）。",
+		icon: "material-symbols:code-rounded",
+		category: "论文",
+		type: "paper",
+		achievement: "第二作者 · 录用",
+	},
+	{
+		date: "2026年",
+		title: "华为杯研究生数学建模竞赛",
+		description: "获 2026 年华为杯研究生数学建模竞赛国家级二等奖，Top 2.5%。",
+		icon: "material-symbols:code-rounded",
+		category: "竞赛",
+		type: "award",
+		achievement: "国家级二等奖 · Top 2.5%",
+	},
+	{
+		date: "2026年",
+		title: "校园智能问答 App · LoRA 新生助手",
+		description: "独立构建 1,000+ 条校园指令对数据，完成 LoRA 高效微调，通过 Flask 对接 Android 端对话式问答，获软件著作权。",
+		icon: "material-symbols:code-rounded",
+		category: "知识产权",
+		type: "project",
+		achievement: "核心成员 · 已获软件著作权",
+	},
+	{
+		date: "2026年",
+		title: "MSConvFormer · 期刊投稿",
 		description:
 			"投稿期刊论文: MSConvFormer: A Multi-Scale Depthwise Convolution Transformer for Medical Time Series Classification",
 		icon: "material-symbols:code-rounded",
 		category: "论文",
 		type: "paper",
 		image: "",
-		achievement: "under review",
+		achievement: "第一作者 · 在投",
 	},
 	{
-		date: "2026年2月",
-		title: "会议论文",
-		description:
-			"投稿会议论文: Hierarchical Progressive Cross-modal Information Interaction for Incomplete Multimodal Brain Tumor Segmentation",
+		date: "2026年9月",
+		title: "深圳大学硕士阶段",
+		description: "进入深圳大学计算机与软件学院，攻读计算机科学与技术硕士（2026.09 - 2029.06）；获 2026 - 2027 学年研究生入学奖学金 15,000 元。",
 		icon: "material-symbols:code-rounded",
-		category: "论文",
-		type: "paper",
+		category: "教育背景",
+		type: "",
+		achievement: "硕士研究生",
+	},
+	{
+		date: "2026年6月 - 8月",
+		title: "南京开为网络科技有限公司 · 科研实习",
+		description: "图像生成组（大模型评测）：搭建覆盖 5 个一级维度与 56 个细粒度指标的文生图评测，完成 20,000 次自动判分推理；实现多模型生成、多卡推理与断点续跑，将判分时间从单卡约 9 小时缩短至 6 卡约 2.3 小时。",
+		icon: "material-symbols:code-rounded",
+		category: "实习",
+		type: "work",
+		achievement: "科研实习生",
+	},
+	{
+		date: "2026年6月",
+		title: "桂林电子科技大学本科毕业",
+		description: "人工智能学院 · 人工智能专业（2022.09 - 2026.06），GPA 4.45 / 5，专业前 2%，获得推免资格。",
+		icon: "material-symbols:code-rounded",
+		category: "教育背景",
+		type: "",
+		achievement: "GPA 4.45 / 5 · Top 2%",
+	},
+	{
+		date: "2025年5月 - 2026年5月",
+		title:
+			"省级大创-第二负责人-“桂界遗梦”——数字IP驱动的桂林非遗沉浸式文化体验传承元宇宙",
+		description: "主导基于 LoRA 的非遗主题角色生成，接入多语言大模型对话，整合 XR 场景与数字藏品模块；申请非遗 AR 智能导览眼镜发明专利。",
+		icon: "material-symbols:code-rounded",
+		category: "项目",
+		type: "project",
 		image: "",
-		achievement: "under review",
+		achievement: "第二负责人 · 省级大创",
 	},
 	{
 		date: "2026年2月",
 		title: "SIVP期刊论文",
-		description: "25年5月投稿-26年2月接受",
+		description: "DMKformer: A Dual-Path Routing Transformer with Hybrid Mamba and KAN for Medical Time Series，录用于 Signal, Image and Video Processing（JCR-Q3）。",
 		icon: "material-symbols:code-rounded",
 		category: "论文",
 		type: "paper",
 		image: "",
-		achievement: "已发表",
+		achievement: "第一作者 · 录用",
 	},
-
+	{
+		date: "2025年",
+		title: "TOSN2025期刊论文",
+		description:
+			"Gaze Estimation based on Visual State Space Model with Hybrid Features，ACM TOSN 2025（JCR-Q1 / CCF-B）。结合 ResNet-34 与 VSS Block 建模局部面部特征和全局上下文。",
+		icon: "material-symbols:code-rounded",
+		category: "论文",
+		type: "paper",
+		image: "",
+		achievement: "学生二作 · 录用",
+	},
+	{
+		date: "2025年",
+		title: "vsip会议论文",
+		description:
+			"第一篇会议论文, 基于改进的Yolov8模型的道路裂缝检测, 虽然写的比较烂, 但是也是人生中第一次发表论文了(其实当时是很激动的)",
+		icon: "material-symbols:code-rounded",
+		category: "论文",
+		type: "paper",
+		image: "",
+		achievement: "第一作者 · 录用",
+	},
 	{
 		date: "2025年9月",
 		title: "保研去向",
@@ -75,66 +149,17 @@ export const timelineEvents: TimelineEvent[] = [
 		image: "",
 		achievement: "",
 	},
-
-	{
-		date: "2025年9月",
-		title: "保研情况",
-		description:
-			"也是意料中拿到了学校的保研资格, 目前在寻找导师中..., 回顾三年发现, 每年综测都是第二(综测第一年年都另有其人), 年年与国家奖学金无望😂",
-		icon: "material-symbols:code-rounded",
-		category: "",
-		type: "",
-		image: "",
-		achievement: "",
-	},
-
-	{
-		date: "2025年6月",
-		title: "Signal, Image and Video Processing期刊论文",
-		description: "",
-		icon: "material-symbols:code-rounded",
-		category: "论文",
-		type: "paper",
-		image: "",
-		achievement: "under review",
-	},
-
-	{
-		date: "2025年5月",
-		title:
-			"省级大创-第二负责人-“桂界遗梦”——数字IP驱动的桂林非遗沉浸式文化体验传承元宇宙",
-		description: "还在建设中...",
-		icon: "material-symbols:code-rounded",
-		category: "项目",
-		type: "project",
-		image: "",
-		achievement: "未结项",
-	},
-
 	{
 		date: "2024年10月-2025年6月",
-		title: "华为ict大赛",
+		title: "华为 ICT 大赛 · 昇腾 AI 赛道",
 		description:
-			"参加了初赛(不知道排名), 初赛复赛(昇腾AI赛道第一名), 省复赛前三名参加国赛(南宁)好像也是一等奖, 之后就去参加球赛(深圳)了",
+			"参加华为 ICT 大赛昇腾 AI 赛道并获得全球一等奖。",
 		icon: "material-symbols:code-rounded",
 		category: "竞赛",
 		type: "award",
 		image: "",
 		achievement: "全球一等奖",
 	},
-
-	{
-		date: "2025年3月",
-		title: "TOSN2025期刊论文",
-		description:
-			"和同学合力砍下一篇期刊论文(导师外二作), 一种混合CNN-VMamba架构,结合ResNet-34和视觉状态空间块,共同捕捉用于凝视估计的局部面部特征和全局上下文相关性。",
-		icon: "material-symbols:code-rounded",
-		category: "论文",
-		type: "paper",
-		image: "",
-		achievement: "已发表",
-	},
-
 	{
 		date: "2024年12月-2025-5月",
 		title: "“蓝桥杯”全国软件和信息技术专业人才大赛B组",
@@ -147,7 +172,18 @@ export const timelineEvents: TimelineEvent[] = [
 		image: "",
 		achievement: "全国三等奖",
 	},
-
+	{
+		date: "2024年5月 - 2025年5月",
+		title: "省级大创-第一负责人-基于轻量化神经网络的实时道路安全检测系统",
+		description:
+			"大概5月份左右, 开展了一项目标检测的大创内容, 本项目开发了一个基于改进的Yolov8模型的道路裂缝检测系统,通过将训练后的模型pt文件转换" +
+			"成onnx最后转换成NCNN文件,并且借用开源项目”ncnn-android-yolov8”将其部分改进,能够实现通过手机摄像头实时采集图片或接收用户上传图片/视频,检测到其中是否存在裂缝的情况。",
+		icon: "material-symbols:code-rounded",
+		category: "项目",
+		type: "project",
+		image: "",
+		achievement: "已结项",
+	},
 	{
 		date: "2025年2月",
 		title: "美国大学生数学建模竞赛",
@@ -163,26 +199,13 @@ export const timelineEvents: TimelineEvent[] = [
 	{
 		date: "2024年11月",
 		title: "cait会议论文",
-		description: "",
+		description: "MamKanformer: A Hybrid Mamba and KAN Model Based on Medformer for Medical Time-Series Classification，IEEE CAIT 2024（EI 核心）。",
 		icon: "material-symbols:code-rounded",
 		category: "论文",
 		type: "paper",
 		image: "",
-		achievement: "已发表",
+		achievement: "第一作者 · 录用",
 	},
-
-	{
-		date: "2024年10月",
-		title: "vsip会议论文",
-		description:
-			"第一篇会议论文, 基于改进的Yolov8模型的道路裂缝检测, 虽然写的比较烂, 但是也是人生中第一次发表论文了(其实当时是很激动的)",
-		icon: "material-symbols:code-rounded",
-		category: "论文",
-		type: "paper",
-		image: "",
-		achievement: "已发表",
-	},
-
 	{
 		date: "2024年10月",
 		title: "全国大学生数学建模竞赛(二)",
@@ -195,19 +218,6 @@ export const timelineEvents: TimelineEvent[] = [
 		image: "",
 		achievement: "全国二等奖",
 	},
-
-	{
-		date: "2024年9月",
-		title: "GPA | 大二",
-		description:
-			"90.24 / 100, 拿到校级二等奖学金, 今年奖学金名额相比去年的一等奖学金少了一个名额",
-		icon: "material-symbols:code-rounded",
-		category: "教育背景",
-		type: "",
-		image: "",
-		achievement: "校级二等奖学金",
-	},
-
 	{
 		date: "2024年8月-10月",
 		title: "软著",
@@ -218,7 +228,6 @@ export const timelineEvents: TimelineEvent[] = [
 		image: "",
 		achievement: "",
 	},
-
 	{
 		date: "2024年5-10月",
 		title: "挑战杯《“集群突击”群体智能开放挑战赛虚实联动比赛》",
@@ -230,7 +239,17 @@ export const timelineEvents: TimelineEvent[] = [
 		image: "",
 		achievement: "全国二等奖",
 	},
-
+	{
+		date: "2024年9月",
+		title: "GPA | 大二",
+		description:
+			"90.24 / 100, 拿到校级二等奖学金, 今年奖学金名额相比去年的一等奖学金少了一个名额",
+		icon: "material-symbols:code-rounded",
+		category: "教育背景",
+		type: "",
+		image: "",
+		achievement: "校级二等奖学金",
+	},
 	{
 		date: "2024年5月",
 		title:
@@ -242,20 +261,6 @@ export const timelineEvents: TimelineEvent[] = [
 		image: "",
 		achievement: "半步结项",
 	},
-
-	{
-		date: "2024年5月",
-		title: "省级大创-第一负责人-基于轻量化神经网络的实时道路安全检测系统",
-		description:
-			"大概5月份左右, 开展了一项目标检测的大创内容, 本项目开发了一个基于改进的Yolov8模型的道路裂缝检测系统,通过将训练后的模型pt文件转换" +
-			"成onnx最后转换成nccn文件,并且借用开源项目”ncnn-android-yolov8”将其部分改进,能够实现通过手机摄像头实时采集图片或接收用户上传图片/视频,检测到其中是否存在裂缝的情况。",
-		icon: "material-symbols:code-rounded",
-		category: "项目",
-		type: "project",
-		image: "",
-		achievement: "已结项",
-	},
-
 	{
 		date: "2024年4月",
 		title: "导师-李玉洁",
@@ -267,7 +272,6 @@ export const timelineEvents: TimelineEvent[] = [
 		image: "",
 		achievement: "",
 	},
-
 	{
 		date: "2023年10月",
 		title: "全国大学生数学建模(一)",
@@ -279,7 +283,6 @@ export const timelineEvents: TimelineEvent[] = [
 		image: "",
 		achievement: "参与奖",
 	},
-
 	{
 		date: "2023年10月",
 		title: "全国大学生数学竞赛",
@@ -292,7 +295,6 @@ export const timelineEvents: TimelineEvent[] = [
 		image: "",
 		achievement: "省级一等奖",
 	},
-
 	{
 		date: "2023年9月",
 		title: "GPA | 大一",
@@ -303,7 +305,6 @@ export const timelineEvents: TimelineEvent[] = [
 		image: "",
 		achievement: "校级一等奖学金",
 	},
-
 	{
 		date: "2023年6月",
 		title: "英语四级",
@@ -314,7 +315,6 @@ export const timelineEvents: TimelineEvent[] = [
 		image: "",
 		achievement: "",
 	},
-
 	{
 		date: "2023年4月",
 		title: "开始接触深度学习",
@@ -325,7 +325,6 @@ export const timelineEvents: TimelineEvent[] = [
 		image: "",
 		achievement: "",
 	},
-
 	{
 		date: "2022年9月",
 		title: "大学入学",
@@ -336,7 +335,6 @@ export const timelineEvents: TimelineEvent[] = [
 		image: "",
 		achievement: "",
 	},
-
 	{
 		date: "2022年6月",
 		title: "高中毕业",

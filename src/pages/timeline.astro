@@ -1,6 +1,5 @@
 ---
 import { Icon } from "astro-icon/components";
-import BuildingCard from "../components/BuildingCard.astro";
 import TimelineCard from "../components/TimelineCard.astro";
 import { timelineEvents } from "../constants/timeline-data";
 import I18nKey from "../i18n/i18nKey";
@@ -41,44 +40,6 @@ import MainGridLayout from "../layouts/MainGridLayout.astro";
 			</div>
 		</div>
 
-		<!-- 正在建设中的项目 -->
-		<div class="mb-12">
-			<div class="text-center mb-6">
-				<div class="inline-flex items-center gap-2 mb-2">
-					<Icon name="material-symbols:construction-rounded" class="text-[var(--primary)] text-2xl"></Icon>
-					<h2 class="text-2xl font-bold text-90">正在建设中</h2>
-				</div>
-				<p class="text-75">一些正在开发和完善的项目, 以及正在做的内容</p>
-			</div>
-			
-			<div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-
-				<BuildingCard
-					title="个人博客优化"
-					description="基于Astro语言以及Fuwari对博客进行改进与优化"
-					icon="material-symbols:code-rounded"
-					progress={43}
-				/>
-				<!-- <BuildingCard
-					title="KM_Platform"
-					description="手机端用于方便深度学习如Arxiv Daily, 随机背单词, 监控Weights & Biases获取训练过程, AI交流生图等等"
-					icon="material-symbols:code-rounded"
-					progress={11}
-				/> -->
-				<!-- <BuildingCard
-				title="flow matching"
-				description="学习流匹配"
-				icon="material-symbols:code-rounded"
-				progress={11}
-			/> -->
-				<BuildingCard
-					title="MLLM"
-					description="学习多模态大模型"
-					icon="material-symbols:code-rounded"
-					progress={1}
-				/>
-			</div>
-		</div>
 
 
 		<div class="text-center mb-6">
