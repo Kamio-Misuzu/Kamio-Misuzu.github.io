@@ -2,8 +2,6 @@
 
 深圳大学计算机科学与技术硕士生，本科毕业于桂林电子科技大学人工智能专业。关注生成式模型、多模态学习与医学影像分析，也持续探索模型评测、推理优化与端侧部署。
 
-[邮箱](mailto:1176017541@qq.com) · [GitHub](https://github.com/Kamio-Misuzu) · [研究代码](https://github.com/ZengZ-233)
-
 ## 教育经历
 
 <div class="edu-list">
@@ -51,12 +49,7 @@
 ## 实习经历
 
 <div class="news-list">
-<article class="news-card"><h3 class="news-title">南京开为网络科技有限公司</h3><p class="news-meta">2026.06 - 2026.08 · 南京 · 科研实习生 · 图像生成组（大模型评测）</p><div class="news-description"><ul>
-<li><strong>文生图评测基准：</strong>基于 Qwen-Image-Bench 构建覆盖 5 个一级维度、56 个细粒度指标的端到端评测；统一 GPT Image 2、Nano Banana Pro、Nano Banana、ERNIE-Image 等模型的 prompt、ID、随机种子与评分参数，在 Image Arena 的 1,000 条 prompt 上完成 20,000 次自动判分推理并产出横向对比结果。</li>
-<li><strong>多模型生成流程：</strong>实现兼容本地 GPU 推理与远程 API 调用的 JSONL 清单驱动框架，支持多模型输出隔离、断点续跑、返回格式解析与图像完整性校验。</li>
-<li><strong>本地部署与推理：</strong>使用 diffusers 与 transformers 部署约 30GB 的 ERNIE-Image 及多组 DiT checkpoint，实现多卡数据并行；单组生成 1,000 张 1024 × 1024 图像，结果可复现且无损坏样本。</li>
-<li><strong>判分系统优化：</strong>针对官方单卡判分脚本的 CUDA OOM 与全量重跑问题，实现多卡分片调度、自动续跑及结果完整性校验；峰值显存降至约 78GB，判分耗时由单卡约 9 小时缩短至 6 卡约 2.3 小时。</li>
-</ul></div></article>
+<article class="news-card"><h3 class="news-title">南京开为网络科技有限公司</h3><p class="news-meta">2026.07 - 2026.09 · 南京 · 科研实习生 · 图像生成组（大模型评测）</p></article>
 </div>
 
 ## 论文与投稿
@@ -183,8 +176,8 @@ series = {VSIP '24}
 
 <div class="publication-list">
 <details class="publication-card">
-<summary class="publication-summary"><span><h3 class="publication-title">AdaCARLA: Adaptive Optimization for Self-supervised Contrastive Learning for Time Series Anomaly Detection</h3><p class="publication-venue">ICONIP Abstract 2026 · CCF-C · 第二作者 · 录用</p></span><span class="publication-cue">+</span></summary>
-<div class="publication-body"><p>面向时间序列异常检测的自监督对比学习自适应优化方法。</p></div>
+<summary class="publication-summary"><span><h3 class="publication-title">AdaCARLA: Adaptive Optimization for Self-supervised Contrastive Learning for Time Series Anomaly Detection</h3><p class="publication-venue">ICONIP 2026 · CCF-C · 第二作者 · 摘要展示录用</p></span><span class="publication-cue">+</span></summary>
+<div class="publication-body"><figure class="publication-acceptance"><a href="/publications/adacarla-iconip-2026-acceptance.png" target="_blank" rel="noopener"><img src="/publications/adacarla-iconip-2026-acceptance.png" alt="AdaCARLA 获 ICONIP 2026 摘要展示录用的邮件通知" width="2040" height="1005" loading="lazy" decoding="async" /></a><figcaption>ICONIP 2026 摘要展示录用通知（点击查看原图）</figcaption></figure></div>
 </details>
 
 <details class="publication-card">

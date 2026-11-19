@@ -2,8 +2,6 @@
 
 M.S. student in Computer Science and Technology at Shenzhen University, with a B.S. in Artificial Intelligence from Guilin University of Electronic Technology. My interests include generative models, multimodal learning, and medical image analysis, with experience in model evaluation, inference optimization, and on-device deployment.
 
-[Email](mailto:1176017541@qq.com) · [GitHub](https://github.com/Kamio-Misuzu) · [Research code](https://github.com/ZengZ-233)
-
 ## Education
 
 <div class="edu-list">
@@ -51,12 +49,7 @@ M.S. student in Computer Science and Technology at Shenzhen University, with a B
 ## Internship Experience
 
 <div class="news-list">
-<article class="news-card"><h3 class="news-title">Nanjing Kaiwei Network Technology Co., Ltd.</h3><p class="news-meta">Jun - Aug 2026 · Nanjing · Research Intern · Image Generation / Model Evaluation</p><div class="news-description"><ul>
-<li><strong>Text-to-image evaluation:</strong> Built an end-to-end benchmark on Qwen-Image-Bench spanning 5 primary dimensions and 56 fine-grained metrics. Standardized prompts, IDs, random seeds, and judging parameters across GPT Image 2, Nano Banana Pro, Nano Banana, and ERNIE-Image; completed 20,000 automated judging inferences on 1,000 Image Arena prompts for cross-model comparison.</li>
-<li><strong>Multi-model pipeline:</strong> Implemented a JSONL-driven framework for local GPU inference and remote APIs, with isolated model outputs, checkpoint resumption, response parsing, and image integrity checks.</li>
-<li><strong>Deployment and inference:</strong> Deployed the approximately 30GB ERNIE-Image model and multiple DiT checkpoints using diffusers and transformers. Used multi-GPU data parallelism to generate 1,000 reproducible, intact 1024 × 1024 images per checkpoint group.</li>
-<li><strong>Judge optimization:</strong> Addressed CUDA OOM and full reruns in the original single-GPU judging script through sharded multi-GPU scheduling, automatic resumption, and completeness checks. Reduced peak GPU memory usage to approximately 78GB and judging time from about 9 hours on one GPU to 2.3 hours on six GPUs.</li>
-</ul></div></article>
+<article class="news-card"><h3 class="news-title">Nanjing Kaiwei Network Technology Co., Ltd.</h3><p class="news-meta">Jul - Sep 2026 · Nanjing · Research Intern · Image Generation / Model Evaluation</p></article>
 </div>
 
 ## Publications & Submissions
@@ -183,8 +176,8 @@ series = {VSIP '24}
 
 <div class="publication-list">
 <details class="publication-card">
-<summary class="publication-summary"><span><h3 class="publication-title">AdaCARLA: Adaptive Optimization for Self-supervised Contrastive Learning for Time Series Anomaly Detection</h3><p class="publication-venue">ICONIP Abstract 2026 · CCF-C · Second author · Accepted</p></span><span class="publication-cue">+</span></summary>
-<div class="publication-body"><p>Adaptive optimization of self-supervised contrastive learning for time series anomaly detection.</p></div>
+<summary class="publication-summary"><span><h3 class="publication-title">AdaCARLA: Adaptive Optimization for Self-supervised Contrastive Learning for Time Series Anomaly Detection</h3><p class="publication-venue">ICONIP 2026 · CCF-C · Second author · Accepted for abstract presentation</p></span><span class="publication-cue">+</span></summary>
+<div class="publication-body"><figure class="publication-acceptance"><a href="/publications/adacarla-iconip-2026-acceptance.png" target="_blank" rel="noopener"><img src="/publications/adacarla-iconip-2026-acceptance.png" alt="Email confirming AdaCARLA acceptance for abstract presentation at ICONIP 2026" width="2040" height="1005" loading="lazy" decoding="async" /></a><figcaption>ICONIP 2026 acceptance for abstract presentation (view original image)</figcaption></figure></div>
 </details>
 
 <details class="publication-card">

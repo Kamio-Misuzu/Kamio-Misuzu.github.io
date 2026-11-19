@@ -81,6 +81,23 @@ for (const [path, url] of Object.entries(certImageRecords)) {
     </script>
 
 <style>
+    :global(.publication-acceptance) {
+        margin: 0;
+    }
+    :global(.publication-acceptance img) {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin: 0;
+        border: 1px solid var(--line-divider);
+        border-radius: 0.5rem;
+        background: white;
+    }
+    :global(.publication-acceptance figcaption) {
+        margin-top: 0.65rem;
+        font-size: 0.875rem;
+        color: var(--text-75);
+    }
     :global(.about-content h1:first-of-type) {
         font-size: 1.8rem !important;
         line-height: 1.45;

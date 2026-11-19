@@ -21,8 +21,8 @@ export const timelineEvents: TimelineEvent[] = [
 	},
 	{
 		date: "2026年",
-		title: "AdaCARLA · ICONIP Abstract",
-		description: "AdaCARLA: Adaptive Optimization for Self-supervised Contrastive Learning for Time Series Anomaly Detection，ICONIP Abstract 2026（CCF-C）。",
+		title: "AdaCARLA · ICONIP 2026 摘要展示",
+		description: "AdaCARLA: Adaptive Optimization for Self-supervised Contrastive Learning for Time Series Anomaly Detection，ICONIP 2026（CCF-C），获摘要展示录用。",
 		icon: "material-symbols:code-rounded",
 		category: "论文",
 		type: "paper",
@@ -67,9 +67,9 @@ export const timelineEvents: TimelineEvent[] = [
 		achievement: "硕士研究生",
 	},
 	{
-		date: "2026年6月 - 8月",
+		date: "2026年7月 - 9月",
 		title: "南京开为网络科技有限公司 · 科研实习",
-		description: "图像生成组（大模型评测）：搭建覆盖 5 个一级维度与 56 个细粒度指标的文生图评测，完成 20,000 次自动判分推理；实现多模型生成、多卡推理与断点续跑，将判分时间从单卡约 9 小时缩短至 6 卡约 2.3 小时。",
+		description: "图像生成组（大模型评测）科研实习。",
 		icon: "material-symbols:code-rounded",
 		category: "实习",
 		type: "work",
