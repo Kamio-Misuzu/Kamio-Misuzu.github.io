@@ -12,15 +12,6 @@ export interface TimelineEvent {
 export const timelineEvents: TimelineEvent[] = [
 	{
 		date: "2026年",
-		title: "ICLR 2027 · 论文投稿",
-		description: "More Should Be Better: Incremental Self-Distillation Multimodal Brain Tumor Segmentation with Missing Modalities。",
-		icon: "material-symbols:code-rounded",
-		category: "论文",
-		type: "paper",
-		achievement: "学生一作 · 在投",
-	},
-	{
-		date: "2026年",
 		title: "AdaCARLA · ICONIP 2026 摘要展示",
 		description: "AdaCARLA: Adaptive Optimization for Self-supervised Contrastive Learning for Time Series Anomaly Detection，ICONIP 2026（CCF-C），获摘要展示录用。",
 		icon: "material-symbols:code-rounded",

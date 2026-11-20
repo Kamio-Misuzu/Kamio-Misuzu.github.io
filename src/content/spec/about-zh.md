@@ -58,11 +58,6 @@
 
 <div class="publication-list">
 <details class="publication-card">
-<summary class="publication-summary"><span><h3 class="publication-title">More Should Be Better: Incremental Self-Distillation Multimodal Brain Tumor Segmentation with Missing Modalities</h3><p class="publication-venue">ICLR 2027 · CCF-A · 学生一作 · 在投</p></span><span class="publication-cue">+</span></summary>
-<div class="publication-body"><p>研究缺失模态条件下的多模态脑肿瘤分割，采用增量自蒸馏方法。</p></div>
-</details>
-
-<details class="publication-card">
 <summary class="publication-summary"><span><h3 class="publication-title">MSConvFormer: A Multi-Scale Depthwise Convolution Transformer for Medical Time Series Classification</h3><p class="publication-venue">Digital Signal Processing 2026 · JCR-Q2 · 第一作者 · 在投</p></span><span class="publication-cue">+</span></summary>
 <div class="publication-body"><p>面向医学时间序列分类的多尺度深度卷积 Transformer。</p></div>
 </details>

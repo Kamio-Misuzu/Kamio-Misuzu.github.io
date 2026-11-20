@@ -58,11 +58,6 @@ M.S. student in Computer Science and Technology at Shenzhen University, with a B
 
 <div class="publication-list">
 <details class="publication-card">
-<summary class="publication-summary"><span><h3 class="publication-title">More Should Be Better: Incremental Self-Distillation Multimodal Brain Tumor Segmentation with Missing Modalities</h3><p class="publication-venue">ICLR 2027 · CCF-A · Student first author · Submitted</p></span><span class="publication-cue">+</span></summary>
-<div class="publication-body"><p>Research on multimodal brain tumor segmentation with missing modalities using incremental self-distillation.</p></div>
-</details>
-
-<details class="publication-card">
 <summary class="publication-summary"><span><h3 class="publication-title">MSConvFormer: A Multi-Scale Depthwise Convolution Transformer for Medical Time Series Classification</h3><p class="publication-venue">Digital Signal Processing 2026 · JCR-Q2 · First author · Submitted</p></span><span class="publication-cue">+</span></summary>
 <div class="publication-body"><p>A multi-scale depthwise convolution Transformer for medical time series classification.</p></div>
 </details>
